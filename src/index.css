@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom background gradients for SkillBridge lavender-pink theme */
+.bg-hero-radial {
+  background: radial-gradient(70% 60% at 50% 10%, rgba(237, 228, 255, 0.8) 0%, rgba(255, 236, 243, 0.65) 45%, rgba(255, 255, 255, 0) 100%);
+}
+
+.dark .bg-hero-radial {
+  background: radial-gradient(70% 60% at 50% 10%, rgba(68, 28, 128, 0.4) 0%, rgba(85, 26, 68, 0.25) 45%, rgba(13, 11, 24, 0) 100%);
+}
+
+.text-gradient-purple-pink {
+  background: linear-gradient(135deg, #803BE8 0%, #A855F7 50%, #EC4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.badge-glow {
+  box-shadow: 0 0 15px rgba(128, 59, 232, 0.25);
+}
