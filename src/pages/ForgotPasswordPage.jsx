@@ -4,11 +4,14 @@ import { Mail, ArrowLeft, Send, CheckCircle2, Info } from 'lucide-react';
 import AuthLayout from '../components/auth/AuthLayout';
 import InputField from '../components/auth/InputField';
 import Button from '../components/auth/Button';
+import { authAPI } from '../services/api';
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [resetTokenInfo, setResetTokenInfo] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const validate = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -24,12 +27,23 @@ export default function ForgotPasswordPage() {
     return true;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) {
       return;
     }
-    setSubmitted(true);
+    setLoading(true);
+    try {
+      const res = await authAPI.forgotPassword(email.trim());
+      if (res.resetToken) {
+        setResetTokenInfo(res.resetToken);
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitted(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

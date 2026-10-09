@@ -13,28 +13,36 @@ import {
   Settings, 
   LogOut, 
   X,
-  Sparkles
+  Sparkles,
+  GraduationCap
 } from 'lucide-react';
 import SkillBridgeLogo from '../SkillBridgeLogo';
+import { useAuth } from '../../context/AuthContext';
 
 export default function Sidebar({ isOpen, onClose }) {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
+
+  const isFacultyOrAdmin = user?.role === 'faculty' || user?.role === 'admin';
 
   const navItems = [
     { name: 'Overview', path: '/dashboard', icon: LayoutDashboard },
+    ...(isFacultyOrAdmin ? [
+      { name: 'Faculty Oversight', path: '/faculty', icon: GraduationCap, badge: 'Portal' }
+    ] : []),
     { name: 'Explore Projects', path: '/projects', icon: Compass },
     { name: 'Find Teammates', path: '/teammates', icon: Users },
     { name: 'My Teams', path: '/teams', icon: ShieldCheck },
     { name: 'My Projects', path: '/my-projects', icon: FolderKanban },
     { name: 'Tasks', path: '/tasks', icon: CheckSquare, badge: '4' },
-    { name: 'Messages', path: '/messages', icon: MessageSquare, badge: '2' },
-    { name: 'Notifications', path: '/notifications', icon: Bell, badge: '5' },
+    { name: 'Messages', path: '/messages', icon: MessageSquare, badge: 'Live' },
+    { name: 'Notifications', path: '/notifications', icon: Bell, badge: '3' },
     { name: 'My Profile', path: '/profile', icon: User },
     { name: 'Settings', path: '/settings', icon: Settings },
   ];
 
   const handleLogout = () => {
-    // In frontend demo mode, redirect to /login
+    logout();
     navigate('/login');
   };
 
@@ -140,18 +148,18 @@ export default function Sidebar({ isOpen, onClose }) {
           >
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"
-                alt="Alex Morgan"
+                src={user?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"}
+                alt={user?.name || "Student"}
                 className="w-9 h-9 rounded-full object-cover ring-2 ring-purple-300 dark:ring-purple-800"
               />
               <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-[#120e24]"></span>
             </div>
             <div className="min-w-0 flex-1">
               <h5 className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate group-hover:text-[#803BE8] transition-colors">
-                Alex Morgan
+                {user?.name || "Student Builder"}
               </h5>
-              <p className="text-[11px] text-slate-400 dark:text-slate-500 truncate">
-                CS Junior &bull; Stanford
+              <p className="text-[11px] text-slate-400 dark:text-slate-500 truncate capitalize">
+                {user?.academic?.course || user?.role || "Student"} &bull; {user?.university || "SkillBridge"}
               </p>
             </div>
           </Link>

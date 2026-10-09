@@ -18,6 +18,7 @@ import {
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import TaskCard from '../../components/tasks/TaskCard';
 import TaskModal from '../../components/tasks/TaskModal';
+import TeamFileManager from '../../components/files/TeamFileManager';
 import { useTeamTask } from '../../context/TeamTaskContext';
 import { useProjects } from '../../context/ProjectsContext';
 import { KANBAN_COLUMNS } from '../../data/tasksData';
@@ -334,6 +335,9 @@ export default function TeamDetailsPage() {
                 </div>
               )}
             </div>
+
+            {/* Shared Team Documents & Assets */}
+            <TeamFileManager teamId={team.id} canUpload={isOwner || isMember} />
 
           </div>
 

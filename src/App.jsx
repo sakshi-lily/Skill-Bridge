@@ -1,20 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { 
-  Compass, 
-  Users, 
-  ShieldCheck, 
-  FolderKanban, 
-  CheckSquare, 
-  MessageSquare, 
-  Bell, 
   User, 
   Settings 
 } from 'lucide-react';
 
-// Context
+// Context Providers
+import { AuthProvider } from './context/AuthContext';
 import { ProjectsProvider } from './context/ProjectsContext';
 import { TeamTaskProvider } from './context/TeamTaskContext';
+
+// Protected Route Guard
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 // Landing & Auth Pages
 import LandingPage from './pages/LandingPage';
@@ -38,117 +35,178 @@ import TeamsPage from './pages/teams/TeamsPage';
 import TeamDetailsPage from './pages/teams/TeamDetailsPage';
 import TasksPage from './pages/tasks/TasksPage';
 
+// Step 8: Real-Time Chat, Notifications & Faculty Dashboard
+import MessagesPage from './pages/messages/MessagesPage';
+import NotificationsPage from './pages/notifications/NotificationsPage';
+import FacultyDashboardPage from './pages/faculty/FacultyDashboardPage';
+
 export default function App() {
   return (
-    <ProjectsProvider>
-      <TeamTaskProvider>
-        <BrowserRouter>
-          <Routes>
-            {/* Landing Page */}
-            <Route path="/" element={<LandingPage />} />
+    <AuthProvider>
+      <ProjectsProvider>
+        <TeamTaskProvider>
+          <BrowserRouter>
+            <Routes>
+              {/* Public Landing Page */}
+              <Route path="/" element={<LandingPage />} />
 
-            {/* Authentication Routes */}
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/setup-profile" element={<SetupProfilePage />} />
+              {/* Authentication Routes */}
+              <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+              <Route path="/setup-profile" element={<SetupProfilePage />} />
 
-            {/* Main Student Dashboard */}
-            <Route path="/dashboard" element={<DashboardOverview />} />
-
-            {/* Step 4: Project Matchmaking Discovery Routes */}
-            <Route path="/projects" element={<ExploreProjectsPage />} />
-            <Route path="/projects/create" element={<CreateProjectPage />} />
-            <Route path="/projects/:id" element={<ProjectDetailsPage />} />
-
-            {/* Step 5: Rule-Based Skill-Matching Teammates Route */}
-            <Route path="/teammates" element={<TeammatesPage />} />
-
-            {/* Step 6: Team Formation & Details Routes */}
-            <Route path="/teams" element={<TeamsPage />} />
-            <Route path="/teams/:id" element={<TeamDetailsPage />} />
-
-            {/* Step 6: Kanban Task Management Route */}
-            <Route path="/tasks" element={<TasksPage />} />
-
-          <Route
-            path="/messages"
-            element={
-              <DashboardPlaceholderPage
-                title="Team Messages"
-                breadcrumb="Dashboard / Messages"
-                description="Real-time communication channels with project teams, direct matchmaking conversations, and campus group chats."
-                icon={MessageSquare}
-                sampleItems={[
-                  'Direct matchmaking messaging',
-                  'Project team group channels',
-                  'Code snippet & file attachment sharing',
-                  'Verified student online presence status',
-                ]}
+              {/* Main Student Dashboard */}
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <DashboardOverview />
+                  </ProtectedRoute>
+                }
               />
-            }
-          />
 
-          <Route
-            path="/notifications"
-            element={
-              <DashboardPlaceholderPage
-                title="Notifications"
-                breadcrumb="Dashboard / Notifications"
-                description="Activity alerts, incoming project team invitations, milestone announcements, and campus updates."
-                icon={Bell}
-                sampleItems={[
-                  'Team invite response actions',
-                  'Task assignment reminders',
-                  'Project milestone alerts',
-                  'Push notification preferences',
-                ]}
+              {/* Step 4: Project Matchmaking Discovery Routes */}
+              <Route
+                path="/projects"
+                element={
+                  <ProtectedRoute>
+                    <ExploreProjectsPage />
+                  </ProtectedRoute>
+                }
               />
-            }
-          />
-
-          <Route
-            path="/profile"
-            element={
-              <DashboardPlaceholderPage
-                title="My Builder Profile"
-                breadcrumb="Dashboard / Profile"
-                description="View and customize your verified student skills, portfolio projects, university details, and matchmaking availability."
-                icon={User}
-                sampleItems={[
-                  'Skill proficiency endorsements',
-                  'University email verification badge',
-                  'Linked GitHub & LinkedIn stats',
-                  'Matchmaking status toggle (Active/Paused)',
-                ]}
+              <Route
+                path="/projects/create"
+                element={
+                  <ProtectedRoute>
+                    <CreateProjectPage />
+                  </ProtectedRoute>
+                }
               />
-            }
-          />
-
-          <Route
-            path="/settings"
-            element={
-              <DashboardPlaceholderPage
-                title="Account Settings"
-                breadcrumb="Dashboard / Settings"
-                description="Manage security preferences, notification channels, linked accounts, and appearance options."
-                icon={Settings}
-                sampleItems={[
-                  'Profile visibility privacy controls',
-                  'Email notification digests',
-                  'Dark mode system defaults',
-                  'University credential management',
-                ]}
+              <Route
+                path="/projects/:id"
+                element={
+                  <ProtectedRoute>
+                    <ProjectDetailsPage />
+                  </ProtectedRoute>
+                }
               />
-            }
-          />
 
-          {/* Fallback back to home */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </BrowserRouter>
-    </TeamTaskProvider>
-  </ProjectsProvider>
-);
+              {/* Step 5: Rule-Based Skill-Matching Teammates Route */}
+              <Route
+                path="/teammates"
+                element={
+                  <ProtectedRoute>
+                    <TeammatesPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Step 6: Team Formation & Details Routes */}
+              <Route
+                path="/teams"
+                element={
+                  <ProtectedRoute>
+                    <TeamsPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/teams/:id"
+                element={
+                  <ProtectedRoute>
+                    <TeamDetailsPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Step 6: Kanban Task Management Route */}
+              <Route
+                path="/tasks"
+                element={
+                  <ProtectedRoute>
+                    <TasksPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Step 8: Real-Time Team Chat Route */}
+              <Route
+                path="/messages"
+                element={
+                  <ProtectedRoute>
+                    <MessagesPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Step 8: Real-Time Notifications Center Route */}
+              <Route
+                path="/notifications"
+                element={
+                  <ProtectedRoute>
+                    <NotificationsPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Step 8: Faculty & Admin Oversight Dashboard */}
+              <Route
+                path="/faculty"
+                element={
+                  <ProtectedRoute allowedRoles={['faculty', 'admin']}>
+                    <FacultyDashboardPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* User Profile & Settings */}
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <DashboardPlaceholderPage
+                      title="My Builder Profile"
+                      breadcrumb="Dashboard / Profile"
+                      description="View and customize your verified student skills, portfolio projects, university details, and matchmaking availability."
+                      icon={User}
+                      sampleItems={[
+                        'Skill proficiency endorsements',
+                        'University email verification badge',
+                        'Linked GitHub & LinkedIn stats',
+                        'Matchmaking status toggle (Active/Paused)',
+                      ]}
+                    />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="/settings"
+                element={
+                  <ProtectedRoute>
+                    <DashboardPlaceholderPage
+                      title="Account Settings"
+                      breadcrumb="Dashboard / Settings"
+                      description="Manage security preferences, notification channels, linked accounts, and appearance options."
+                      icon={Settings}
+                      sampleItems={[
+                        'Profile visibility privacy controls',
+                        'Email notification digests',
+                        'Dark mode system defaults',
+                        'University credential management',
+                      ]}
+                    />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Fallback back to home */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </BrowserRouter>
+        </TeamTaskProvider>
+      </ProjectsProvider>
+    </AuthProvider>
+  );
 }
-

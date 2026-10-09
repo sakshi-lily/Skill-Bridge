@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { INITIAL_PROJECTS } from '../data/projectsData';
+import { projectsAPI } from '../services/api';
 
 const ProjectsContext = createContext(null);
 
@@ -9,7 +10,7 @@ export function ProjectsProvider({ children }) {
   // Track applied projects: { [projectId]: { status: 'Pending', note: string, appliedAt: string } }
   const [applications, setApplications] = useState({});
 
-  const addProject = (newProjectData) => {
+  const addProject = async (newProjectData) => {
     const slug = newProjectData.title
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
@@ -43,10 +44,30 @@ export function ProjectsProvider({ children }) {
     };
 
     setProjects(prev => [newProject, ...prev]);
+
+    // Backend sync attempt
+    try {
+      await projectsAPI.createProject({
+        title: newProjectData.title,
+        description: newProjectData.description,
+        problemStatement: newProjectData.problemStatement,
+        category: newProjectData.category,
+        difficulty: newProjectData.difficulty,
+        projectMode: newProjectData.mode,
+        requiredSkills: newProjectData.requiredSkills,
+        teamSize: newProjectData.teamSize,
+        deadline: newProjectData.deadline,
+        openPositions: newProjectData.openPositions,
+        milestones: newProject.milestones,
+      });
+    } catch (err) {
+      // In-memory fallback is active
+    }
+
     return newProject;
   };
 
-  const applyToProject = (projectId, note = '') => {
+  const applyToProject = async (projectId, note = '') => {
     if (applications[projectId]) {
       return false; // Already applied
     }
@@ -64,6 +85,14 @@ export function ProjectsProvider({ children }) {
         }),
       },
     }));
+
+    // Backend sync attempt
+    try {
+      await projectsAPI.apply(projectId, note);
+    } catch (err) {
+      // Client state fallback is active
+    }
+
     return true;
   };
 

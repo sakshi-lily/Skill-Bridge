@@ -10,11 +10,13 @@ import {
   Plus, 
   X, 
   ArrowRight,
-  Info
+  Info,
+  AlertCircle
 } from 'lucide-react';
 import AuthLayout from '../components/auth/AuthLayout';
 import InputField from '../components/auth/InputField';
 import Button from '../components/auth/Button';
+import { useAuth } from '../context/AuthContext';
 
 const PRESET_SKILLS = [
   'React', 'Python', 'UI/UX Design', 'Node.js', 'Machine Learning', 
@@ -23,6 +25,7 @@ const PRESET_SKILLS = [
 
 export default function SignUpPage() {
   const navigate = useNavigate();
+  const { register } = useAuth();
 
   // Form State
   const [formData, setFormData] = useState({
@@ -137,21 +140,39 @@ export default function SignUpPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const [serverError, setServerError] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) {
       return;
     }
 
-    // Frontend demo notice: no backend/JWT/MongoDB yet
-    setDemoNotice(
-      'Frontend Demo: Client-side validation passed! In production, this data registers to MongoDB via API. Continuing to profile setup...'
-    );
+    setSubmitting(true);
+    setServerError(null);
 
-    // Navigate to profile setup after brief demo delay
-    setTimeout(() => {
-      navigate('/setup-profile');
-    }, 1200);
+    const payload = {
+      name: formData.fullName.trim(),
+      email: formData.email.trim(),
+      password: formData.password,
+      role: formData.role.toLowerCase(),
+      university: formData.university.trim() || 'Stanford University',
+      courseAndYear: formData.courseAndYear.trim() || 'Year 1',
+      skills: formData.skills,
+    };
+
+    const result = await register(payload);
+    setSubmitting(false);
+
+    if (result.success) {
+      setDemoNotice(`Account created successfully! Welcome to SkillBridge, ${formData.fullName}. Redirecting to profile setup...`);
+      setTimeout(() => {
+        navigate('/setup-profile');
+      }, 1000);
+    } else {
+      setServerError(result.message || 'Registration failed. Please verify your details.');
+    }
   };
 
   return (
@@ -161,19 +182,25 @@ export default function SignUpPage() {
       badge="Student &amp; Faculty Registration"
       maxWidth="max-w-2xl"
     >
-      {/* Demo Notice Banner */}
-      {demoNotice ? (
+      {/* Server Error Alert */}
+      {serverError && (
+        <div className="mb-6 p-4 rounded-2xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 text-xs text-rose-700 dark:text-rose-300 flex items-start gap-3">
+          <AlertCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+          <div>
+            <p className="font-semibold">Registration Notice</p>
+            <p className="mt-0.5">{serverError}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Success Notice Banner */}
+      {demoNotice && (
         <div className="mb-6 p-4 rounded-2xl bg-purple-50 dark:bg-[#20183e] border border-purple-200 dark:border-purple-800 text-xs sm:text-sm text-[#803BE8] dark:text-purple-300 flex items-start gap-3">
-          <Info className="w-5 h-5 shrink-0 mt-0.5 text-pink-500" />
+          <CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5 text-emerald-500" />
           <div>
             <p className="font-semibold">{demoNotice}</p>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Redirecting to /setup-profile...</p>
           </div>
-        </div>
-      ) : (
-        <div className="mb-6 p-3 rounded-xl bg-purple-50/70 dark:bg-[#1a1435]/70 border border-purple-100 dark:border-purple-900/40 text-xs text-slate-600 dark:text-slate-300 flex items-center gap-2">
-          <Info className="w-4 h-4 text-[#803BE8] dark:text-pink-400 shrink-0" />
-          <span><strong>Frontend Demo Mode:</strong> Full field validation is active. Backend APIs will connect in later phases.</span>
         </div>
       )}
 

@@ -17,6 +17,7 @@ import {
 import AuthLayout from '../components/auth/AuthLayout';
 import InputField from '../components/auth/InputField';
 import Button from '../components/auth/Button';
+import { useAuth } from '../context/AuthContext';
 
 const TECHNICAL_SKILLS_PRESETS = [
   'React', 'Node.js', 'Python', 'Tailwind CSS', 'TypeScript', 
@@ -151,17 +152,41 @@ export default function SetupProfilePage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSave = (e) => {
+  const { updateProfile } = useAuth();
+
+  const handleSave = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
-    setDemoNotice(
-      'Frontend Demo: Profile setup validated and saved! In production, this synchronizes with MongoDB to power AI teammate matching. Redirecting to your dashboard...'
-    );
+    const skillNames = skillsWithLevel.map(s => s.name);
+    const proficiencyMap = {};
+    skillsWithLevel.forEach(s => {
+      proficiencyMap[s.name] = s.level;
+    });
+
+    const profilePayload = {
+      bio: bio.trim(),
+      skills: skillNames,
+      proficiency: proficiencyMap,
+      availability: weeklyHours,
+      preferredRoles: roles,
+      interests: interestAreas,
+      avatar: avatarPreview,
+      github: githubUrl.trim(),
+      linkedin: linkedinUrl.trim(),
+    };
+
+    setDemoNotice('Profile saved to SkillBridge! Synchronizing your builder identity with the matchmaking engine...');
+
+    try {
+      await updateProfile(profilePayload);
+    } catch (err) {
+      // Continue safely
+    }
 
     setTimeout(() => {
       navigate('/dashboard');
-    }, 1200);
+    }, 1000);
   };
 
   const handleSkip = () => {

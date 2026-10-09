@@ -2,11 +2,31 @@ import React, { createContext, useContext, useState, useMemo } from 'react';
 import { INITIAL_TEAMS, INITIAL_USER_INVITATIONS } from '../data/teamsData';
 import { INITIAL_TASKS } from '../data/tasksData';
 import { CURRENT_USER } from '../data/studentsData';
+import { useAuth } from './AuthContext';
+import { teamsAPI, tasksAPI } from '../services/api';
 
 const TeamTaskContext = createContext(null);
 
 export function TeamTaskProvider({ children }) {
-  const [currentUser] = useState(CURRENT_USER);
+  const auth = useAuth();
+  const authUser = auth?.user;
+
+  const currentUser = useMemo(() => {
+    if (!authUser) return CURRENT_USER;
+    return {
+      id: authUser._id || authUser.id || 'alex-morgan',
+      _id: authUser._id,
+      name: authUser.name || 'Alex Morgan',
+      avatar: authUser.avatar || CURRENT_USER.avatar,
+      university: authUser.academic?.university || authUser.university || CURRENT_USER.university,
+      courseAndYear: `${authUser.academic?.course || 'CS'} • Year ${authUser.academic?.year || 3}`,
+      email: authUser.email || CURRENT_USER.email,
+      skills: authUser.skills || CURRENT_USER.skills,
+      interests: authUser.interests || CURRENT_USER.interests,
+      role: authUser.role || 'student',
+    };
+  }, [authUser]);
+
   const [teams, setTeams] = useState(INITIAL_TEAMS);
   const [userInvitations, setUserInvitations] = useState(INITIAL_USER_INVITATIONS);
   const [tasks, setTasks] = useState(INITIAL_TASKS);
@@ -24,7 +44,7 @@ export function TeamTaskProvider({ children }) {
      TEAM FORMATION ACTIONS
      ========================================================== */
 
-  const createTeam = (teamData) => {
+  const createTeam = async (teamData) => {
     const slug = `team-${teamData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${Date.now()}`;
     const newTeam = {
       id: slug,
@@ -51,6 +71,21 @@ export function TeamTaskProvider({ children }) {
     };
 
     setTeams(prev => [newTeam, ...prev]);
+
+    // Backend sync attempt
+    try {
+      if (teamData.projectId) {
+        await teamsAPI.createTeam({
+          name: teamData.name.trim(),
+          description: teamData.description?.trim(),
+          project: teamData.projectId,
+          maxMembers: Number(teamData.maxMembers) || 4,
+        });
+      }
+    } catch (err) {
+      // In-memory state remains solid
+    }
+
     return newTeam;
   };
 
@@ -195,7 +230,7 @@ export function TeamTaskProvider({ children }) {
      KANBAN TASK MANAGEMENT ACTIONS
      ========================================================== */
 
-  const createTask = (taskData) => {
+  const createTask = async (taskData) => {
     const slug = `task-${Date.now()}`;
     const newTask = {
       id: slug,
@@ -218,10 +253,28 @@ export function TeamTaskProvider({ children }) {
     };
 
     setTasks(prev => [newTask, ...prev]);
+
+    // Backend sync attempt
+    try {
+      if (taskData.projectId && taskData.teamId) {
+        await tasksAPI.createTask({
+          title: taskData.title.trim(),
+          description: taskData.description?.trim(),
+          project: taskData.projectId,
+          team: taskData.teamId,
+          priority: taskData.priority,
+          status: taskData.status,
+          dueDate: taskData.dueDate,
+        });
+      }
+    } catch (err) {
+      // In-memory fallback
+    }
+
     return newTask;
   };
 
-  const updateTask = (taskId, updates) => {
+  const updateTask = async (taskId, updates) => {
     setTasks(prev =>
       prev.map(task => {
         if (task.id === taskId) {
@@ -232,14 +285,28 @@ export function TeamTaskProvider({ children }) {
         return task;
       })
     );
+
+    // Backend sync attempt
+    try {
+      await tasksAPI.updateTask(taskId, updates);
+    } catch (err) {
+      // In-memory fallback
+    }
   };
 
-  const deleteTask = (taskId) => {
+  const deleteTask = async (taskId) => {
     setTasks(prev => prev.filter(t => t.id !== taskId));
+
+    // Backend sync attempt
+    try {
+      await tasksAPI.deleteTask(taskId);
+    } catch (err) {
+      // In-memory fallback
+    }
   };
 
-  const moveTaskStatus = (taskId, newStatus) => {
-    updateTask(taskId, { status: newStatus });
+  const moveTaskStatus = async (taskId, newStatus) => {
+    await updateTask(taskId, { status: newStatus });
   };
 
   /* ==========================================================
