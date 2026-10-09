@@ -11,7 +11,7 @@ export default function Navbar() {
     { name: 'Features', href: '#features' },
     { name: 'How It Works', href: '#how-it-works' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Community', href: '#community', badge: 'Active' },
+    { name: 'Community', href: '#community' },
   ];
 
   return (

@@ -3,14 +3,6 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Compass, Sparkles, CheckCircle2, Users, Code2, Palette, BrainCircuit } from 'lucide-react';
 
 export default function Hero() {
-  const trendingSkills = [
-    { label: 'React.js', color: 'bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-300 border-blue-200/60 dark:border-blue-800/40' },
-    { label: 'UI/UX Design', color: 'bg-pink-50 text-pink-600 dark:bg-pink-950/40 dark:text-pink-300 border-pink-200/60 dark:border-pink-800/40' },
-    { label: 'Python & AI', color: 'bg-purple-50 text-purple-600 dark:bg-purple-950/40 dark:text-purple-300 border-purple-200/60 dark:border-purple-800/40' },
-    { label: 'Node.js', color: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-300 border-emerald-200/60 dark:border-emerald-800/40' },
-    { label: 'Mobile Flutter', color: 'bg-cyan-50 text-cyan-600 dark:bg-cyan-950/40 dark:text-cyan-300 border-cyan-200/60 dark:border-cyan-800/40' },
-  ];
-
   return (
     <section className="relative overflow-hidden pt-12 pb-20 sm:pt-16 sm:pb-28">
       {/* Background soft lavender & light pink ambient gradient orbs */}
@@ -65,21 +57,6 @@ export default function Hero() {
               <Compass className="w-5 h-5 text-[#803BE8] dark:text-purple-300" />
               <span>Explore Projects</span>
             </a>
-          </div>
-
-          {/* Trending skill tags preview */}
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-2 pt-2">
-            <span className="text-xs font-semibold text-slate-400 dark:text-slate-400 uppercase tracking-wider mr-1">
-              Popular Skills:
-            </span>
-            {trendingSkills.map((skill) => (
-              <span
-                key={skill.label}
-                className={`text-xs font-medium px-3 py-1 rounded-full border transition-all hover:scale-105 select-none ${skill.color}`}
-              >
-                {skill.label}
-              </span>
-            ))}
           </div>
 
         </div>
