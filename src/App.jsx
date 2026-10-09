@@ -40,6 +40,10 @@ import MessagesPage from './pages/messages/MessagesPage';
 import NotificationsPage from './pages/notifications/NotificationsPage';
 import FacultyDashboardPage from './pages/faculty/FacultyDashboardPage';
 
+// Step 9 & 10: My Projects & Builder Profile
+import MyProjectsPage from './pages/projects/MyProjectsPage';
+import ProfilePage from './pages/profile/ProfilePage';
+
 export default function App() {
   return (
     <AuthProvider>
@@ -160,23 +164,21 @@ export default function App() {
                 }
               />
 
+              <Route
+                path="/my-projects"
+                element={
+                  <ProtectedRoute>
+                    <MyProjectsPage />
+                  </ProtectedRoute>
+                }
+              />
+
               {/* User Profile & Settings */}
               <Route
                 path="/profile"
                 element={
                   <ProtectedRoute>
-                    <DashboardPlaceholderPage
-                      title="My Builder Profile"
-                      breadcrumb="Dashboard / Profile"
-                      description="View and customize your verified student skills, portfolio projects, university details, and matchmaking availability."
-                      icon={User}
-                      sampleItems={[
-                        'Skill proficiency endorsements',
-                        'University email verification badge',
-                        'Linked GitHub & LinkedIn stats',
-                        'Matchmaking status toggle (Active/Paused)',
-                      ]}
-                    />
+                    <ProfilePage />
                   </ProtectedRoute>
                 }
               />

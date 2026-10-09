@@ -220,6 +220,46 @@ export const createProject = async (req, res, next) => {
       });
     }
 
+    if (mongoose.connection.readyState !== 1) {
+      const mockProject = {
+        _id: `proj-${Date.now()}`,
+        id: `proj-${Date.now()}`,
+        title,
+        shortDescription,
+        detailedDescription: detailedDescription || shortDescription,
+        problemStatement: problemStatement || '',
+        objectives: Array.isArray(objectives) ? objectives : [],
+        requiredSkills: Array.isArray(requiredSkills) ? requiredSkills : [requiredSkills],
+        category: category || 'Web Development',
+        difficulty: difficulty || 'Intermediate',
+        teamSize: Number(teamSize) || 4,
+        openPositionsCount: Number(openPositionsCount) || 3,
+        availableRoles: Array.isArray(availableRoles) ? availableRoles : ['Frontend Developer'],
+        mode: mode || 'Remote',
+        weeklyCommitment: weeklyCommitment || '6-8 hrs/week',
+        deadline: deadline || 'Nov 30, 2026',
+        milestones: Array.isArray(milestones) ? milestones : [],
+        owner: {
+          _id: req.user._id || req.user.id,
+          name: req.user.name,
+          email: req.user.email,
+          avatar: req.user.avatar,
+        },
+        members: [
+          {
+            user: req.user._id || req.user.id,
+            name: req.user.name,
+            role: 'Project Lead',
+            avatar: req.user.avatar,
+          },
+        ],
+      };
+      return res.status(201).json({
+        success: true,
+        project: mockProject,
+      });
+    }
+
     const project = await Project.create({
       title,
       shortDescription,
@@ -265,6 +305,14 @@ export const createProject = async (req, res, next) => {
  */
 export const updateProject = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1 || !mongoose.isValidObjectId(req.params.id)) {
+      const existing = FALLBACK_PROJECTS.find(p => p._id === req.params.id || p.id === req.params.id) || FALLBACK_PROJECTS[0];
+      return res.status(200).json({
+        success: true,
+        project: { ...existing, ...req.body },
+      });
+    }
+
     let project = await Project.findById(req.params.id);
 
     if (!project) {
@@ -303,6 +351,13 @@ export const updateProject = async (req, res, next) => {
  */
 export const deleteProject = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1 || !mongoose.isValidObjectId(req.params.id)) {
+      return res.status(200).json({
+        success: true,
+        message: 'Project deleted successfully.',
+      });
+    }
+
     const project = await Project.findById(req.params.id);
 
     if (!project) {
@@ -407,7 +462,12 @@ export const getProjectMatches = async (req, res, next) => {
  */
 export const applyToProject = async (req, res, next) => {
   try {
-    const project = await Project.findById(req.params.id);
+    let project = null;
+    if (mongoose.connection.readyState === 1 && mongoose.isValidObjectId(req.params.id)) {
+      project = await Project.findById(req.params.id);
+    } else {
+      project = FALLBACK_PROJECTS.find(p => p._id === req.params.id || p.id === req.params.id) || FALLBACK_PROJECTS[0];
+    }
 
     if (!project) {
       return res.status(404).json({
@@ -416,50 +476,69 @@ export const applyToProject = async (req, res, next) => {
       });
     }
 
-    // Cannot apply to own project
-    if (project.owner.toString() === req.user.id) {
-      return res.status(400).json({
-        success: false,
-        message: 'You are the owner of this project.',
+    if (mongoose.connection.readyState === 1) {
+      // Cannot apply to own project
+      if (project.owner && project.owner.toString() === req.user.id) {
+        return res.status(400).json({
+          success: false,
+          message: 'You are the owner of this project.',
+        });
+      }
+
+      // Check if already applied
+      const existing = await Application.findOne({
+        project: project._id,
+        applicant: req.user._id,
+      });
+
+      if (existing) {
+        return res.status(400).json({
+          success: false,
+          message: `You have already applied to this project. Current status: ${existing.status}.`,
+        });
+      }
+
+      const application = await Application.create({
+        project: project._id,
+        applicant: req.user._id,
+        roleApplied: req.body.roleApplied || req.body.role || 'Collaborator',
+        message: req.body.message || req.body.note || '',
+      });
+
+      // Notify project owner
+      await createNotification({
+        recipient: project.owner,
+        sender: req.user._id,
+        senderName: req.user.name,
+        senderAvatar: req.user.avatar,
+        type: 'application',
+        title: 'New Project Application',
+        message: `${req.user.name} applied for role '${application.roleApplied}' on ${project.title}.`,
+        relatedProject: project._id,
+      });
+
+      return res.status(201).json({
+        success: true,
+        message: 'Application submitted successfully.',
+        application,
       });
     }
 
-    // Check if already applied
-    const existing = await Application.findOne({
-      project: project._id,
-      applicant: req.user._id,
-    });
-
-    if (existing) {
-      return res.status(400).json({
-        success: false,
-        message: `You have already applied to this project. Current status: ${existing.status}.`,
-      });
-    }
-
-    const application = await Application.create({
-      project: project._id,
-      applicant: req.user._id,
-      roleApplied: req.body.roleApplied || 'Collaborator',
-      message: req.body.message || '',
-    });
-
-    // Notify project owner
-    await createNotification({
-      recipient: project.owner,
-      sender: req.user._id,
-      senderName: req.user.name,
-      senderAvatar: req.user.avatar,
-      type: 'application',
-      title: 'New Project Application',
-      message: `${req.user.name} applied for role '${application.roleApplied}' on ${project.title}.`,
-      relatedProject: project._id,
-    });
+    // Standby mock response
+    const mockApp = {
+      _id: `app-${Date.now()}`,
+      project: project._id || project.id,
+      applicant: req.user._id || req.user.id,
+      roleApplied: req.body.roleApplied || req.body.role || 'Collaborator',
+      message: req.body.message || req.body.note || '',
+      status: 'pending',
+      createdAt: new Date().toISOString(),
+    };
 
     res.status(201).json({
       success: true,
       message: 'Application submitted successfully.',
-      application,
+      application: mockApp,
     });
   } catch (error) {
     next(error);

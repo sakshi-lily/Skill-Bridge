@@ -47,6 +47,9 @@ export default function TeamDetailsPage() {
   const [taskModalOpen, setTaskModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
 
+  // Destructive Confirmation Modal
+  const [confirmAction, setConfirmAction] = useState(null);
+
   if (!team) {
     return (
       <DashboardLayout title="Team Not Found" breadcrumb="SkillBridge / Teams / 404">
@@ -263,9 +266,15 @@ export default function TeamDetailsPage() {
                           <button
                             type="button"
                             onClick={() => {
-                              if (window.confirm(`Remove ${member.name} from ${team.name}?`)) {
-                                removeMember(team.id, member.studentId);
-                              }
+                              setConfirmAction({
+                                title: 'Remove Team Member',
+                                message: `Are you sure you want to remove ${member.name} from ${team.name}? They will lose access to team channels and files.`,
+                                confirmText: 'Remove Member',
+                                onConfirm: () => {
+                                  removeMember(team.id, member.studentId);
+                                  setConfirmAction(null);
+                                },
+                              });
                             }}
                             className="p-1.5 text-rose-500 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/40 rounded-lg transition-colors"
                             title={`Remove ${member.name}`}
@@ -410,10 +419,16 @@ export default function TeamDetailsPage() {
                 <button
                   type="button"
                   onClick={() => {
-                    if (window.confirm(`Are you sure you want to leave ${team.name}?`)) {
-                      leaveTeam(team.id, currentUser.id);
-                      navigate('/teams');
-                    }
+                    setConfirmAction({
+                      title: 'Leave Team Squad',
+                      message: `Are you sure you want to leave ${team.name}? You will lose access to the team channels and task assignments.`,
+                      confirmText: 'Leave Team',
+                      onConfirm: () => {
+                        leaveTeam(team.id, currentUser.id);
+                        setConfirmAction(null);
+                        navigate('/teams');
+                      },
+                    });
                   }}
                   className="w-full py-2.5 px-3 rounded-xl bg-rose-50 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 hover:bg-rose-100 text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
                 >
@@ -446,6 +461,39 @@ export default function TeamDetailsPage() {
         task={editingTask}
         defaultTeamId={team.id}
       />
+
+      {/* Destructive Action Confirmation Modal */}
+      {confirmAction && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150">
+          <div className="w-full max-w-md bg-white dark:bg-[#18122B] rounded-3xl p-6 shadow-2xl border border-slate-100 dark:border-purple-950/60 animate-in zoom-in-95 duration-200">
+            <div className="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-500 flex items-center justify-center mb-4">
+              <Trash2 className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+              {confirmAction.title}
+            </h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+              {confirmAction.message}
+            </p>
+            <div className="mt-6 flex items-center justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => setConfirmAction(null)}
+                className="px-4 py-2 rounded-xl border border-slate-200 dark:border-purple-900/60 text-slate-600 dark:text-slate-300 text-xs font-semibold hover:bg-slate-50 dark:hover:bg-purple-950/30 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={confirmAction.onConfirm}
+                className="px-5 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold shadow-md shadow-rose-500/20 transition-colors"
+              >
+                {confirmAction.confirmText}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </DashboardLayout>
   );
 }

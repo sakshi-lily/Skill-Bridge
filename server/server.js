@@ -42,6 +42,18 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const server = http.createServer(app);
 
+// Security HTTP Headers
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  if (process.env.NODE_ENV === 'production') {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  }
+  next();
+});
+
 // Allowed CORS origins
 const allowedOrigins = [
   'http://localhost:5173',
@@ -53,19 +65,19 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps or curl)
-      if (!origin || allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
+      // Allow requests with no origin (like mobile apps, curl, or server-to-server)
+      if (!origin || allowedOrigins.includes(origin) || allowedOrigins.includes('*') || process.env.NODE_ENV !== 'production') {
         callback(null, true);
       } else {
-        callback(null, true); // Permissive in dev to avoid CORS blocking
+        callback(new Error('Blocked by CORS policy for origin: ' + origin));
       }
     },
     credentials: true,
   })
 );
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Serve static uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -220,5 +232,24 @@ server.listen(PORT, () => {
   console.log(`🚀 [SkillBridge Server]: Running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode`);
   console.log(`📡 [Health Check]: http://localhost:${PORT}/api/health`);
 });
+
+// Graceful Shutdown Handlers
+const handleGracefulShutdown = (signal) => {
+  console.log(`\n🛑 [Server Shutdown]: Received ${signal}. Closing HTTP & WebSocket servers...`);
+  server.close(() => {
+    console.log('✅ Server closed cleanly.');
+    if (mongoose.connection.readyState === 1) {
+      mongoose.connection.close(false).then(() => {
+        console.log('✅ MongoDB connection closed.');
+        process.exit(0);
+      });
+    } else {
+      process.exit(0);
+    }
+  });
+};
+
+process.on('SIGTERM', () => handleGracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => handleGracefulShutdown('SIGINT'));
 
 export { app, server, io };
