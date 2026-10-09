@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useMemo } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   Compass, 
   Users, 
@@ -21,153 +21,104 @@ import TeammateCard from '../../components/dashboard/TeammateCard';
 import TeamCard from '../../components/dashboard/TeamCard';
 import TaskList from '../../components/dashboard/TaskList';
 import ActivityList from '../../components/dashboard/ActivityList';
+import StudentProfileModal from '../../components/teammates/StudentProfileModal';
+import InviteToTeamModal from '../../components/teammates/InviteToTeamModal';
+
+// Contexts & Data
+import { useTeamTask } from '../../context/TeamTaskContext';
+import { useProjects } from '../../context/ProjectsContext';
+import { STUDENTS_DATA } from '../../data/studentsData';
+import { rankStudentsForProject } from '../../utils/skillMatching';
 
 export default function DashboardOverview() {
+  const navigate = useNavigate();
+  const { 
+    currentUser, 
+    myTeams, 
+    userInvitations, 
+    tasks, 
+    myAssignedTasks, 
+    getTeamProgress, 
+    getTasksByTeam,
+    moveTaskStatus 
+  } = useTeamTask();
+
+  const { projects } = useProjects();
+
   const [showEmptyTeams, setShowEmptyTeams] = useState(false);
   const [selectedProjectModal, setSelectedProjectModal] = useState(null);
+  
+  // Teammate modals
+  const [candidateProfileModal, setCandidateProfileModal] = useState(null);
+  const [candidateToInvite, setCandidateToInvite] = useState(null);
 
-  // Mock Recommended Projects Data
-  const recommendedProjects = [
-    {
-      id: 1,
-      title: 'EduLens — Computer Vision Notes Scanner',
-      description: 'Building an edge AI mobile tool that digitizes handwritten blackboard math & formulas into editable LaTeX & Markdown documents.',
-      requiredSkills: ['React Native', 'PyTorch', 'FastAPI'],
-      owner: {
-        name: 'David Chen',
-        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150',
+  // Computed Statistics
+  const completedTasksCount = useMemo(() => {
+    return tasks.filter(t => t.status === 'Completed').length;
+  }, [tasks]);
+
+  const userProjectsCount = useMemo(() => {
+    const active = projects.filter(
+      p => p.owner?.name === currentUser.name || p.members?.some(m => m.name === currentUser.name)
+    );
+    return Math.max(active.length, 3);
+  }, [projects, currentUser.name]);
+
+  // Rule-Based Recommended Teammates calculation
+  // Target skills based on the user's lead project (React, Python, FastAPI, UI/UX Design, Docker)
+  const recommendedTeammates = useMemo(() => {
+    const targetProjectSkills = ['React', 'Python', 'FastAPI', 'UI/UX Design', 'Tailwind CSS'];
+    const candidates = STUDENTS_DATA.filter(s => s.id !== currentUser.id);
+    const ranked = rankStudentsForProject(targetProjectSkills, candidates);
+
+    return ranked.slice(0, 3).map(r => ({
+      id: r.student.id,
+      name: r.student.name,
+      avatar: r.student.avatar,
+      university: r.student.university,
+      courseAndYear: `${r.student.major} • ${r.student.academicYear}`,
+      skills: r.student.skills,
+      interests: r.student.interests,
+      matchScore: r.match.score,
+      explanation: r.match.explanation,
+      matchedSkills: r.match.matchedSkills,
+      missingSkills: r.match.missingSkills,
+      rawStudent: r.student,
+    }));
+  }, [currentUser.id]);
+
+  // Recommended Projects Data from Project Context or fallback
+  const recommendedProjects = useMemo(() => {
+    if (projects && projects.length > 0) {
+      return projects.slice(0, 3);
+    }
+    return [
+      {
+        id: 'proj-edulens',
+        title: 'EduLens — Computer Vision Notes Scanner',
+        description: 'Building an edge AI mobile tool that digitizes handwritten blackboard math & formulas into editable LaTeX & Markdown documents.',
+        requiredSkills: ['React Native', 'PyTorch', 'FastAPI'],
+        owner: {
+          name: 'David Chen',
+          avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150',
+        },
+        teamSize: '2/4 members',
+        category: 'Hackathon Project',
       },
-      teamSize: '2/4 members',
-      category: 'Hackathon Project',
-    },
-    {
-      id: 2,
-      title: 'EcoRoute — Campus Electric Shuttle Tracker',
-      description: 'Real-time GPS tracker and crowd-density analyzer for campus shuttle stops using WebSockets and transit API feeds.',
-      requiredSkills: ['React.js', 'Node.js', 'Tailwind', 'Mapbox'],
-      owner: {
-        name: 'Maya Rao',
-        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150',
+      {
+        id: 'proj-ecoroute',
+        title: 'EcoRoute — Campus Electric Shuttle Tracker',
+        description: 'Real-time GPS tracker and crowd-density analyzer for campus shuttle stops using WebSockets and transit API feeds.',
+        requiredSkills: ['React', 'Node.js', 'Tailwind CSS', 'Mapbox'],
+        owner: {
+          name: 'Maya Rao',
+          avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150',
+        },
+        teamSize: '3/4 members',
+        category: 'Capstone Project',
       },
-      teamSize: '3/4 members',
-      category: 'Capstone Project',
-    },
-    {
-      id: 3,
-      title: 'PeerPeer — Decentralized Study Notes Exchange',
-      description: 'A Web3 micro-credentialing and peer-reviewed lecture summary network with verified university email badges.',
-      requiredSkills: ['UI/UX Design', 'Solidity', 'Next.js'],
-      owner: {
-        name: 'Jordan Bell',
-        avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150',
-      },
-      teamSize: '1/3 members',
-      category: 'Startup MVP',
-    },
-  ];
-
-  // Mock Recommended Teammates Data
-  const recommendedTeammates = [
-    {
-      id: 101,
-      name: 'Sarah Patel',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
-      university: 'MIT',
-      courseAndYear: 'Design Senior &bull; Year 4',
-      skills: ['Figma', 'UI/UX Design', 'Design Systems', 'User Research'],
-      interests: ['AI Interfaces', 'Accessibility', 'EdTech'],
-      matchScore: 98,
-    },
-    {
-      id: 102,
-      name: 'Rohan Sharma',
-      avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=250',
-      university: 'UC Berkeley',
-      courseAndYear: 'EECS Junior &bull; Year 3',
-      skills: ['Python', 'LangChain', 'FastAPI', 'Docker'],
-      interests: ['LLMs', 'Retrieval Augmented Generation', 'FinTech'],
-      matchScore: 94,
-    },
-    {
-      id: 103,
-      name: 'Chloe Kim',
-      avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=250',
-      university: 'Carnegie Mellon',
-      courseAndYear: 'Software Eng &bull; Year 2',
-      skills: ['React Native', 'Tailwind CSS', 'GraphQL', 'Firebase'],
-      interests: ['Mobile Apps', 'Open Source', 'Social Impact'],
-      matchScore: 91,
-    },
-  ];
-
-  // Mock Active Teams Data
-  const myTeams = [
-    {
-      id: 201,
-      teamName: 'PulseEngineers',
-      projectName: 'CampusPulse AI',
-      members: [
-        { name: 'Alex Morgan', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150' },
-        { name: 'Sarah Patel', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150' },
-        { name: 'David Chen', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150' },
-      ],
-      progress: 75,
-      completedTasks: 9,
-      totalTasks: 12,
-    },
-    {
-      id: 202,
-      teamName: 'BazaarSquad',
-      projectName: 'DormBazaar Marketplace',
-      members: [
-        { name: 'Alex Morgan', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150' },
-        { name: 'Jordan Bell', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150' },
-      ],
-      progress: 45,
-      completedTasks: 5,
-      totalTasks: 11,
-    },
-  ];
-
-  // Mock Upcoming Tasks Data
-  const upcomingTasks = [
-    {
-      id: 301,
-      title: 'Finalize OpenAI API streaming endpoint',
-      projectName: 'CampusPulse AI',
-      dueDate: 'Tomorrow',
-      priority: 'High',
-      status: 'In Progress',
-      isOverdue: false,
-    },
-    {
-      id: 302,
-      title: 'Complete Figma responsive mobile layouts',
-      projectName: 'CampusPulse AI',
-      dueDate: 'Oct 14',
-      priority: 'Medium',
-      status: 'To Do',
-      isOverdue: false,
-    },
-    {
-      id: 303,
-      title: 'Review team contract & role milestones',
-      projectName: 'DormBazaar Marketplace',
-      dueDate: 'Yesterday',
-      priority: 'High',
-      status: 'To Do',
-      isOverdue: true,
-    },
-    {
-      id: 304,
-      title: 'Set up GitHub Actions CI deployment',
-      projectName: 'DormBazaar Marketplace',
-      dueDate: 'Oct 18',
-      priority: 'Low',
-      status: 'Completed',
-      isOverdue: false,
-    },
-  ];
+    ];
+  }, [projects]);
 
   // Mock Recent Activity Data
   const recentActivities = [
@@ -213,17 +164,16 @@ export default function DashboardOverview() {
         <div className="flex items-center gap-2.5">
           <Info className="w-4 h-4 text-[#803BE8] dark:text-pink-400 shrink-0" />
           <span>
-            <strong>Student Workspace Demo:</strong> Viewing dashboard for <strong>Alex Morgan</strong> (Stanford University). Match scores and activity metrics are simulated demo values.
+            <strong>Student Workspace:</strong> Active session for <strong>{currentUser.name}</strong> ({currentUser.university}). Matchmaking algorithm and task boards are dynamically synchronized.
           </span>
         </div>
         <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white dark:bg-[#251e47] text-[#803BE8] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40 shrink-0 self-start sm:self-auto">
-          Frontend Step 3
+          Steps 5 &amp; 6 Active
         </span>
       </div>
 
       {/* 1. Welcome Section */}
       <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-100/70 via-pink-50/60 to-purple-50/50 dark:from-[#1e173e] dark:via-[#191333] dark:to-[#141029] border border-purple-200/70 dark:border-purple-900/50 p-6 sm:p-8 md:p-10 shadow-sm">
-        {/* Ambient subtle glow background */}
         <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-purple-400/10 to-pink-400/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="relative z-10 max-w-3xl">
@@ -233,11 +183,11 @@ export default function DashboardOverview() {
           </div>
 
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-            Welcome back, Alex Morgan! 👋
+            Welcome back, {currentUser.name}! 👋
           </h1>
 
           <p className="mt-2.5 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
-            Find your next opportunity, connect with talented students, and build something amazing.
+            Find your next opportunity, connect with verified candidates, and manage team deliverables with rule-based skill matching.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-3.5">
@@ -256,16 +206,24 @@ export default function DashboardOverview() {
               <Users className="w-4 h-4 text-[#803BE8] dark:text-purple-300" />
               <span>Find Teammates</span>
             </Link>
+
+            <Link
+              to="/tasks"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-50 dark:bg-purple-950/40 hover:bg-purple-100 dark:hover:bg-purple-900/60 text-purple-700 dark:text-purple-300 border border-purple-200/80 dark:border-purple-800/50 text-xs sm:text-sm font-bold transition-all duration-200"
+            >
+              <CheckSquare className="w-4 h-4" />
+              <span>Sprint Kanban</span>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* 2. Statistics Cards */}
+      {/* 2. Dynamic Statistics Cards */}
       <section>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <StatCard
             title="My Projects"
-            value="3"
+            value={userProjectsCount.toString()}
             label="Active collegiate projects"
             icon={FolderKanban}
             colorScheme="purple"
@@ -273,27 +231,27 @@ export default function DashboardOverview() {
           />
           <StatCard
             title="Active Teams"
-            value="2"
+            value={myTeams.length.toString()}
             label="Cross-campus squads"
             icon={ShieldCheck}
             colorScheme="emerald"
-            trend="100% attendance"
+            trend={`${myTeams.length > 0 ? 'Active memberships' : 'None yet'}`}
           />
           <StatCard
             title="Pending Invitations"
-            value="4"
-            label="2 incoming &bull; 2 sent"
+            value={userInvitations.length.toString()}
+            label={`${userInvitations.length} incoming invitation${userInvitations.length === 1 ? '' : 's'}`}
             icon={Mail}
             colorScheme="pink"
-            trend="Needs review"
+            trend={userInvitations.length > 0 ? 'Action required' : 'Up to date'}
           />
           <StatCard
             title="Tasks Completed"
-            value="18"
-            label="Sprint progress deliverables"
+            value={completedTasksCount.toString()}
+            label={`${completedTasksCount}/${tasks.length} total deliverables`}
             icon={CheckSquare}
             colorScheme="indigo"
-            trend="82% on schedule"
+            trend={`${tasks.length > 0 ? Math.round((completedTasksCount / tasks.length) * 100) : 0}% sprint rate`}
           />
         </div>
       </section>
@@ -336,15 +294,18 @@ export default function DashboardOverview() {
             </div>
           </section>
 
-          {/* Section: Recommended Teammates */}
+          {/* Section: Recommended Teammates (Rule-Based Match Formula) */}
           <section className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-                  Recommended Teammates
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <span>Recommended Teammates</span>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/50 text-[#803BE8] dark:text-purple-300">
+                    Rule-Based Match
+                  </span>
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Students with complementary skill proficiencies and mutual project goals
+                  Calculated against required sprint skills: React, Python, FastAPI, UI/UX
                 </p>
               </div>
 
@@ -352,7 +313,7 @@ export default function DashboardOverview() {
                 to="/teammates"
                 className="text-xs font-bold text-[#803BE8] dark:text-purple-300 hover:text-pink-600 dark:hover:text-pink-300 flex items-center gap-1 transition-colors"
               >
-                <span>View All Teammates</span>
+                <span>Find More Teammates</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -362,13 +323,13 @@ export default function DashboardOverview() {
                 <TeammateCard
                   key={teammate.id}
                   {...teammate}
-                  onViewProfile={() => {}}
+                  onViewProfile={() => setCandidateProfileModal(teammate.rawStudent)}
                 />
               ))}
             </div>
           </section>
 
-          {/* Section: My Teams */}
+          {/* Section: My Teams (Integrated with TeamTaskContext) */}
           <section className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
@@ -376,11 +337,10 @@ export default function DashboardOverview() {
                   My Active Teams
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Sprint tracking, milestone sync and team collaboration spaces
+                  Sprint tracking, milestone sync, and team collaboration spaces
                 </p>
               </div>
 
-              {/* Demo Toggle to inspect Empty State */}
               <div className="flex items-center gap-2">
                 <button
                   type="button"
@@ -401,8 +361,7 @@ export default function DashboardOverview() {
               </div>
             </div>
 
-            {showEmptyTeams ? (
-              /* Useful Empty State */
+            {showEmptyTeams || myTeams.length === 0 ? (
               <div className="rounded-2xl border-2 border-dashed border-purple-200 dark:border-purple-900/60 bg-white/60 dark:bg-[#151226]/60 p-8 text-center space-y-3">
                 <div className="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-950/60 text-[#803BE8] dark:text-purple-300 flex items-center justify-center mx-auto">
                   <ShieldCheck className="w-6 h-6" />
@@ -411,7 +370,7 @@ export default function DashboardOverview() {
                   You haven't joined any project teams yet
                 </h4>
                 <p className="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto leading-relaxed">
-                  Join an open project or create your own idea and invite complementary teammates with verified skill match scores.
+                  Join an open project or create your own team and invite candidates with verified skill match scores.
                 </p>
                 <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
                   <Link
@@ -422,23 +381,35 @@ export default function DashboardOverview() {
                     <span>Browse Open Projects</span>
                   </Link>
                   <Link
-                    to="/teammates"
+                    to="/teams"
                     className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-purple-50 dark:bg-[#1f193d] text-[#803BE8] dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 text-xs font-bold"
                   >
-                    <Users className="w-3.5 h-3.5" />
-                    <span>Search Students</span>
+                    <PlusCircle className="w-3.5 h-3.5" />
+                    <span>Create a Team</span>
                   </Link>
                 </div>
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                {myTeams.map((team) => (
-                  <TeamCard
-                    key={team.id}
-                    {...team}
-                    onOpenTeam={() => {}}
-                  />
-                ))}
+                {myTeams.map((team) => {
+                  const teamTasks = getTasksByTeam(team.id);
+                  const completedCount = teamTasks.filter(t => t.status === 'Completed').length;
+                  const progress = getTeamProgress(team.id);
+
+                  return (
+                    <TeamCard
+                      key={team.id}
+                      id={team.id}
+                      teamName={team.name}
+                      projectName={team.projectName || 'Active Mission'}
+                      members={team.members}
+                      progress={progress}
+                      completedTasks={completedCount}
+                      totalTasks={teamTasks.length || 1}
+                      onOpenTeam={() => navigate(`/teams/${team.id}`)}
+                    />
+                  );
+                })}
               </div>
             )}
           </section>
@@ -448,8 +419,16 @@ export default function DashboardOverview() {
         {/* Right Column (1 Col): Upcoming Tasks & Recent Activity */}
         <div className="space-y-8">
           
-          {/* Upcoming Tasks Component */}
-          <TaskList initialTasks={upcomingTasks} />
+          {/* Real Upcoming Tasks Connected to TeamTaskContext */}
+          <TaskList 
+            tasks={myAssignedTasks.length > 0 ? myAssignedTasks.slice(0, 5) : tasks.slice(0, 5)} 
+            onToggleStatus={(taskId) => {
+              const current = tasks.find(t => t.id === taskId);
+              if (!current) return;
+              const nextStatus = current.status === 'Completed' ? 'To Do' : current.status === 'In Progress' ? 'Completed' : 'In Progress';
+              moveTaskStatus(taskId, nextStatus);
+            }}
+          />
 
           {/* Recent Activity Feed Component */}
           <ActivityList activities={recentActivities} />
@@ -458,66 +437,26 @@ export default function DashboardOverview() {
 
       </div>
 
-      {/* Modal Details Preview (Interactive demo) */}
-      {selectedProjectModal && (
-        <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="w-full max-w-lg rounded-3xl bg-white dark:bg-[#16122c] border border-purple-200 dark:border-purple-900/60 p-6 shadow-2xl space-y-4 animate-in fade-in zoom-in-95">
-            <div className="flex items-start justify-between">
-              <div>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950/60 text-[#803BE8] dark:text-purple-300">
-                  {selectedProjectModal.category}
-                </span>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mt-1">
-                  {selectedProjectModal.title}
-                </h3>
-              </div>
-              <button
-                type="button"
-                onClick={() => setSelectedProjectModal(null)}
-                className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm font-bold p-1"
-              >
-                ✕
-              </button>
-            </div>
+      {/* Candidate Profile Modal */}
+      {candidateProfileModal && (
+        <StudentProfileModal
+          isOpen={!!candidateProfileModal}
+          onClose={() => setCandidateProfileModal(null)}
+          student={candidateProfileModal}
+          onInvite={(student) => {
+            setCandidateProfileModal(null);
+            setCandidateToInvite(student);
+          }}
+        />
+      )}
 
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              {selectedProjectModal.description}
-            </p>
-
-            <div className="pt-2">
-              <span className="text-xs font-bold text-slate-700 dark:text-slate-200 block mb-1">
-                Requested Tech Stack:
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {selectedProjectModal.requiredSkills.map((s, idx) => (
-                  <span
-                    key={idx}
-                    className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-purple-50 dark:bg-[#20183e] text-[#803BE8] dark:text-purple-300 border border-purple-100 dark:border-purple-800/40"
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-slate-100 dark:border-purple-950/60 flex items-center justify-end gap-2">
-              <button
-                type="button"
-                onClick={() => setSelectedProjectModal(null)}
-                className="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1e173a]"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                onClick={() => setSelectedProjectModal(null)}
-                className="px-5 py-2 rounded-xl text-xs font-bold bg-[#803BE8] text-white hover:bg-[#6c27cf]"
-              >
-                Apply to Join Project
-              </button>
-            </div>
-          </div>
-        </div>
+      {/* Invite Candidate Modal */}
+      {candidateToInvite && (
+        <InviteToTeamModal
+          isOpen={!!candidateToInvite}
+          onClose={() => setCandidateToInvite(null)}
+          student={candidateToInvite}
+        />
       )}
 
     </DashboardLayout>

@@ -14,6 +14,7 @@ import {
 
 // Context
 import { ProjectsProvider } from './context/ProjectsContext';
+import { TeamTaskProvider } from './context/TeamTaskContext';
 
 // Landing & Auth Pages
 import LandingPage from './pages/LandingPage';
@@ -31,100 +32,44 @@ import ExploreProjectsPage from './pages/projects/ExploreProjectsPage';
 import ProjectDetailsPage from './pages/projects/ProjectDetailsPage';
 import CreateProjectPage from './pages/projects/CreateProjectPage';
 
+// Step 5 & 6: Matchmaking & Team/Task Management Pages
+import TeammatesPage from './pages/teammates/TeammatesPage';
+import TeamsPage from './pages/teams/TeamsPage';
+import TeamDetailsPage from './pages/teams/TeamDetailsPage';
+import TasksPage from './pages/tasks/TasksPage';
+
 export default function App() {
   return (
     <ProjectsProvider>
-      <BrowserRouter>
-        <Routes>
-          {/* Landing Page */}
-          <Route path="/" element={<LandingPage />} />
+      <TeamTaskProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* Landing Page */}
+            <Route path="/" element={<LandingPage />} />
 
-          {/* Authentication Routes */}
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-          <Route path="/setup-profile" element={<SetupProfilePage />} />
+            {/* Authentication Routes */}
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/setup-profile" element={<SetupProfilePage />} />
 
-          {/* Main Student Dashboard */}
-          <Route path="/dashboard" element={<DashboardOverview />} />
+            {/* Main Student Dashboard */}
+            <Route path="/dashboard" element={<DashboardOverview />} />
 
-          {/* Step 4: Project Matchmaking Discovery Routes */}
-          <Route path="/projects" element={<ExploreProjectsPage />} />
-          <Route path="/projects/create" element={<CreateProjectPage />} />
-          <Route path="/projects/:id" element={<ProjectDetailsPage />} />
+            {/* Step 4: Project Matchmaking Discovery Routes */}
+            <Route path="/projects" element={<ExploreProjectsPage />} />
+            <Route path="/projects/create" element={<CreateProjectPage />} />
+            <Route path="/projects/:id" element={<ProjectDetailsPage />} />
 
-          {/* Sub-routes sharing DashboardLayout */}
-          <Route
-            path="/teammates"
-            element={
-              <DashboardPlaceholderPage
-                title="Find Teammates"
-                breadcrumb="Dashboard / Find Teammates"
-                description="Discover student builders with complementary skill gap matches across top engineering and design universities."
-                icon={Users}
-                sampleItems={[
-                  'AI-driven skill gap recommendations',
-                  'Filter by university & major',
-                  'Instant peer match invitation messenger',
-                  'Verified GitHub & LinkedIn portfolio previews',
-                ]}
-              />
-            }
-          />
+            {/* Step 5: Rule-Based Skill-Matching Teammates Route */}
+            <Route path="/teammates" element={<TeammatesPage />} />
 
-          <Route
-            path="/teams"
-            element={
-              <DashboardPlaceholderPage
-                title="My Teams"
-                breadcrumb="Dashboard / My Teams"
-                description="Manage team formation, shared workspaces, role assignments, and synchronized team milestone trackers."
-                icon={ShieldCheck}
-                sampleItems={[
-                  'Team member role permissions',
-                  'Sprint milestone checklists',
-                  'In-workspace group collaboration',
-                  'Project repository link manager',
-                ]}
-              />
-            }
-          />
+            {/* Step 6: Team Formation & Details Routes */}
+            <Route path="/teams" element={<TeamsPage />} />
+            <Route path="/teams/:id" element={<TeamDetailsPage />} />
 
-          <Route
-            path="/my-projects"
-            element={
-              <DashboardPlaceholderPage
-                title="My Projects"
-                breadcrumb="Dashboard / My Projects"
-                description="Manage and track projects you have created, monitor incoming team applications, and edit project recruitment slots."
-                icon={FolderKanban}
-                sampleItems={[
-                  'Create new project pitch workflow',
-                  'Review pending applicant profiles',
-                  'Manage team vacancy slots',
-                  'Project visibility settings',
-                ]}
-              />
-            }
-          />
-
-          <Route
-            path="/tasks"
-            element={
-              <DashboardPlaceholderPage
-                title="Tasks & Sprints"
-                breadcrumb="Dashboard / Tasks"
-                description="Organize your personal deliverables, team kanban boards, and project sprint deadlines in one unified board."
-                icon={CheckSquare}
-                sampleItems={[
-                  'Personal & team task views',
-                  'Overdue task notification alerts',
-                  'Priority tags (High, Medium, Low)',
-                  'GitHub issue synchronization',
-                ]}
-              />
-            }
-          />
+            {/* Step 6: Kanban Task Management Route */}
+            <Route path="/tasks" element={<TasksPage />} />
 
           <Route
             path="/messages"
@@ -202,6 +147,8 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
-    </ProjectsProvider>
-  );
+    </TeamTaskProvider>
+  </ProjectsProvider>
+);
 }
+

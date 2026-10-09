@@ -19,6 +19,8 @@ import {
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import ApplyModal from '../../components/projects/ApplyModal';
 import { useProjects } from '../../context/ProjectsContext';
+import { calculateSkillMatch } from '../../utils/skillMatching';
+import { CURRENT_USER } from '../../data/studentsData';
 
 export default function ProjectDetailsPage() {
   const { id } = useParams();
@@ -27,6 +29,10 @@ export default function ProjectDetailsPage() {
 
   const project = getProjectById(id);
   const [showApplyModal, setShowApplyModal] = useState(false);
+
+  const matchResult = project 
+    ? calculateSkillMatch(project.requiredSkills, CURRENT_USER.skills)
+    : null;
 
   if (!project) {
     return (
@@ -236,6 +242,77 @@ export default function ProjectDetailsPage() {
           {/* Sidebar Column: Skills, Roles, Owner, and Team (1 Col) */}
           <div className="space-y-6">
             
+            {/* Rule-Based Match Card for Alex Morgan */}
+            {matchResult && (
+              <div className="rounded-3xl bg-gradient-to-br from-purple-50/80 via-white to-pink-50/40 dark:from-[#1d163a] dark:via-[#16122a] dark:to-[#1a122e] border border-purple-200/80 dark:border-purple-900/60 p-6 shadow-sm space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-[#803BE8] dark:text-purple-300" />
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
+                      Your Skill Match
+                    </h3>
+                  </div>
+                  <span className={`text-xs font-black px-2.5 py-1 rounded-full border ${
+                    matchResult.matchStrength === 'Strong'
+                      ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20'
+                      : matchResult.matchStrength === 'Moderate'
+                      ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20'
+                      : 'bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-500/20'
+                  }`}>
+                    {matchResult.score}% Match
+                  </span>
+                </div>
+
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  {matchResult.explanation}
+                </p>
+
+                {/* Matched skills */}
+                {matchResult.matchedSkills.length > 0 && (
+                  <div className="pt-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block mb-1">
+                      Matched Requirements ({matchResult.matchedSkills.length}):
+                    </span>
+                    <div className="flex flex-wrap gap-1">
+                      {matchResult.matchedSkills.map((s, idx) => (
+                        <span key={idx} className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40 flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Missing skills */}
+                {matchResult.missingSkills.length > 0 && (
+                  <div className="pt-1">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-1">
+                      Missing Requirements ({matchResult.missingSkills.length}):
+                    </span>
+                    <div className="flex flex-wrap gap-1">
+                      {matchResult.missingSkills.map((s, idx) => (
+                        <span key={idx} className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/10">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Action Link to find teammates */}
+                <div className="pt-2">
+                  <Link
+                    to={`/teammates?project=${project.id}`}
+                    className="w-full text-xs font-bold py-2 px-3 rounded-xl bg-purple-100 hover:bg-[#803BE8] hover:text-white dark:bg-purple-950/60 dark:hover:bg-[#803BE8] text-[#803BE8] dark:text-purple-200 transition-colors flex items-center justify-center gap-1.5"
+                  >
+                    <Users className="w-3.5 h-3.5" />
+                    <span>Find Teammates For This Project</span>
+                  </Link>
+                </div>
+              </div>
+            )}
+
             {/* Required Skills */}
             <div className="rounded-3xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-6 shadow-sm space-y-3">
               <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">

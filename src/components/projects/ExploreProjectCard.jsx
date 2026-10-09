@@ -11,10 +11,13 @@ import {
   BarChart2
 } from 'lucide-react';
 import { useProjects } from '../../context/ProjectsContext';
+import { calculateSkillMatch } from '../../utils/skillMatching';
+import { CURRENT_USER } from '../../data/studentsData';
 
 export default function ExploreProjectCard({ project, onOpenApply }) {
   const { isApplied } = useProjects();
   const applied = isApplied(project.id);
+  const matchResult = calculateSkillMatch(project.requiredSkills, CURRENT_USER.skills);
 
   const difficultyColors = {
     Beginner: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border-emerald-200/80 dark:border-emerald-800/40',
@@ -32,11 +35,24 @@ export default function ExploreProjectCard({ project, onOpenApply }) {
     <div className="rounded-2xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
       <div>
         
-        {/* Top bar: Category + Difficulty + Mode */}
+        {/* Top bar: Category + Match Score + Difficulty + Mode */}
         <div className="flex items-center justify-between gap-2 mb-3 flex-wrap">
-          <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-purple-50 dark:bg-purple-950/50 text-[#803BE8] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40">
-            {project.category}
-          </span>
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-purple-50 dark:bg-purple-950/50 text-[#803BE8] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40">
+              {project.category}
+            </span>
+
+            <span className={`inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full border ${
+              matchResult.matchStrength === 'Strong'
+                ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20'
+                : matchResult.matchStrength === 'Moderate'
+                ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20'
+                : 'bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-500/20'
+            }`}>
+              <Sparkles className="w-3 h-3 text-[#803BE8]" />
+              {matchResult.score}% Match
+            </span>
+          </div>
 
           <div className="flex items-center gap-1.5">
             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${difficultyColors[project.difficulty] || difficultyColors.Intermediate}`}>

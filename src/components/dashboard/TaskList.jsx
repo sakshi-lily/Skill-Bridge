@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, Clock, AlertCircle, Calendar, ArrowRight, Circle } from 'lucide-react';
 
-export default function TaskList({ initialTasks = [] }) {
-  const [tasks, setTasks] = useState(initialTasks);
+export default function TaskList({ initialTasks = [], tasks: propTasks, onToggleStatus }) {
+  const [localTasks, setLocalTasks] = useState(initialTasks);
+  const tasks = propTasks || localTasks;
 
   const toggleTaskStatus = (id) => {
-    setTasks(prev =>
+    if (onToggleStatus) {
+      onToggleStatus(id);
+      return;
+    }
+    setLocalTasks(prev =>
       prev.map(task => {
         if (task.id === id) {
           const nextStatus =
