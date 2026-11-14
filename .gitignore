@@ -28,3 +28,6 @@ server/uploads/*
 *.njsproj
 *.sln
 *.sw?
+
+server/.env
+.env.local

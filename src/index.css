@@ -18,7 +18,7 @@
 }
 
 .text-gradient-purple-pink {
-  background: linear-gradient(135deg, #803BE8 0%, #A855F7 50%, #EC4899 100%);
+  background: linear-gradient(135deg, #7392d6 0%, #7e79ea 50%, #f38abe 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
