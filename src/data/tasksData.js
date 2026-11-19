@@ -1,6 +1,6 @@
 export const KANBAN_COLUMNS = [
-  { id: 'To Do', title: 'To Do', color: 'border-t-slate-400', badgeColor: 'bg-slate-100 text-slate-700 dark:bg-[#1a1435] dark:text-slate-300' },
-  { id: 'In Progress', title: 'In Progress', color: 'border-t-[#803BE8]', badgeColor: 'bg-purple-100 text-[#803BE8] dark:bg-purple-950/60 dark:text-purple-300' },
+  { id: 'To Do', title: 'To Do', color: 'border-t-slate-400', badgeColor: 'bg-slate-100 text-slate-700 dark:bg-[#1e261d] dark:text-slate-300' },
+  { id: 'In Progress', title: 'In Progress', color: 'border-t-[#7B9669]', badgeColor: 'bg-purple-100 text-[#7B9669] dark:bg-purple-950/60 dark:text-purple-300' },
   { id: 'Review', title: 'Review', color: 'border-t-amber-400', badgeColor: 'bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300' },
   { id: 'Completed', title: 'Completed', color: 'border-t-emerald-500', badgeColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300' },
 ];

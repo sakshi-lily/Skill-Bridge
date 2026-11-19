@@ -120,11 +120,11 @@ export default function TeamFileManager({ teamId, canUpload = true }) {
   };
 
   return (
-    <div className="rounded-3xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-6 shadow-sm space-y-4">
+    <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-6 shadow-sm space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Paperclip className="w-4 h-4 text-[#803BE8]" />
+            <Paperclip className="w-4 h-4 text-[#7B9669]" />
             <span>Shared Team Documents &amp; Assets</span>
           </h3>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
@@ -133,7 +133,7 @@ export default function TeamFileManager({ teamId, canUpload = true }) {
         </div>
 
         {canUpload && (
-          <label className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-purple-50 dark:bg-purple-950/50 hover:bg-[#803BE8] hover:text-white text-[#803BE8] dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 text-xs font-bold cursor-pointer transition-all shadow-xs shrink-0">
+          <label className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-purple-50 dark:bg-purple-950/50 hover:bg-[#7B9669] hover:text-white text-[#7B9669] dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 text-xs font-bold cursor-pointer transition-all shadow-xs shrink-0">
             <Upload className="w-3.5 h-3.5" />
             <span>{uploading ? 'Uploading...' : 'Upload File'}</span>
             <input
@@ -166,7 +166,7 @@ export default function TeamFileManager({ teamId, canUpload = true }) {
           files.map((file) => (
             <div
               key={file.id || file._id}
-              className="p-3.5 rounded-2xl bg-slate-50 dark:bg-[#1a1435] border border-slate-200/70 dark:border-white/5 flex items-center justify-between gap-3 hover:border-purple-300 dark:hover:border-purple-500/40 transition-colors"
+              className="p-3.5 rounded-2xl bg-slate-50 dark:bg-[#1e261d] border border-slate-200/70 dark:border-white/5 flex items-center justify-between gap-3 hover:border-purple-300 dark:hover:border-purple-500/40 transition-colors"
             >
               <div className="flex items-center gap-3 min-w-0">
                 <div className="p-2 rounded-xl bg-white dark:bg-white/5 border border-slate-200/50 dark:border-white/10 shrink-0">
@@ -188,7 +188,7 @@ export default function TeamFileManager({ teamId, canUpload = true }) {
                   onClick={() => {
                     alert(`Downloading ${file.originalName || file.fileName}...`);
                   }}
-                  className="p-2 rounded-xl text-slate-500 hover:text-[#803BE8] dark:hover:text-purple-300 hover:bg-white dark:hover:bg-white/5 transition-colors"
+                  className="p-2 rounded-xl text-slate-500 hover:text-[#7B9669] dark:hover:text-purple-300 hover:bg-white dark:hover:bg-white/5 transition-colors"
                   title="Download File"
                 >
                   <Download className="w-4 h-4" />

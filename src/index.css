@@ -6,23 +6,68 @@
   html {
     scroll-behavior: smooth;
   }
+
+  ::selection {
+    background-color: #BAC8B1;
+    color: #404E3B;
+  }
+
+  .dark ::selection {
+    background-color: #404E3B;
+    color: #BAC8B1;
+  }
+
+  /* Custom subtle themed scrollbars */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #BAC8B1;
+    border-radius: 9999px;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: #404E3B;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #7B9669;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #6C8480;
+  }
 }
 
-/* Custom background gradients for SkillBridge lavender-pink theme */
+/* Custom background gradients for SkillBridge Sage, Celadon & Forest theme */
 .bg-hero-radial {
-  background: radial-gradient(70% 60% at 50% 10%, rgba(237, 228, 255, 0.8) 0%, rgba(255, 236, 243, 0.65) 45%, rgba(255, 255, 255, 0) 100%);
+  background: radial-gradient(70% 60% at 50% 10%, rgba(186, 200, 177, 0.45) 0%, rgba(230, 230, 230, 0.5) 45%, rgba(255, 255, 255, 0) 100%);
 }
 
 .dark .bg-hero-radial {
-  background: radial-gradient(70% 60% at 50% 10%, rgba(68, 28, 128, 0.4) 0%, rgba(85, 26, 68, 0.25) 45%, rgba(13, 11, 24, 0) 100%);
+  background: radial-gradient(70% 60% at 50% 10%, rgba(64, 78, 59, 0.45) 0%, rgba(108, 132, 128, 0.25) 45%, rgba(18, 23, 17, 0) 100%);
 }
 
-.text-gradient-purple-pink {
-  background: linear-gradient(135deg, #7392d6 0%, #7e79ea 50%, #f38abe 100%);
+.text-gradient-purple-pink,
+.text-gradient-sage-forest {
+  background: linear-gradient(135deg, #404E3B 0%, #7B9669 50%, #6C8480 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .text-gradient-purple-pink,
+.dark .text-gradient-sage-forest {
+  background: linear-gradient(135deg, #BAC8B1 0%, #7B9669 50%, #8ea4a1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .badge-glow {
-  box-shadow: 0 0 15px rgba(128, 59, 232, 0.25);
+  box-shadow: 0 0 15px rgba(123, 150, 105, 0.35);
 }

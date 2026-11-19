@@ -59,7 +59,7 @@ export default function ExploreProjects() {
 
           <a
             href="#get-started"
-            className="inline-flex items-center gap-2 text-sm font-bold text-[#803BE8] dark:text-[#a872fd] hover:text-[#6c27cf] transition-colors self-start md:self-auto"
+            className="inline-flex items-center gap-2 text-sm font-bold text-[#7B9669] dark:text-[#BAC8B1] hover:text-[#404E3B] transition-colors self-start md:self-auto"
           >
             <span>View All 180+ Open Projects</span>
             <ArrowRight className="w-4 h-4" />
@@ -71,7 +71,7 @@ export default function ExploreProjects() {
           {sampleProjects.map((project) => (
             <div
               key={project.id}
-              className="group rounded-3xl bg-white dark:bg-[#151226] border border-purple-100 dark:border-purple-900/40 p-6 sm:p-7 shadow-card hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
+              className="group rounded-3xl bg-white dark:bg-[#182017] border border-purple-100 dark:border-purple-900/40 p-6 sm:p-7 shadow-card hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
             >
               <div>
                 {/* Meta */}
@@ -80,12 +80,12 @@ export default function ExploreProjects() {
                     dangerouslySetInnerHTML={{ __html: project.category }}
                     className="font-medium text-purple-600 dark:text-purple-300"
                   />
-                  <span className="flex items-center gap-1 text-[11px] bg-slate-100 dark:bg-[#1f193d] px-2 py-0.5 rounded-full">
+                  <span className="flex items-center gap-1 text-[11px] bg-slate-100 dark:bg-[#222c20] px-2 py-0.5 rounded-full">
                     <Users className="w-3 h-3" /> {project.membersCount}
                   </span>
                 </div>
 
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-[#803BE8] dark:group-hover:text-purple-300 transition-colors">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-[#7B9669] dark:group-hover:text-purple-300 transition-colors">
                   {project.title}
                 </h3>
 
@@ -102,7 +102,7 @@ export default function ExploreProjects() {
                     {project.openRoles.map((role, idx) => (
                       <span
                         key={idx}
-                        className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-50 dark:bg-[#211a43] text-[#803BE8] dark:text-pink-300 border border-purple-100 dark:border-purple-800/40"
+                        className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-50 dark:bg-[#1e261d] text-[#7B9669] dark:text-pink-300 border border-purple-100 dark:border-purple-800/40"
                       >
                         {role}
                       </span>
@@ -120,7 +120,7 @@ export default function ExploreProjects() {
 
                 <button
                   type="button"
-                  className="text-xs font-bold text-[#803BE8] dark:text-purple-300 hover:text-pink-600 dark:hover:text-pink-300 flex items-center gap-1"
+                  className="text-xs font-bold text-[#7B9669] dark:text-purple-300 hover:text-pink-600 dark:hover:text-pink-300 flex items-center gap-1"
                 >
                   Join Team &rarr;
                 </button>

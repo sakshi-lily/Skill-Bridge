@@ -160,24 +160,24 @@ export default function DashboardOverview() {
     <DashboardLayout title="Overview" breadcrumb="SkillBridge / Student Workspace">
       
       {/* Demo Notice Banner */}
-      <div className="p-3.5 rounded-2xl bg-purple-50/80 dark:bg-[#1a1435]/80 border border-purple-200/80 dark:border-purple-900/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-700 dark:text-slate-300">
+      <div className="p-3.5 rounded-2xl bg-purple-50/80 dark:bg-[#1e261d]/80 border border-purple-200/80 dark:border-purple-900/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-700 dark:text-slate-300">
         <div className="flex items-center gap-2.5">
-          <Info className="w-4 h-4 text-[#803BE8] dark:text-pink-400 shrink-0" />
+          <Info className="w-4 h-4 text-[#7B9669] dark:text-pink-400 shrink-0" />
           <span>
             <strong>Student Workspace:</strong> Active session for <strong>{currentUser.name}</strong> ({currentUser.university}). Matchmaking algorithm and task boards are dynamically synchronized.
           </span>
         </div>
-        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white dark:bg-[#251e47] text-[#803BE8] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40 shrink-0 self-start sm:self-auto">
+        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white dark:bg-[#283426] text-[#7B9669] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40 shrink-0 self-start sm:self-auto">
           Steps 5 &amp; 6 Active
         </span>
       </div>
 
       {/* 1. Welcome Section */}
-      <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-100/70 via-pink-50/60 to-purple-50/50 dark:from-[#1e173e] dark:via-[#191333] dark:to-[#141029] border border-purple-200/70 dark:border-purple-900/50 p-6 sm:p-8 md:p-10 shadow-sm">
+      <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-100/70 via-pink-50/60 to-purple-50/50 dark:from-[#1e261d] dark:via-[#182017] dark:to-[#141a13] border border-purple-200/70 dark:border-purple-900/50 p-6 sm:p-8 md:p-10 shadow-sm">
         <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-purple-400/10 to-pink-400/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="relative z-10 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 dark:bg-[#251e47]/90 border border-purple-200/80 dark:border-purple-800/60 text-xs font-bold text-[#803BE8] dark:text-purple-300 mb-4 shadow-2xs">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 dark:bg-[#283426]/90 border border-purple-200/80 dark:border-purple-800/60 text-xs font-bold text-[#7B9669] dark:text-purple-300 mb-4 shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-pink-500" />
             <span>Spring 2026 Season &bull; 180+ Active Hackathons</span>
           </div>
@@ -193,7 +193,7 @@ export default function DashboardOverview() {
           <div className="mt-6 flex flex-wrap items-center gap-3.5">
             <Link
               to="/projects"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#803BE8] hover:bg-[#6c27cf] text-white text-xs sm:text-sm font-bold shadow-md shadow-purple-600/20 hover:shadow-purple-600/35 transition-all duration-200 transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#7B9669] hover:bg-[#404E3B] text-white text-xs sm:text-sm font-bold shadow-md shadow-[#7B9669]/20 hover:shadow-[#7B9669]/35 transition-all duration-200 transform hover:-translate-y-0.5"
             >
               <Compass className="w-4 h-4" />
               <span>Explore Projects</span>
@@ -201,9 +201,9 @@ export default function DashboardOverview() {
 
             <Link
               to="/teammates"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-[#20183e] hover:bg-purple-50 dark:hover:bg-[#271e4d] text-slate-800 dark:text-slate-200 border border-purple-200 dark:border-purple-800/60 text-xs sm:text-sm font-bold shadow-2xs transition-all duration-200"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-[#283426] hover:bg-purple-50 dark:hover:bg-[#222c20] text-slate-800 dark:text-slate-200 border border-purple-200 dark:border-purple-800/60 text-xs sm:text-sm font-bold shadow-2xs transition-all duration-200"
             >
-              <Users className="w-4 h-4 text-[#803BE8] dark:text-purple-300" />
+              <Users className="w-4 h-4 text-[#7B9669] dark:text-purple-300" />
               <span>Find Teammates</span>
             </Link>
 
@@ -276,7 +276,7 @@ export default function DashboardOverview() {
 
               <Link
                 to="/projects"
-                className="text-xs font-bold text-[#803BE8] dark:text-purple-300 hover:text-pink-600 dark:hover:text-pink-300 flex items-center gap-1 transition-colors"
+                className="text-xs font-bold text-[#7B9669] dark:text-purple-300 hover:text-pink-600 dark:hover:text-pink-300 flex items-center gap-1 transition-colors"
               >
                 <span>View All</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -300,7 +300,7 @@ export default function DashboardOverview() {
               <div>
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
                   <span>Recommended Teammates</span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/50 text-[#803BE8] dark:text-purple-300">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/50 text-[#7B9669] dark:text-purple-300">
                     Rule-Based Match
                   </span>
                 </h3>
@@ -311,7 +311,7 @@ export default function DashboardOverview() {
 
               <Link
                 to="/teammates"
-                className="text-xs font-bold text-[#803BE8] dark:text-purple-300 hover:text-pink-600 dark:hover:text-pink-300 flex items-center gap-1 transition-colors"
+                className="text-xs font-bold text-[#7B9669] dark:text-purple-300 hover:text-pink-600 dark:hover:text-pink-300 flex items-center gap-1 transition-colors"
               >
                 <span>Find More Teammates</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -345,7 +345,7 @@ export default function DashboardOverview() {
                 <button
                   type="button"
                   onClick={() => setShowEmptyTeams(!showEmptyTeams)}
-                  className="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-[#1a1435] text-slate-600 dark:text-slate-400 hover:text-[#803BE8] transition-colors"
+                  className="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-[#1e261d] text-slate-600 dark:text-slate-400 hover:text-[#7B9669] transition-colors"
                   title="Toggle empty state view for evaluation"
                 >
                   {showEmptyTeams ? 'Show Active Teams' : 'Preview Empty State'}
@@ -353,7 +353,7 @@ export default function DashboardOverview() {
 
                 <Link
                   to="/teams"
-                  className="text-xs font-bold text-[#803BE8] dark:text-purple-300 hover:text-pink-600 dark:hover:text-pink-300 flex items-center gap-1 transition-colors"
+                  className="text-xs font-bold text-[#7B9669] dark:text-purple-300 hover:text-pink-600 dark:hover:text-pink-300 flex items-center gap-1 transition-colors"
                 >
                   <span>Team Hub</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -362,8 +362,8 @@ export default function DashboardOverview() {
             </div>
 
             {showEmptyTeams || myTeams.length === 0 ? (
-              <div className="rounded-2xl border-2 border-dashed border-purple-200 dark:border-purple-900/60 bg-white/60 dark:bg-[#151226]/60 p-8 text-center space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-950/60 text-[#803BE8] dark:text-purple-300 flex items-center justify-center mx-auto">
+              <div className="rounded-2xl border-2 border-dashed border-purple-200 dark:border-purple-900/60 bg-white/60 dark:bg-[#182017]/60 p-8 text-center space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-950/60 text-[#7B9669] dark:text-purple-300 flex items-center justify-center mx-auto">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <h4 className="text-base font-bold text-slate-900 dark:text-white">
@@ -375,14 +375,14 @@ export default function DashboardOverview() {
                 <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
                   <Link
                     to="/projects"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#803BE8] text-white text-xs font-bold shadow-xs hover:bg-[#6c27cf]"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#7B9669] text-white text-xs font-bold shadow-xs hover:bg-[#404E3B]"
                   >
                     <Compass className="w-3.5 h-3.5" />
                     <span>Browse Open Projects</span>
                   </Link>
                   <Link
                     to="/teams"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-purple-50 dark:bg-[#1f193d] text-[#803BE8] dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 text-xs font-bold"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-purple-50 dark:bg-[#222c20] text-[#7B9669] dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 text-xs font-bold"
                   >
                     <PlusCircle className="w-3.5 h-3.5" />
                     <span>Create a Team</span>

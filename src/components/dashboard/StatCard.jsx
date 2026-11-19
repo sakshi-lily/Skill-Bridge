@@ -10,7 +10,7 @@ export default function StatCard({
 }) {
   const colorMap = {
     purple: {
-      iconBg: 'bg-purple-100 dark:bg-purple-950/60 text-[#803BE8] dark:text-purple-300',
+      iconBg: 'bg-purple-100 dark:bg-purple-950/60 text-[#7B9669] dark:text-purple-300',
       accent: 'border-t-purple-500',
     },
     pink: {
@@ -30,7 +30,7 @@ export default function StatCard({
   const scheme = colorMap[colorScheme] || colorMap.purple;
 
   return (
-    <div className={`relative rounded-2xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-200 border-t-2 ${scheme.accent} group`}>
+    <div className={`relative rounded-2xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-200 border-t-2 ${scheme.accent} group`}>
       <div className="flex items-center justify-between mb-3">
         <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
           {title}
@@ -55,7 +55,7 @@ export default function StatCard({
         <span className="text-slate-500 dark:text-slate-400">
           {label}
         </span>
-        <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-purple-50 dark:bg-purple-950/50 text-[#803BE8] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40">
+        <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-purple-50 dark:bg-purple-950/50 text-[#7B9669] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40">
           Demo Metric
         </span>
       </div>

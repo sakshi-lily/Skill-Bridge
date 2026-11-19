@@ -235,15 +235,15 @@ export default function CreateProjectPage() {
 
   const inputClass = (field) =>
     `w-full text-xs sm:text-sm p-3 rounded-xl
-    bg-slate-50/70 dark:bg-[#1a1435]
+    bg-slate-50/70 dark:bg-[#1e261d]
     text-slate-900 dark:text-white
     border ${
       errors[field]
         ? 'border-rose-400'
         : 'border-slate-200 dark:border-purple-900/50'
     }
-    focus:outline-none focus:border-[#803BE8]
-    focus:ring-2 focus:ring-[#803BE8]/20`;
+    focus:outline-none focus:border-[#7B9669]
+    focus:ring-2 focus:ring-[#7B9669]/20`;
 
   const labelClass =
     'block text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200';
@@ -259,7 +259,7 @@ export default function CreateProjectPage() {
         <div className="flex items-center justify-between">
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-[#803BE8] transition-colors group"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-[#7B9669] transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             <span>Cancel & Back to Projects</span>
@@ -289,11 +289,11 @@ export default function CreateProjectPage() {
         )}
 
         {/* Main Form Container */}
-        <div className="rounded-3xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-6 sm:p-9 shadow-sm">
+        <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-6 sm:p-9 shadow-sm">
 
           {/* Header */}
           <div className="pb-6 mb-6 border-b border-slate-100 dark:border-purple-950/50">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-purple-950/60 text-xs font-bold text-[#803BE8] dark:text-purple-300 border border-purple-200 dark:border-purple-800/50 mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-purple-950/60 text-xs font-bold text-[#7B9669] dark:text-purple-300 border border-purple-200 dark:border-purple-800/50 mb-2">
               <FolderPlus className="w-3.5 h-3.5" />
               <span>Project Pitch & Recruitment Form</span>
             </div>
@@ -606,7 +606,7 @@ export default function CreateProjectPage() {
                   <span className="text-pink-500"> *</span>
                 </label>
 
-                <span className="text-xs text-[#803BE8] font-bold">
+                <span className="text-xs text-[#7B9669] font-bold">
                   {formData.requiredSkills.length} selected
                 </span>
               </div>
@@ -618,7 +618,7 @@ export default function CreateProjectPage() {
                     key={skill}
                     type="button"
                     onClick={() => handleAddSkill(skill)}
-                    className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-[#1f193d] hover:bg-purple-100 hover:text-[#803BE8] text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-purple-900/40 transition-colors"
+                    className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-[#222c20] hover:bg-purple-100 hover:text-[#7B9669] text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-purple-900/40 transition-colors"
                   >
                     + {skill}
                   </button>
@@ -648,7 +648,7 @@ export default function CreateProjectPage() {
                   onClick={() =>
                     handleAddSkill(customSkillInput)
                   }
-                  className="px-4 py-3 rounded-xl bg-purple-100 dark:bg-purple-900/50 hover:bg-[#803BE8] hover:text-white text-[#803BE8] dark:text-purple-200 text-xs font-bold transition-all flex items-center gap-1"
+                  className="px-4 py-3 rounded-xl bg-purple-100 dark:bg-purple-900/50 hover:bg-[#7B9669] hover:text-white text-[#7B9669] dark:text-purple-200 text-xs font-bold transition-all flex items-center gap-1"
                 >
                   <Plus className="w-4 h-4" />
                   Add Tag
@@ -660,7 +660,7 @@ export default function CreateProjectPage() {
                 {formData.requiredSkills.map((skill) => (
                   <span
                     key={skill}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-purple-50 dark:bg-[#20183f] text-[#803BE8] dark:text-pink-300 border border-purple-200 dark:border-purple-800/40"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-purple-50 dark:bg-[#1e261d] text-[#7B9669] dark:text-pink-300 border border-purple-200 dark:border-purple-800/40"
                   >
                     {skill}
 
@@ -690,7 +690,7 @@ export default function CreateProjectPage() {
 
               <Link
                 to="/projects"
-                className="w-full sm:w-auto px-5 py-3 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1e173a] text-center"
+                className="w-full sm:w-auto px-5 py-3 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#222c20] text-center"
               >
                 Cancel
               </Link>
@@ -698,7 +698,7 @@ export default function CreateProjectPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full sm:w-auto px-8 py-3 rounded-xl bg-[#803BE8] hover:bg-[#6c27cf] disabled:opacity-60 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-bold shadow-md shadow-purple-600/25 transition-all"
+                className="w-full sm:w-auto px-8 py-3 rounded-xl bg-[#7B9669] hover:bg-[#404E3B] disabled:opacity-60 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-bold shadow-md shadow-[#7B9669]/25 transition-all"
               >
                 {isSubmitting
                   ? 'Creating Project...'

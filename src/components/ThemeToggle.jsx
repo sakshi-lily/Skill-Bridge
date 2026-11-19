@@ -34,13 +34,13 @@ export default function ThemeToggle() {
       type="button"
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="relative p-2 rounded-full border border-purple-200/60 dark:border-purple-900/50 bg-purple-50/60 dark:bg-[#1a1533] text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-[#251e47] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#803BE8]/40"
+      className="relative p-2 rounded-full border border-[#BAC8B1]/50 dark:border-[#404E3B]/60 bg-[#f5f7f3] dark:bg-[#182017] text-[#7B9669] dark:text-[#BAC8B1] hover:bg-[#e7ece2] dark:hover:bg-[#222c20] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#7B9669]/40"
     >
       <div className="relative w-5 h-5 flex items-center justify-center">
         {isDark ? (
-          <Moon className="w-4 h-4 text-pink-300 transition-transform duration-300 rotate-0 scale-100" />
+          <Moon className="w-4 h-4 text-[#BAC8B1] transition-transform duration-300 rotate-0 scale-100" />
         ) : (
-          <Sun className="w-4 h-4 text-[#803BE8] transition-transform duration-300 rotate-0 scale-100" />
+          <Sun className="w-4 h-4 text-[#7B9669] transition-transform duration-300 rotate-0 scale-100" />
         )}
       </div>
     </button>

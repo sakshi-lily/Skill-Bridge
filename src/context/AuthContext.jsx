@@ -15,6 +15,14 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const initializeAuth = async () => {
       const storedToken = localStorage.getItem('token');
+      const storedUserStr = localStorage.getItem('skillbridge_user');
+      let fallbackUser = CURRENT_USER;
+      if (storedUserStr) {
+        try {
+          fallbackUser = JSON.parse(storedUserStr);
+        } catch (e) {}
+      }
+
       if (storedToken) {
         try {
           const res = await authAPI.getMe();
@@ -23,17 +31,15 @@ export function AuthProvider({ children }) {
             connectSocket(storedToken);
           } else {
             // Token invalid or expired
-            localStorage.removeItem('token');
-            setToken(null);
-            setUser(CURRENT_USER); // Safe demo fallback
+            setUser(fallbackUser);
           }
         } catch (err) {
           // If server offline or token expired, keep session graceful
-          setUser(CURRENT_USER);
+          setUser(fallbackUser);
         }
       } else {
-        // Default to demo user for exploration
-        setUser(CURRENT_USER);
+        // Default to stored or demo user for exploration
+        setUser(fallbackUser);
       }
       setLoading(false);
     };

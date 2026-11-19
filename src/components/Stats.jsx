@@ -10,8 +10,8 @@ export default function Stats() {
       sublabel: 'Across 120+ top engineering & design campuses',
       demoTag: 'Demo Metric',
       icon: Users,
-      badgeColor: 'bg-purple-100 dark:bg-purple-950/60 text-[#803BE8] dark:text-purple-300',
-      gradient: 'from-purple-500/10 to-indigo-500/5',
+      badgeColor: 'bg-purple-100 dark:bg-purple-950/60 text-[#7B9669] dark:text-purple-300',
+      gradient: 'from-[#7B9669]/10 to-[#6C8480]/5',
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ export default function Stats() {
       demoTag: 'Demo Metric',
       icon: Rocket,
       badgeColor: 'bg-pink-100 dark:bg-pink-950/60 text-pink-600 dark:text-pink-300',
-      gradient: 'from-pink-500/10 to-purple-500/5',
+      gradient: 'from-[#6C8480]/10 to-[#7B9669]/5',
     },
     {
       id: 3,
@@ -30,8 +30,8 @@ export default function Stats() {
       sublabel: 'Verified teams with complete complementary skill sets',
       demoTag: 'Demo Metric',
       icon: Trophy,
-      badgeColor: 'bg-violet-100 dark:bg-violet-950/60 text-violet-600 dark:text-violet-300',
-      gradient: 'from-violet-500/10 to-pink-500/5',
+      badgeColor: 'bg-[#BAC8B1]/40 dark:bg-[#404E3B]/40 text-[#404E3B] dark:text-[#BAC8B1]',
+      gradient: 'from-[#BAC8B1]/20 to-[#6C8480]/10',
     },
   ];
 
@@ -41,7 +41,7 @@ export default function Stats() {
         
         {/* Section Header with Demo Label */}
         <div className="flex flex-col items-center justify-center mb-10 text-center">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-[#1a1435] border border-purple-200/70 dark:border-purple-800/50 text-xs font-semibold text-[#803BE8] dark:text-purple-300 mb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-[#1e261d] border border-purple-200/70 dark:border-purple-800/50 text-xs font-semibold text-[#7B9669] dark:text-purple-300 mb-2">
             <Sparkles className="w-3.5 h-3.5 text-pink-500" />
             <span>Platform Impact &bull; Live Demo Analytics</span>
           </div>
@@ -57,21 +57,21 @@ export default function Stats() {
             return (
               <div
                 key={stat.id}
-                className="group relative rounded-2xl bg-white dark:bg-[#151226] border border-purple-100 dark:border-purple-900/40 p-7 sm:p-8 shadow-card hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+                className="group relative rounded-2xl bg-white dark:bg-[#182017] border border-purple-100 dark:border-purple-900/40 p-7 sm:p-8 shadow-card hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden"
               >
                 {/* Subtle top accent gradient line */}
-                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#803BE8] to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#7B9669] to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
 
                 <div className="flex items-center justify-between mb-5">
                   <div className={`p-3 rounded-2xl ${stat.badgeColor} shadow-sm group-hover:scale-110 transition-transform duration-200`}>
                     <Icon className="w-6 h-6" />
                   </div>
-                  <span className="text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full bg-slate-100 dark:bg-[#1f193d] text-slate-500 dark:text-slate-400 border border-slate-200/60 dark:border-purple-900/30">
+                  <span className="text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full bg-slate-100 dark:bg-[#222c20] text-slate-500 dark:text-slate-400 border border-slate-200/60 dark:border-purple-900/30">
                     {stat.demoTag}
                   </span>
                 </div>
 
-                <div className="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white group-hover:text-[#803BE8] dark:group-hover:text-[#a872fd] transition-colors">
+                <div className="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white group-hover:text-[#7B9669] dark:group-hover:text-[#BAC8B1] transition-colors">
                   {stat.value}
                 </div>
 

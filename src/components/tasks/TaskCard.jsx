@@ -39,7 +39,7 @@ export default function TaskCard({
     <div
       draggable={canManage}
       onDragStart={handleDragStart}
-      className={`group relative bg-white dark:bg-[#18122B]/90 rounded-2xl p-4 border transition-all duration-200 shadow-sm hover:shadow-md cursor-grab active:cursor-grabbing ${
+      className={`group relative bg-white dark:bg-[#182017]/90 rounded-2xl p-4 border transition-all duration-200 shadow-sm hover:shadow-md cursor-grab active:cursor-grabbing ${
         task.isOverdue 
           ? 'border-rose-400/50 dark:border-rose-500/40 hover:border-rose-500' 
           : 'border-slate-100 dark:border-white/5 hover:border-purple-300 dark:hover:border-purple-500/40'
@@ -77,7 +77,7 @@ export default function TaskCard({
                   className="fixed inset-0 z-20" 
                   onClick={() => setMenuOpen(false)} 
                 />
-                <div className="absolute right-0 top-7 z-30 w-44 bg-white dark:bg-[#20183b] border border-slate-200 dark:border-white/10 rounded-xl shadow-xl py-1 text-xs text-slate-700 dark:text-slate-200 animate-in fade-in zoom-in-95 duration-100">
+                <div className="absolute right-0 top-7 z-30 w-44 bg-white dark:bg-[#182017] border border-slate-200 dark:border-white/10 rounded-xl shadow-xl py-1 text-xs text-slate-700 dark:text-slate-200 animate-in fade-in zoom-in-95 duration-100">
                   <div className="px-3 py-1.5 font-semibold text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-500 border-b border-slate-100 dark:border-white/5">
                     Move to
                   </div>

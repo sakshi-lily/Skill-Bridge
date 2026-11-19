@@ -151,7 +151,7 @@ export default function ExploreProjectsPage() {
       <div className="space-y-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-[#1f193d] border border-purple-200 dark:border-purple-800/60 text-xs font-bold text-[#803BE8] dark:text-purple-300 mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-[#222c20] border border-purple-200 dark:border-purple-800/60 text-xs font-bold text-[#7B9669] dark:text-purple-300 mb-2">
               <Sparkles className="w-3.5 h-3.5 text-pink-500" />
               <span>Project Matchmaking Discovery</span>
             </div>
@@ -165,7 +165,7 @@ export default function ExploreProjectsPage() {
 
           <Link
             to="/projects/create"
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#803BE8] hover:bg-[#6c27cf] text-white text-xs sm:text-sm font-bold shadow-md shadow-purple-600/25 hover:shadow-purple-600/40 transition-all duration-200 transform hover:-translate-y-0.5 shrink-0"
+            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#7B9669] hover:bg-[#404E3B] text-white text-xs sm:text-sm font-bold shadow-md shadow-[#7B9669]/25 hover:shadow-[#7B9669]/40 transition-all duration-200 transform hover:-translate-y-0.5 shrink-0"
           >
             <PlusCircle className="w-4 h-4" />
             <span>Create Project</span>
@@ -173,7 +173,7 @@ export default function ExploreProjectsPage() {
         </div>
 
         {/* Summary Row */}
-        <div className="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 shadow-xs flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 shadow-xs flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
             <div className="flex items-center gap-2">
               <span className="text-slate-500 dark:text-slate-400">Total Projects:</span>
@@ -181,7 +181,7 @@ export default function ExploreProjectsPage() {
             </div>
             <div className="flex items-center gap-2">
               <span className="text-slate-500 dark:text-slate-400">Open for Recruitment:</span>
-              <strong className="font-extrabold text-[#803BE8] dark:text-purple-300">{openProjectsCount}</strong>
+              <strong className="font-extrabold text-[#7B9669] dark:text-purple-300">{openProjectsCount}</strong>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-slate-500 dark:text-slate-400">Matching Current Filters:</span>
@@ -189,7 +189,7 @@ export default function ExploreProjectsPage() {
             </div>
           </div>
 
-          <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-500 px-2 py-0.5 rounded-md bg-slate-100 dark:bg-[#1c1638]">
+          <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-500 px-2 py-0.5 rounded-md bg-slate-100 dark:bg-[#222c20]">
             Demo Sample Data
           </span>
         </div>
@@ -206,7 +206,7 @@ export default function ExploreProjectsPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search projects by name, technology, or keyword..."
-              className="w-full text-xs sm:text-sm pl-10 pr-4 py-3 rounded-2xl bg-white dark:bg-[#151226] text-slate-900 dark:text-white placeholder:text-slate-400 border border-slate-200/80 dark:border-purple-950/60 focus:outline-none focus:border-[#803BE8] focus:ring-2 focus:ring-[#803BE8]/20 shadow-xs transition-all"
+              className="w-full text-xs sm:text-sm pl-10 pr-4 py-3 rounded-2xl bg-white dark:bg-[#182017] text-slate-900 dark:text-white placeholder:text-slate-400 border border-slate-200/80 dark:border-purple-950/60 focus:outline-none focus:border-[#7B9669] focus:ring-2 focus:ring-[#7B9669]/20 shadow-xs transition-all"
             />
           </div>
 
@@ -216,7 +216,7 @@ export default function ExploreProjectsPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="w-full sm:w-auto text-xs font-semibold py-3 pl-3 pr-8 rounded-2xl bg-white dark:bg-[#151226] text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-purple-950/60 focus:outline-none focus:border-[#803BE8] shadow-xs cursor-pointer"
+                className="w-full sm:w-auto text-xs font-semibold py-3 pl-3 pr-8 rounded-2xl bg-white dark:bg-[#182017] text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-purple-950/60 focus:outline-none focus:border-[#7B9669] shadow-xs cursor-pointer"
               >
                 <option value="recent">Sort: Recently Added</option>
                 <option value="open-positions">Sort: Most Open Positions</option>
@@ -228,9 +228,9 @@ export default function ExploreProjectsPage() {
             <button
               type="button"
               onClick={() => setMobileFilterOpen(true)}
-              className="lg:hidden p-3 rounded-2xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 text-slate-700 dark:text-slate-200 shadow-xs flex items-center gap-2 text-xs font-bold"
+              className="lg:hidden p-3 rounded-2xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 text-slate-700 dark:text-slate-200 shadow-xs flex items-center gap-2 text-xs font-bold"
             >
-              <SlidersHorizontal className="w-4 h-4 text-[#803BE8]" />
+              <SlidersHorizontal className="w-4 h-4 text-[#7B9669]" />
               <span>Filters</span>
             </button>
           </div>
@@ -247,8 +247,8 @@ export default function ExploreProjectsPage() {
                 onClick={() => handleCategorySelect(cat)}
                 className={`text-xs font-semibold px-4 py-2 rounded-full whitespace-nowrap transition-all duration-150 select-none ${
                   isSelected
-                    ? 'bg-[#803BE8] text-white shadow-xs font-bold'
-                    : 'bg-white dark:bg-[#151226] text-slate-600 dark:text-slate-300 hover:bg-purple-50 dark:hover:bg-[#1e173a] border border-slate-200/80 dark:border-purple-950/60'
+                    ? 'bg-[#7B9669] text-white shadow-xs font-bold'
+                    : 'bg-white dark:bg-[#182017] text-slate-600 dark:text-slate-300 hover:bg-purple-50 dark:hover:bg-[#222c20] border border-slate-200/80 dark:border-purple-950/60'
                 }`}
               >
                 {cat}
@@ -275,8 +275,8 @@ export default function ExploreProjectsPage() {
         <div className="flex-1 min-w-0">
           {filteredProjects.length === 0 ? (
             /* Clear Results Empty State */
-            <div className="rounded-3xl border-2 border-dashed border-purple-200 dark:border-purple-900/60 bg-white/60 dark:bg-[#151226]/60 p-10 sm:p-14 text-center space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-purple-950/60 text-[#803BE8] dark:text-purple-300 flex items-center justify-center mx-auto">
+            <div className="rounded-3xl border-2 border-dashed border-purple-200 dark:border-purple-900/60 bg-white/60 dark:bg-[#182017]/60 p-10 sm:p-14 text-center space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-purple-950/60 text-[#7B9669] dark:text-purple-300 flex items-center justify-center mx-auto">
                 <FolderKanban className="w-7 h-7" />
               </div>
 
@@ -293,7 +293,7 @@ export default function ExploreProjectsPage() {
                 <button
                   type="button"
                   onClick={handleResetFilters}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#803BE8] hover:bg-[#6c27cf] text-white text-xs font-bold shadow-xs transition-all"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#7B9669] hover:bg-[#404E3B] text-white text-xs font-bold shadow-xs transition-all"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>Reset All Filters</span>

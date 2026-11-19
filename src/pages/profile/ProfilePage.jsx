@@ -105,7 +105,7 @@ export default function ProfilePage() {
       )}
 
       {/* Profile Overview Card */}
-      <div className="bg-white dark:bg-[#120e24] border border-slate-200/80 dark:border-purple-950/60 rounded-3xl p-6 sm:p-8 shadow-xs relative overflow-hidden">
+      <div className="bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 rounded-3xl p-6 sm:p-8 shadow-xs relative overflow-hidden">
         {/* Ambient Top Background */}
         <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-600/10 pointer-events-none" />
 
@@ -115,9 +115,9 @@ export default function ProfilePage() {
               <img
                 src={user?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250"}
                 alt={user?.name || "Student"}
-                className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover ring-4 ring-white dark:ring-[#120e24] shadow-lg"
+                className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover ring-4 ring-white dark:ring-[#182017] shadow-lg"
               />
-              <span className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-[#120e24]" title="Active Matchmaking Status" />
+              <span className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-[#182017]" title="Active Matchmaking Status" />
             </div>
 
             <div>
@@ -125,7 +125,7 @@ export default function ProfilePage() {
                 <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
                   {user?.name || "Alex Morgan"}
                 </h1>
-                <span className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950 text-[#803BE8] dark:text-purple-300">
+                <span className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950 text-[#7B9669] dark:text-purple-300">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   <span>Verified Builder</span>
                 </span>
@@ -137,7 +137,7 @@ export default function ProfilePage() {
 
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 mt-3 text-xs text-slate-500 dark:text-slate-400">
                 <span className="flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-[#803BE8]" />
+                  <Mail className="w-3.5 h-3.5 text-[#7B9669]" />
                   <span>{user?.email || "alex.morgan@stanford.edu"}</span>
                 </span>
                 <span className="flex items-center gap-1.5">
@@ -150,7 +150,7 @@ export default function ProfilePage() {
 
           <button
             onClick={() => setIsEditing(!isEditing)}
-            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-slate-200 dark:border-purple-900/60 bg-white dark:bg-[#1a1435] text-xs font-bold text-slate-700 dark:text-slate-200 hover:border-[#803BE8] hover:text-[#803BE8] transition-all shadow-xs shrink-0 self-center sm:self-auto"
+            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-slate-200 dark:border-purple-900/60 bg-white dark:bg-[#1e261d] text-xs font-bold text-slate-700 dark:text-slate-200 hover:border-[#7B9669] hover:text-[#7B9669] transition-all shadow-xs shrink-0 self-center sm:self-auto"
           >
             <Edit3 className="w-3.5 h-3.5" />
             <span>{isEditing ? 'Cancel Edit' : 'Edit Profile'}</span>
@@ -162,11 +162,11 @@ export default function ProfilePage() {
       {isEditing && (
         <form
           onSubmit={handleSaveProfile}
-          className="bg-white dark:bg-[#120e24] border border-[#803BE8]/30 rounded-3xl p-6 sm:p-8 shadow-md space-y-5 animate-in fade-in"
+          className="bg-white dark:bg-[#182017] border border-[#7B9669]/30 rounded-3xl p-6 sm:p-8 shadow-md space-y-5 animate-in fade-in"
         >
           <div className="flex items-center justify-between border-b border-slate-100 dark:border-purple-950/40 pb-4">
             <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <Edit3 className="w-4 h-4 text-[#803BE8]" />
+              <Edit3 className="w-4 h-4 text-[#7B9669]" />
               <span>Customize Builder Profile</span>
             </h3>
             <button
@@ -187,7 +187,7 @@ export default function ProfilePage() {
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#181232] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#803BE8]/30"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#182017] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#7B9669]/30"
               />
             </div>
 
@@ -199,7 +199,7 @@ export default function ProfilePage() {
                 type="text"
                 value={formData.university}
                 onChange={(e) => setFormData({ ...formData, university: e.target.value })}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#181232] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#803BE8]/30"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#182017] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#7B9669]/30"
               />
             </div>
 
@@ -211,7 +211,7 @@ export default function ProfilePage() {
                 type="text"
                 value={formData.courseAndYear}
                 onChange={(e) => setFormData({ ...formData, courseAndYear: e.target.value })}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#181232] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#803BE8]/30"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#182017] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#7B9669]/30"
               />
             </div>
 
@@ -223,7 +223,7 @@ export default function ProfilePage() {
                 type="text"
                 value={formData.availability}
                 onChange={(e) => setFormData({ ...formData, availability: e.target.value })}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#181232] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#803BE8]/30"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#182017] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#7B9669]/30"
               />
             </div>
 
@@ -235,7 +235,7 @@ export default function ProfilePage() {
                 rows={3}
                 value={formData.bio}
                 onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#181232] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#803BE8]/30"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#182017] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#7B9669]/30"
               />
             </div>
 
@@ -247,7 +247,7 @@ export default function ProfilePage() {
                 type="url"
                 value={formData.github}
                 onChange={(e) => setFormData({ ...formData, github: e.target.value })}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#181232] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#803BE8]/30"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#182017] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#7B9669]/30"
               />
             </div>
 
@@ -259,7 +259,7 @@ export default function ProfilePage() {
                 type="url"
                 value={formData.linkedin}
                 onChange={(e) => setFormData({ ...formData, linkedin: e.target.value })}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#181232] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#803BE8]/30"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#182017] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#7B9669]/30"
               />
             </div>
           </div>
@@ -275,7 +275,7 @@ export default function ProfilePage() {
             <button
               type="submit"
               disabled={saving}
-              className="px-6 py-2 rounded-xl bg-[#803BE8] text-white text-xs font-bold shadow-md hover:bg-[#6c2bd9] transition-all disabled:opacity-50"
+              className="px-6 py-2 rounded-xl bg-[#7B9669] text-white text-xs font-bold shadow-md hover:bg-[#404E3B] transition-all disabled:opacity-50"
             >
               {saving ? 'Saving...' : 'Save Profile Changes'}
             </button>
@@ -288,9 +288,9 @@ export default function ProfilePage() {
         {/* Left Column: Bio & Skills */}
         <div className="lg:col-span-2 space-y-6">
           {/* Biography */}
-          <div className="bg-white dark:bg-[#120e24] border border-slate-200/80 dark:border-purple-950/60 rounded-3xl p-6 shadow-xs">
+          <div className="bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 rounded-3xl p-6 shadow-xs">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-              <Briefcase className="w-4 h-4 text-[#803BE8]" />
+              <Briefcase className="w-4 h-4 text-[#7B9669]" />
               <span>About Me</span>
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -299,11 +299,11 @@ export default function ProfilePage() {
           </div>
 
           {/* Verified Skills & Matchmaking Tags */}
-          <div className="bg-white dark:bg-[#120e24] border border-slate-200/80 dark:border-purple-950/60 rounded-3xl p-6 shadow-xs">
+          <div className="bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 rounded-3xl p-6 shadow-xs">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-[#803BE8]" />
+                  <Sparkles className="w-4 h-4 text-[#7B9669]" />
                   <span>Technical Skills &amp; Stack</span>
                 </h3>
                 <p className="text-xs text-slate-400">
@@ -317,7 +317,7 @@ export default function ProfilePage() {
               {skills.map((skill) => (
                 <span
                   key={skill}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-50 dark:bg-[#1c1638] text-slate-800 dark:text-slate-200 border border-purple-100 dark:border-purple-900/50 text-xs font-semibold group"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-50 dark:bg-[#222c20] text-slate-800 dark:text-slate-200 border border-purple-100 dark:border-purple-900/50 text-xs font-semibold group"
                 >
                   <span>{skill}</span>
                   <button
@@ -338,11 +338,11 @@ export default function ProfilePage() {
                 value={newSkillInput}
                 onChange={(e) => setNewSkillInput(e.target.value)}
                 placeholder="Add skill (e.g., Docker, Next.js, Figma)..."
-                className="flex-1 px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-[#181232] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#803BE8]/30"
+                className="flex-1 px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-[#182017] border border-slate-200 dark:border-purple-900/60 text-xs text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#7B9669]/30"
               />
               <button
                 type="submit"
-                className="px-4 py-2 rounded-xl bg-[#803BE8] text-white text-xs font-bold hover:bg-[#6c2bd9] transition-all shadow-xs flex items-center gap-1"
+                className="px-4 py-2 rounded-xl bg-[#7B9669] text-white text-xs font-bold hover:bg-[#404E3B] transition-all shadow-xs flex items-center gap-1"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add</span>
@@ -354,21 +354,21 @@ export default function ProfilePage() {
         {/* Right Column: Experience & Socials */}
         <div className="space-y-6">
           {/* Quick Metrics */}
-          <div className="bg-white dark:bg-[#120e24] border border-slate-200/80 dark:border-purple-950/60 rounded-3xl p-6 shadow-xs space-y-4">
+          <div className="bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 rounded-3xl p-6 shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">
               Matchmaking Profile
             </h3>
 
             <div className="space-y-3 text-xs">
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#1a1435]">
+              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#1e261d]">
                 <span className="text-slate-500 dark:text-slate-400">Experience Tier</span>
                 <span className="font-bold text-slate-900 dark:text-white">{formData.experienceLevel}</span>
               </div>
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#1a1435]">
+              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#1e261d]">
                 <span className="text-slate-500 dark:text-slate-400">Match Status</span>
                 <span className="font-bold text-emerald-600 dark:text-emerald-400">Open to Invites</span>
               </div>
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#1a1435]">
+              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#1e261d]">
                 <span className="text-slate-500 dark:text-slate-400">Preferred Roles</span>
                 <span className="font-bold text-slate-900 dark:text-white">Full-Stack &bull; Lead</span>
               </div>
@@ -376,7 +376,7 @@ export default function ProfilePage() {
           </div>
 
           {/* Connected Profiles */}
-          <div className="bg-white dark:bg-[#120e24] border border-slate-200/80 dark:border-purple-950/60 rounded-3xl p-6 shadow-xs">
+          <div className="bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 rounded-3xl p-6 shadow-xs">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-3">
               Linked Portfolios
             </h3>
@@ -386,26 +386,26 @@ export default function ProfilePage() {
                 href={formData.github}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-between p-3 rounded-xl border border-slate-100 dark:border-purple-950/50 hover:border-[#803BE8] transition-all group"
+                className="flex items-center justify-between p-3 rounded-xl border border-slate-100 dark:border-purple-950/50 hover:border-[#7B9669] transition-all group"
               >
                 <div className="flex items-center gap-2.5 text-xs font-bold text-slate-800 dark:text-slate-200">
-                  <GithubIcon className="w-4 h-4 text-slate-600 dark:text-slate-400 group-hover:text-[#803BE8]" />
+                  <GithubIcon className="w-4 h-4 text-slate-600 dark:text-slate-400 group-hover:text-[#7B9669]" />
                   <span>GitHub Repository</span>
                 </div>
-                <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#803BE8]" />
+                <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#7B9669]" />
               </a>
 
               <a
                 href={formData.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-between p-3 rounded-xl border border-slate-100 dark:border-purple-950/50 hover:border-[#803BE8] transition-all group"
+                className="flex items-center justify-between p-3 rounded-xl border border-slate-100 dark:border-purple-950/50 hover:border-[#7B9669] transition-all group"
               >
                 <div className="flex items-center gap-2.5 text-xs font-bold text-slate-800 dark:text-slate-200">
-                  <LinkedinIcon className="w-4 h-4 text-sky-600 group-hover:text-[#803BE8]" />
+                  <LinkedinIcon className="w-4 h-4 text-sky-600 group-hover:text-[#7B9669]" />
                   <span>LinkedIn Network</span>
                 </div>
-                <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#803BE8]" />
+                <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#7B9669]" />
               </a>
             </div>
           </div>

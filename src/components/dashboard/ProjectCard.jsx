@@ -21,21 +21,21 @@ export default function ProjectCard({
   };
 
   return (
-    <div className="rounded-2xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
+    <div className="rounded-2xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
       <div>
         {/* Top bar: Category badge & team size */}
         <div className="flex items-center justify-between gap-2 mb-3">
-          <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-purple-50 dark:bg-purple-950/50 text-[#803BE8] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40">
+          <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-purple-50 dark:bg-purple-950/50 text-[#7B9669] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40">
             {category}
           </span>
-          <span className="text-xs font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1.5 bg-slate-50 dark:bg-[#1a1435] px-2.5 py-1 rounded-full">
+          <span className="text-xs font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1.5 bg-slate-50 dark:bg-[#1e261d] px-2.5 py-1 rounded-full">
             <Users className="w-3.5 h-3.5 text-slate-400" />
             <span>{teamSize}</span>
           </span>
         </div>
 
         {/* Title */}
-        <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-[#803BE8] dark:group-hover:text-purple-300 transition-colors line-clamp-1">
+        <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-[#7B9669] dark:group-hover:text-purple-300 transition-colors line-clamp-1">
           {title}
         </h4>
 
@@ -53,7 +53,7 @@ export default function ProjectCard({
             {requiredSkills.map((skill, index) => (
               <span
                 key={index}
-                className="text-[11px] font-semibold px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-[#20183e] text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-purple-900/40"
+                className="text-[11px] font-semibold px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-[#283426] text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-purple-900/40"
               >
                 {skill}
               </span>
@@ -84,7 +84,7 @@ export default function ProjectCard({
           <button
             type="button"
             onClick={onViewDetails}
-            className="flex-1 sm:flex-initial text-xs font-semibold px-3 py-1.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#1e173a] transition-colors border border-slate-200 dark:border-purple-900/40"
+            className="flex-1 sm:flex-initial text-xs font-semibold px-3 py-1.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#222c20] transition-colors border border-slate-200 dark:border-purple-900/40"
           >
             Details
           </button>
@@ -94,7 +94,7 @@ export default function ProjectCard({
             className={`flex-1 sm:flex-initial text-xs font-bold px-3.5 py-1.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1 ${
               applied
                 ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/50'
-                : 'bg-[#803BE8] hover:bg-[#6c27cf] text-white shadow-xs'
+                : 'bg-[#7B9669] hover:bg-[#404E3B] text-white shadow-xs'
             }`}
           >
             {applied ? (

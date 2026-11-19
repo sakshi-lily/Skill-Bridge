@@ -69,8 +69,8 @@ export default function ForgotPasswordPage() {
           </div>
 
           {/* Explicit demo note */}
-          <div className="p-3.5 rounded-xl bg-purple-50 dark:bg-[#1f193d] border border-purple-200/80 dark:border-purple-800/50 text-xs text-slate-600 dark:text-slate-300 flex items-start gap-2.5 text-left">
-            <Info className="w-4 h-4 text-[#803BE8] dark:text-pink-400 shrink-0 mt-0.5" />
+          <div className="p-3.5 rounded-xl bg-purple-50 dark:bg-[#222c20] border border-purple-200/80 dark:border-purple-800/50 text-xs text-slate-600 dark:text-slate-300 flex items-start gap-2.5 text-left">
+            <Info className="w-4 h-4 text-[#7B9669] dark:text-pink-400 shrink-0 mt-0.5" />
             <div>
               <span className="font-semibold text-slate-800 dark:text-slate-200">Frontend Demo Notice:</span>
               <p className="mt-0.5 text-slate-500 dark:text-slate-400">
@@ -92,7 +92,7 @@ export default function ForgotPasswordPage() {
 
             <Link
               to="/login"
-              className="inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold text-[#803BE8] dark:text-pink-400 hover:underline py-2"
+              className="inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold text-[#7B9669] dark:text-pink-400 hover:underline py-2"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Sign In</span>
@@ -102,8 +102,8 @@ export default function ForgotPasswordPage() {
       ) : (
         <form onSubmit={handleSubmit} className="space-y-5" noValidate>
           
-          <div className="p-3 rounded-xl bg-purple-50/70 dark:bg-[#1a1435]/70 border border-purple-100 dark:border-purple-900/40 text-xs text-slate-600 dark:text-slate-300 flex items-center gap-2">
-            <Info className="w-4 h-4 text-[#803BE8] dark:text-pink-400 shrink-0" />
+          <div className="p-3 rounded-xl bg-purple-50/70 dark:bg-[#1e261d]/70 border border-purple-100 dark:border-purple-900/40 text-xs text-slate-600 dark:text-slate-300 flex items-center gap-2">
+            <Info className="w-4 h-4 text-[#7B9669] dark:text-pink-400 shrink-0" />
             <span>Enter your registered student email to receive recovery instructions.</span>
           </div>
 
@@ -138,7 +138,7 @@ export default function ForgotPasswordPage() {
           <div className="text-center pt-2">
             <Link
               to="/login"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-[#803BE8] dark:hover:text-pink-400 transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-[#7B9669] dark:hover:text-pink-400 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Sign In</span>

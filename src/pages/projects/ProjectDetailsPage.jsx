@@ -37,7 +37,7 @@ export default function ProjectDetailsPage() {
   if (!project) {
     return (
       <DashboardLayout title="Project Not Found" breadcrumb="SkillBridge / Projects / 404">
-        <div className="rounded-3xl border border-slate-200 dark:border-purple-900/60 bg-white dark:bg-[#151226] p-10 text-center space-y-4">
+        <div className="rounded-3xl border border-slate-200 dark:border-purple-900/60 bg-white dark:bg-[#182017] p-10 text-center space-y-4">
           <AlertCircle className="w-12 h-12 text-rose-500 mx-auto" />
           <h2 className="text-xl font-bold text-slate-900 dark:text-white">
             Project "{id}" Not Found
@@ -47,7 +47,7 @@ export default function ProjectDetailsPage() {
           </p>
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#803BE8] text-white text-xs font-bold shadow-xs"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#7B9669] text-white text-xs font-bold shadow-xs"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Return to Explore Projects</span>
@@ -76,7 +76,7 @@ export default function ProjectDetailsPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-[#803BE8] dark:hover:text-purple-300 transition-colors group"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-[#7B9669] dark:hover:text-purple-300 transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             <span>Back to All Projects</span>
@@ -89,7 +89,7 @@ export default function ProjectDetailsPage() {
                 navigator.clipboard?.writeText(window.location.href);
                 alert('Project link copied to clipboard!');
               }}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 bg-white dark:bg-[#1a1435] border border-slate-200 dark:border-purple-900/50 hover:bg-slate-50 shadow-2xs"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 bg-white dark:bg-[#1e261d] border border-slate-200 dark:border-purple-900/50 hover:bg-slate-50 shadow-2xs"
             >
               <Share2 className="w-3.5 h-3.5" />
               <span>Share</span>
@@ -101,8 +101,8 @@ export default function ProjectDetailsPage() {
               disabled={applied}
               className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md ${
                 applied
-                  ? 'bg-purple-100 dark:bg-purple-950/70 text-[#803BE8] dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 cursor-default'
-                  : 'bg-[#803BE8] hover:bg-[#6c27cf] text-white shadow-purple-600/20 hover:shadow-purple-600/35 transform hover:-translate-y-0.5'
+                  ? 'bg-purple-100 dark:bg-purple-950/70 text-[#7B9669] dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 cursor-default'
+                  : 'bg-[#7B9669] hover:bg-[#404E3B] text-white shadow-[#7B9669]/20 hover:shadow-[#7B9669]/35 transform hover:-translate-y-0.5'
               }`}
             >
               {applied ? (
@@ -121,15 +121,15 @@ export default function ProjectDetailsPage() {
         </div>
 
         {/* Project Hero Banner */}
-        <div className="rounded-3xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-6 sm:p-8 shadow-sm space-y-4">
+        <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-6 sm:p-8 shadow-sm space-y-4">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs font-bold px-3 py-1 rounded-full bg-purple-50 dark:bg-purple-950/60 text-[#803BE8] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40">
+            <span className="text-xs font-bold px-3 py-1 rounded-full bg-purple-50 dark:bg-purple-950/60 text-[#7B9669] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40">
               {project.category}
             </span>
             <span className={`text-xs font-bold px-3 py-1 rounded-full border ${difficultyColors[project.difficulty] || difficultyColors.Intermediate}`}>
               {project.difficulty}
             </span>
-            <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-[#1f193d] text-slate-700 dark:text-slate-300">
+            <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-[#222c20] text-slate-700 dark:text-slate-300">
               {project.mode}
             </span>
             <span className="text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60">
@@ -181,7 +181,7 @@ export default function ProjectDetailsPage() {
           <div className="lg:col-span-2 space-y-8">
             
             {/* Detailed Description */}
-            <div className="rounded-3xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-6 sm:p-8 shadow-sm space-y-3">
+            <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-6 sm:p-8 shadow-sm space-y-3">
               <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
                 About the Project &bull; Overview
               </h2>
@@ -191,8 +191,8 @@ export default function ProjectDetailsPage() {
             </div>
 
             {/* Problem Statement and Objectives */}
-            <div className="rounded-3xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-6 sm:p-8 shadow-sm space-y-3">
-              <div className="flex items-center gap-2 text-[#803BE8] dark:text-purple-300">
+            <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-6 sm:p-8 shadow-sm space-y-3">
+              <div className="flex items-center gap-2 text-[#7B9669] dark:text-purple-300">
                 <Flag className="w-5 h-5 text-pink-500" />
                 <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
                   Problem Statement &amp; Objectives
@@ -204,7 +204,7 @@ export default function ProjectDetailsPage() {
             </div>
 
             {/* Project Milestones */}
-            <div className="rounded-3xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-6 sm:p-8 shadow-sm space-y-4">
+            <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-6 sm:p-8 shadow-sm space-y-4">
               <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
                 Project Sprint Milestones
               </h2>
@@ -215,7 +215,7 @@ export default function ProjectDetailsPage() {
                     className={`p-3.5 rounded-2xl border flex items-center justify-between gap-3 text-xs sm:text-sm ${
                       m.completed
                         ? 'bg-emerald-50/40 dark:bg-emerald-950/20 border-emerald-200/60 dark:border-emerald-800/40 text-slate-800 dark:text-slate-200'
-                        : 'bg-slate-50 dark:bg-[#1b1535] border-slate-200/80 dark:border-purple-900/40 text-slate-700 dark:text-slate-300'
+                        : 'bg-slate-50 dark:bg-[#1e261d] border-slate-200/80 dark:border-purple-900/40 text-slate-700 dark:text-slate-300'
                     }`}
                   >
                     <div className="flex items-center gap-3">
@@ -229,7 +229,7 @@ export default function ProjectDetailsPage() {
                       </span>
                     </div>
 
-                    <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-white dark:bg-[#251e47] text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-purple-900/40 shrink-0">
+                    <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-white dark:bg-[#283426] text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-purple-900/40 shrink-0">
                       {m.targetDate}
                     </span>
                   </div>
@@ -244,10 +244,10 @@ export default function ProjectDetailsPage() {
             
             {/* Rule-Based Match Card for Alex Morgan */}
             {matchResult && (
-              <div className="rounded-3xl bg-gradient-to-br from-purple-50/80 via-white to-pink-50/40 dark:from-[#1d163a] dark:via-[#16122a] dark:to-[#1a122e] border border-purple-200/80 dark:border-purple-900/60 p-6 shadow-sm space-y-3">
+              <div className="rounded-3xl bg-gradient-to-br from-purple-50/80 via-white to-pink-50/40 dark:from-[#1e261d] dark:via-[#182017] dark:to-[#141a13] border border-purple-200/80 dark:border-purple-900/60 p-6 shadow-sm space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-[#803BE8] dark:text-purple-300" />
+                    <Sparkles className="w-4 h-4 text-[#7B9669] dark:text-purple-300" />
                     <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                       Your Skill Match
                     </h3>
@@ -304,7 +304,7 @@ export default function ProjectDetailsPage() {
                 <div className="pt-2">
                   <Link
                     to={`/teammates?project=${project.id}`}
-                    className="w-full text-xs font-bold py-2 px-3 rounded-xl bg-purple-100 hover:bg-[#803BE8] hover:text-white dark:bg-purple-950/60 dark:hover:bg-[#803BE8] text-[#803BE8] dark:text-purple-200 transition-colors flex items-center justify-center gap-1.5"
+                    className="w-full text-xs font-bold py-2 px-3 rounded-xl bg-purple-100 hover:bg-[#7B9669] hover:text-white dark:bg-purple-950/60 dark:hover:bg-[#7B9669] text-[#7B9669] dark:text-purple-200 transition-colors flex items-center justify-center gap-1.5"
                   >
                     <Users className="w-3.5 h-3.5" />
                     <span>Find Teammates For This Project</span>
@@ -314,7 +314,7 @@ export default function ProjectDetailsPage() {
             )}
 
             {/* Required Skills */}
-            <div className="rounded-3xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-6 shadow-sm space-y-3">
+            <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-6 shadow-sm space-y-3">
               <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                 Required Skills &amp; Tech Stack
               </h3>
@@ -322,7 +322,7 @@ export default function ProjectDetailsPage() {
                 {project.requiredSkills?.map((skill, idx) => (
                   <span
                     key={idx}
-                    className="text-xs font-semibold px-3 py-1 rounded-lg bg-purple-50 dark:bg-[#1f193d] text-[#803BE8] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40"
+                    className="text-xs font-semibold px-3 py-1 rounded-lg bg-purple-50 dark:bg-[#222c20] text-[#7B9669] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40"
                   >
                     {skill}
                   </span>
@@ -331,7 +331,7 @@ export default function ProjectDetailsPage() {
             </div>
 
             {/* Available Roles */}
-            <div className="rounded-3xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-6 shadow-sm space-y-3">
+            <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-6 shadow-sm space-y-3">
               <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                 Open Roles ({project.openPositionsCount})
               </h3>
@@ -339,10 +339,10 @@ export default function ProjectDetailsPage() {
                 {project.availableRoles?.map((role, idx) => (
                   <div
                     key={idx}
-                    className="p-3 rounded-xl bg-slate-50 dark:bg-[#1b1535] border border-slate-200 dark:border-purple-900/40 text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center justify-between"
+                    className="p-3 rounded-xl bg-slate-50 dark:bg-[#1e261d] border border-slate-200 dark:border-purple-900/40 text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center justify-between"
                   >
                     <span>{role}</span>
-                    <span className="text-[10px] font-bold text-[#803BE8] dark:text-purple-300">
+                    <span className="text-[10px] font-bold text-[#7B9669] dark:text-purple-300">
                       Recruiting
                     </span>
                   </div>
@@ -351,7 +351,7 @@ export default function ProjectDetailsPage() {
             </div>
 
             {/* Project Lead */}
-            <div className="rounded-3xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-6 shadow-sm space-y-3">
+            <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-6 shadow-sm space-y-3">
               <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                 Project Founder
               </h3>
@@ -368,7 +368,7 @@ export default function ProjectDetailsPage() {
                   <p className="text-xs text-slate-500 dark:text-slate-400">
                     {project.owner?.role || 'Project Lead'}
                   </p>
-                  <p className="text-[11px] font-semibold text-[#803BE8] dark:text-purple-300">
+                  <p className="text-[11px] font-semibold text-[#7B9669] dark:text-purple-300">
                     {project.owner?.university}
                   </p>
                 </div>
@@ -376,7 +376,7 @@ export default function ProjectDetailsPage() {
             </div>
 
             {/* Current Team Members */}
-            <div className="rounded-3xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-6 shadow-sm space-y-3">
+            <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-6 shadow-sm space-y-3">
               <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                 Current Team Members ({project.members?.length || 1})
               </h3>

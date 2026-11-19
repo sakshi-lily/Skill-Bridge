@@ -126,7 +126,7 @@ export default function TeammatesPage() {
         {/* Header Banner */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-[#1f193d] border border-purple-200 dark:border-purple-800/60 text-xs font-bold text-[#803BE8] dark:text-purple-300 mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-[#222c20] border border-purple-200 dark:border-purple-800/60 text-xs font-bold text-[#7B9669] dark:text-purple-300 mb-2">
               <Sparkles className="w-3.5 h-3.5 text-pink-500" />
               <span>Step 5: Smart Skill-Matching Engine</span>
             </div>
@@ -140,21 +140,21 @@ export default function TeammatesPage() {
         </div>
 
         {/* 1. Target Project Selector Box */}
-        <div className="rounded-3xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-6 sm:p-7 shadow-sm space-y-4">
+        <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-6 sm:p-7 shadow-sm space-y-4">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-purple-950/50">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#803BE8] dark:text-purple-300 block mb-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#7B9669] dark:text-purple-300 block mb-1">
                 Select Project To Rank Candidates Against:
               </span>
               <div className="flex items-center gap-2">
-                <FolderKanban className="w-5 h-5 text-[#803BE8]" />
+                <FolderKanban className="w-5 h-5 text-[#7B9669]" />
                 <select
                   value={selectedProjectId}
                   onChange={(e) => setSelectedProjectId(e.target.value)}
-                  className="text-sm sm:text-base font-bold text-slate-900 dark:text-white bg-transparent border-b-2 border-purple-300 dark:border-purple-700 py-1 pr-8 focus:outline-none focus:border-[#803BE8] cursor-pointer"
+                  className="text-sm sm:text-base font-bold text-slate-900 dark:text-white bg-transparent border-b-2 border-purple-300 dark:border-purple-700 py-1 pr-8 focus:outline-none focus:border-[#7B9669] cursor-pointer"
                 >
                   {projects.map(p => (
-                    <option key={p.id} value={p.id} className="dark:bg-[#151226]">
+                    <option key={p.id} value={p.id} className="dark:bg-[#182017]">
                       {p.title} ({p.category})
                     </option>
                   ))}
@@ -163,8 +163,8 @@ export default function TeammatesPage() {
             </div>
 
             {/* Formula Explanation Badge */}
-            <div className="p-3 rounded-2xl bg-purple-50/70 dark:bg-[#1a1435]/70 border border-purple-200/70 dark:border-purple-900/40 text-[11px] text-slate-600 dark:text-slate-300">
-              <span className="font-bold text-[#803BE8] dark:text-purple-300 block">
+            <div className="p-3 rounded-2xl bg-purple-50/70 dark:bg-[#1e261d]/70 border border-purple-200/70 dark:border-purple-900/40 text-[11px] text-slate-600 dark:text-slate-300">
+              <span className="font-bold text-[#7B9669] dark:text-purple-300 block">
                 Rule-Based Formula:
               </span>
               <code>Match Score = (Matched Skills / Total Required Skills) &times; 100</code>
@@ -179,7 +179,7 @@ export default function TeammatesPage() {
             {selectedProject?.requiredSkills?.map((s, idx) => (
               <span
                 key={idx}
-                className="font-bold px-2.5 py-1 rounded-lg bg-purple-50 dark:bg-[#1f193d] text-[#803BE8] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40"
+                className="font-bold px-2.5 py-1 rounded-lg bg-purple-50 dark:bg-[#222c20] text-[#7B9669] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40"
               >
                 {s}
               </span>
@@ -188,7 +188,7 @@ export default function TeammatesPage() {
         </div>
 
         {/* 2. Search & Multi-Filter Controls */}
-        <div className="rounded-3xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm space-y-4">
+        <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm space-y-4">
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
             {/* Search Input */}
@@ -199,7 +199,7 @@ export default function TeammatesPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search candidates by name, college, or skill..."
-                className="w-full text-xs sm:text-sm pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#1b1536] text-slate-900 dark:text-white placeholder:text-slate-400 border border-slate-200 dark:border-purple-900/40 focus:outline-none focus:border-[#803BE8]"
+                className="w-full text-xs sm:text-sm pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#1e261d] text-slate-900 dark:text-white placeholder:text-slate-400 border border-slate-200 dark:border-purple-900/40 focus:outline-none focus:border-[#7B9669]"
               />
             </div>
 
@@ -208,7 +208,7 @@ export default function TeammatesPage() {
               <select
                 value={selectedSkillFilter}
                 onChange={(e) => setSelectedSkillFilter(e.target.value)}
-                className="w-full text-xs font-semibold py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-[#1b1536] text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-purple-900/40 focus:outline-none focus:border-[#803BE8]"
+                className="w-full text-xs font-semibold py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-[#1e261d] text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-purple-900/40 focus:outline-none focus:border-[#7B9669]"
               >
                 <option value="">All Technical Skills</option>
                 {POPULAR_SKILLS.map(skill => (
@@ -222,7 +222,7 @@ export default function TeammatesPage() {
               <select
                 value={selectedExperience}
                 onChange={(e) => setSelectedExperience(e.target.value)}
-                className="w-full text-xs font-semibold py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-[#1b1536] text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-purple-900/40 focus:outline-none focus:border-[#803BE8]"
+                className="w-full text-xs font-semibold py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-[#1e261d] text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-purple-900/40 focus:outline-none focus:border-[#7B9669]"
               >
                 <option value="">Any Experience Level</option>
                 <option value="Beginner">Beginner</option>
@@ -236,7 +236,7 @@ export default function TeammatesPage() {
               <select
                 value={matchStrengthFilter}
                 onChange={(e) => setMatchStrengthFilter(e.target.value)}
-                className="w-full text-xs font-semibold py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-[#1b1536] text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-purple-900/40 focus:outline-none focus:border-[#803BE8]"
+                className="w-full text-xs font-semibold py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-[#1e261d] text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-purple-900/40 focus:outline-none focus:border-[#7B9669]"
               >
                 <option value="all">Any Match Score</option>
                 <option value="high">High Match (&ge; 75%)</option>
@@ -268,8 +268,8 @@ export default function TeammatesPage() {
         {/* 3. Ranked Candidates Grid */}
         <div>
           {rankedCandidates.length === 0 ? (
-            <div className="rounded-3xl border-2 border-dashed border-purple-200 dark:border-purple-900/60 bg-white/60 dark:bg-[#151226]/60 p-12 text-center space-y-3">
-              <Users className="w-12 h-12 text-[#803BE8] mx-auto opacity-70" />
+            <div className="rounded-3xl border-2 border-dashed border-purple-200 dark:border-purple-900/60 bg-white/60 dark:bg-[#182017]/60 p-12 text-center space-y-3">
+              <Users className="w-12 h-12 text-[#7B9669] mx-auto opacity-70" />
               <h3 className="text-base font-bold text-slate-900 dark:text-white">
                 No student candidates matched your criteria
               </h3>
@@ -279,7 +279,7 @@ export default function TeammatesPage() {
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="mt-2 px-4 py-2 rounded-xl bg-[#803BE8] text-white text-xs font-bold"
+                className="mt-2 px-4 py-2 rounded-xl bg-[#7B9669] text-white text-xs font-bold"
               >
                 Reset All Filters
               </button>

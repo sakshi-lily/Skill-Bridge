@@ -5,7 +5,7 @@ export default function ActivityList({ activities = [] }) {
   const iconMap = {
     invite: {
       icon: Mail,
-      color: 'bg-purple-100 text-[#803BE8] dark:bg-purple-950/60 dark:text-purple-300',
+      color: 'bg-purple-100 text-[#7B9669] dark:bg-purple-950/60 dark:text-purple-300',
     },
     task: {
       icon: CheckSquare,
@@ -22,7 +22,7 @@ export default function ActivityList({ activities = [] }) {
   };
 
   return (
-    <div className="rounded-2xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm">
+    <div className="rounded-2xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm">
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="text-base font-bold text-slate-900 dark:text-white">
@@ -33,7 +33,7 @@ export default function ActivityList({ activities = [] }) {
           </p>
         </div>
 
-        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-purple-50 dark:bg-[#1f193d] text-[#803BE8] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40">
+        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-purple-50 dark:bg-[#222c20] text-[#7B9669] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40">
           Live Feed Demo
         </span>
       </div>
@@ -45,7 +45,7 @@ export default function ActivityList({ activities = [] }) {
 
           return (
             <div key={item.id} className="relative flex items-start gap-3.5 group">
-              <div className={`relative z-10 p-2 rounded-xl ${conf.color} shadow-xs ring-4 ring-white dark:ring-[#151226] shrink-0`}>
+              <div className={`relative z-10 p-2 rounded-xl ${conf.color} shadow-xs ring-4 ring-white dark:ring-[#182017] shrink-0`}>
                 <Icon className="w-3.5 h-3.5" />
               </div>
 
@@ -55,7 +55,7 @@ export default function ActivityList({ activities = [] }) {
                     {item.actor}
                   </span>
                   {item.action}{' '}
-                  <span className="font-semibold text-[#803BE8] dark:text-purple-300">
+                  <span className="font-semibold text-[#7B9669] dark:text-purple-300">
                     {item.target}
                   </span>
                 </p>

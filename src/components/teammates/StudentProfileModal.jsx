@@ -23,13 +23,13 @@ export default function StudentProfileModal({ student, isOpen, onClose, onOpenIn
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl rounded-3xl bg-white dark:bg-[#16122c] border border-purple-200 dark:border-purple-900/60 p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in-95 space-y-6">
+      <div className="w-full max-w-2xl rounded-3xl bg-white dark:bg-[#182017] border border-purple-200 dark:border-purple-900/60 p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in-95 space-y-6">
         
         {/* Close Button */}
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-5 right-5 p-1 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#20183e] transition-colors"
+          className="absolute top-5 right-5 p-1 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#283426] transition-colors"
           aria-label="Close dialog"
         >
           <X className="w-5 h-5" />
@@ -48,7 +48,7 @@ export default function StudentProfileModal({ student, isOpen, onClose, onOpenIn
               {student.name}
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 flex items-center justify-center sm:justify-start gap-1">
-              <GraduationCap className="w-4 h-4 text-[#803BE8]" />
+              <GraduationCap className="w-4 h-4 text-[#7B9669]" />
               <span dangerouslySetInnerHTML={{ __html: `${student.university} &bull; ${student.courseAndYear}` }} />
             </p>
             <p className="text-xs text-slate-400 dark:text-slate-500">
@@ -62,7 +62,7 @@ export default function StudentProfileModal({ student, isOpen, onClose, onOpenIn
           <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
             About / Elevator Pitch
           </h3>
-          <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-[#1a1435] p-3.5 rounded-2xl border border-slate-200/80 dark:border-purple-900/40">
+          <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-[#1e261d] p-3.5 rounded-2xl border border-slate-200/80 dark:border-purple-900/40">
             {student.bio || 'Active student builder looking for complementary teams and hackathon projects.'}
           </p>
         </div>
@@ -78,7 +78,7 @@ export default function StudentProfileModal({ student, isOpen, onClose, onOpenIn
               return (
                 <div
                   key={skill}
-                  className="p-2.5 rounded-xl bg-purple-50/60 dark:bg-[#1f183d] border border-purple-100 dark:border-purple-900/40 flex items-center justify-between"
+                  className="p-2.5 rounded-xl bg-purple-50/60 dark:bg-[#1e261d] border border-purple-100 dark:border-purple-900/40 flex items-center justify-between"
                 >
                   <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
                     {skill}
@@ -115,7 +115,7 @@ export default function StudentProfileModal({ student, isOpen, onClose, onOpenIn
               Availability:
             </span>
             <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
-              <Clock className="w-4 h-4 text-[#803BE8]" />
+              <Clock className="w-4 h-4 text-[#7B9669]" />
               <span>{student.availability || '10-15 hrs/week'}</span>
             </div>
           </div>
@@ -132,7 +132,7 @@ export default function StudentProfileModal({ student, isOpen, onClose, onOpenIn
                 href={student.github}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-[#1a1435] text-slate-700 dark:text-slate-300 hover:text-[#803BE8] transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-[#1e261d] text-slate-700 dark:text-slate-300 hover:text-[#7B9669] transition-colors"
               >
                 <Globe className="w-3.5 h-3.5" />
                 <span>GitHub Profile</span>
@@ -143,7 +143,7 @@ export default function StudentProfileModal({ student, isOpen, onClose, onOpenIn
                 href={student.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-[#1a1435] text-slate-700 dark:text-slate-300 hover:text-[#803BE8] transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-[#1e261d] text-slate-700 dark:text-slate-300 hover:text-[#7B9669] transition-colors"
               >
                 <Globe className="w-3.5 h-3.5" />
                 <span>LinkedIn Profile</span>
@@ -157,7 +157,7 @@ export default function StudentProfileModal({ student, isOpen, onClose, onOpenIn
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2.5 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1e173a]"
+            className="px-4 py-2.5 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#222c20]"
           >
             Close
           </button>
@@ -168,7 +168,7 @@ export default function StudentProfileModal({ student, isOpen, onClose, onOpenIn
               onClose();
               onOpenInvite(student);
             }}
-            className="px-6 py-2.5 rounded-xl bg-[#803BE8] hover:bg-[#6c27cf] text-white text-xs font-bold shadow-md shadow-purple-600/20 flex items-center gap-1.5"
+            className="px-6 py-2.5 rounded-xl bg-[#7B9669] hover:bg-[#404E3B] text-white text-xs font-bold shadow-md shadow-[#7B9669]/20 flex items-center gap-1.5"
           >
             <Send className="w-3.5 h-3.5" />
             <span>Invite to Team</span>

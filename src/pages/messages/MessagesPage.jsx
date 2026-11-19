@@ -182,13 +182,13 @@ export default function MessagesPage() {
       title="Team Messages" 
       breadcrumb="Dashboard / Team Messages & Real-Time Chat"
     >
-      <div className="bg-white dark:bg-[#151226] rounded-3xl border border-slate-200/80 dark:border-purple-950/60 shadow-sm overflow-hidden h-[calc(100vh-180px)] min-h-[580px] flex flex-col md:flex-row">
+      <div className="bg-white dark:bg-[#182017] rounded-3xl border border-slate-200/80 dark:border-purple-950/60 shadow-sm overflow-hidden h-[calc(100vh-180px)] min-h-[580px] flex flex-col md:flex-row">
         
         {/* Left Sidebar: Team Channels */}
-        <div className="w-full md:w-80 border-r border-slate-200/80 dark:border-white/5 flex flex-col bg-slate-50/50 dark:bg-[#120e24]">
+        <div className="w-full md:w-80 border-r border-slate-200/80 dark:border-white/5 flex flex-col bg-slate-50/50 dark:bg-[#182017]">
           <div className="p-4 border-b border-slate-200/80 dark:border-white/5">
             <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
-              <MessageSquare className="w-4 h-4 text-[#803BE8]" />
+              <MessageSquare className="w-4 h-4 text-[#7B9669]" />
               <span>Project Team Channels</span>
             </h3>
             <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
@@ -209,7 +209,7 @@ export default function MessagesPage() {
                       : 'hover:bg-slate-100 dark:hover:bg-white/5 text-slate-700 dark:text-slate-300 border border-transparent'
                   }`}
                 >
-                  <div className="w-9 h-9 rounded-xl bg-[#803BE8]/10 text-[#803BE8] dark:text-purple-300 flex items-center justify-center font-bold text-sm shrink-0">
+                  <div className="w-9 h-9 rounded-xl bg-[#7B9669]/10 text-[#7B9669] dark:text-purple-300 flex items-center justify-center font-bold text-sm shrink-0">
                     {team.name.charAt(0)}
                   </div>
                   <div className="min-w-0 flex-1">
@@ -228,13 +228,13 @@ export default function MessagesPage() {
         </div>
 
         {/* Right Area: Chat Workspace */}
-        <div className="flex-1 flex flex-col bg-white dark:bg-[#18122B] min-w-0">
+        <div className="flex-1 flex flex-col bg-white dark:bg-[#182017] min-w-0">
           {selectedTeam ? (
             <>
               {/* Chat Header */}
               <div className="px-6 py-4 border-b border-slate-100 dark:border-white/5 flex items-center justify-between bg-slate-50/30 dark:bg-white/[0.02]">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#803BE8] to-[#9B51E0] text-white flex items-center justify-center font-bold text-base shadow-sm shrink-0">
+                  <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#7B9669] to-[#6C8480] text-white flex items-center justify-center font-bold text-base shadow-sm shrink-0">
                     {selectedTeam.name.charAt(0)}
                   </div>
                   <div className="min-w-0">
@@ -246,14 +246,14 @@ export default function MessagesPage() {
                       </span>
                     </h3>
                     <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
-                      Project: <span className="font-medium text-[#803BE8] dark:text-purple-300">{selectedTeam.projectName}</span> &bull; {selectedTeam.members?.length || 3} Collaborators
+                      Project: <span className="font-medium text-[#7B9669] dark:text-purple-300">{selectedTeam.projectName}</span> &bull; {selectedTeam.members?.length || 3} Collaborators
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Messages Feed */}
-              <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50/20 dark:bg-[#130f24]/50">
+              <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50/20 dark:bg-[#121711]/50">
                 {messages.map((msg, index) => {
                   const isSelf = msg.isSelf;
                   return (
@@ -285,8 +285,8 @@ export default function MessagesPage() {
                         <div
                           className={`p-3.5 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-xs ${
                             isSelf
-                              ? 'bg-[#803BE8] text-white rounded-tr-xs'
-                              : 'bg-white dark:bg-[#1f1737] text-slate-800 dark:text-slate-100 border border-slate-100 dark:border-white/5 rounded-tl-xs'
+                              ? 'bg-[#7B9669] text-white rounded-tr-xs'
+                              : 'bg-white dark:bg-[#222c20] text-slate-800 dark:text-slate-100 border border-slate-100 dark:border-white/5 rounded-tl-xs'
                           }`}
                         >
                           {msg.content}
@@ -299,18 +299,18 @@ export default function MessagesPage() {
               </div>
 
               {/* Chat Input Bar */}
-              <form onSubmit={handleSendMessage} className="p-4 border-t border-slate-100 dark:border-white/5 bg-white dark:bg-[#18122B] flex items-center gap-2">
+              <form onSubmit={handleSendMessage} className="p-4 border-t border-slate-100 dark:border-white/5 bg-white dark:bg-[#182017] flex items-center gap-2">
                 <input
                   type="text"
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   placeholder={`Message #${selectedTeam.name}...`}
-                  className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.04] text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#803BE8]"
+                  className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.04] text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#7B9669]"
                 />
                 <button
                   type="submit"
                   disabled={!inputMessage.trim() || sending}
-                  className="px-5 py-2.5 rounded-xl bg-[#803BE8] hover:bg-[#6c27cf] disabled:opacity-50 text-white font-semibold text-sm transition-all shadow-md shadow-purple-500/20 flex items-center gap-1.5 shrink-0"
+                  className="px-5 py-2.5 rounded-xl bg-[#7B9669] hover:bg-[#404E3B] disabled:opacity-50 text-white font-semibold text-sm transition-all shadow-md shadow-[#7B9669]/20 flex items-center gap-1.5 shrink-0"
                 >
                   <Send className="w-4 h-4" />
                   <span>Send</span>

@@ -202,7 +202,7 @@ export default function SetupProfilePage() {
     >
       {/* Demo Notification Banner */}
       {demoNotice ? (
-        <div className="mb-6 p-4 rounded-2xl bg-purple-50 dark:bg-[#20183e] border border-purple-200 dark:border-purple-800 text-xs sm:text-sm text-[#803BE8] dark:text-purple-300 flex items-start gap-3">
+        <div className="mb-6 p-4 rounded-2xl bg-purple-50 dark:bg-[#283426] border border-purple-200 dark:border-purple-800 text-xs sm:text-sm text-[#7B9669] dark:text-purple-300 flex items-start gap-3">
           <Info className="w-5 h-5 shrink-0 mt-0.5 text-pink-500" />
           <div>
             <p className="font-semibold">{demoNotice}</p>
@@ -210,15 +210,15 @@ export default function SetupProfilePage() {
           </div>
         </div>
       ) : (
-        <div className="mb-6 p-3 rounded-xl bg-purple-50/70 dark:bg-[#1a1435]/70 border border-purple-100 dark:border-purple-900/40 text-xs text-slate-600 dark:text-slate-300 flex items-center justify-between">
+        <div className="mb-6 p-3 rounded-xl bg-purple-50/70 dark:bg-[#1e261d]/70 border border-purple-100 dark:border-purple-900/40 text-xs text-slate-600 dark:text-slate-300 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Info className="w-4 h-4 text-[#803BE8] dark:text-pink-400 shrink-0" />
+            <Info className="w-4 h-4 text-[#7B9669] dark:text-pink-400 shrink-0" />
             <span><strong>Frontend Demo Mode:</strong> Customize your student profile options below.</span>
           </div>
           <button
             type="button"
             onClick={handleSkip}
-            className="text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-[#803BE8] dark:hover:text-pink-300 underline"
+            className="text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-[#7B9669] dark:hover:text-pink-300 underline"
           >
             Skip for Now
           </button>
@@ -228,16 +228,16 @@ export default function SetupProfilePage() {
       <form onSubmit={handleSave} className="space-y-8" noValidate>
         
         {/* 1. Profile Photo Upload UI */}
-        <div className="p-5 rounded-2xl bg-slate-50/70 dark:bg-[#1a1435]/60 border border-purple-100 dark:border-purple-900/40 flex flex-col sm:flex-row items-center gap-6">
+        <div className="p-5 rounded-2xl bg-slate-50/70 dark:bg-[#1e261d]/60 border border-purple-100 dark:border-purple-900/40 flex flex-col sm:flex-row items-center gap-6">
           <div className="relative group">
             <img
               src={avatarPreview}
               alt="Profile Avatar Preview"
-              className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-white dark:border-[#251e47] shadow-md"
+              className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-white dark:border-[#283426] shadow-md"
             />
             <label
               htmlFor="avatar-upload"
-              className="absolute bottom-0 right-0 p-2 rounded-full bg-[#803BE8] text-white shadow-md hover:bg-[#6c27cf] cursor-pointer transition-transform hover:scale-110"
+              className="absolute bottom-0 right-0 p-2 rounded-full bg-[#7B9669] text-white shadow-md hover:bg-[#404E3B] cursor-pointer transition-transform hover:scale-110"
               title="Upload new picture"
             >
               <Camera className="w-4 h-4" />
@@ -261,7 +261,7 @@ export default function SetupProfilePage() {
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-1">
               <label
                 htmlFor="avatar-upload"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-[#261f4c] text-[#803BE8] dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 shadow-xs cursor-pointer hover:bg-purple-50"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-[#1e261d] text-[#7B9669] dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 shadow-xs cursor-pointer hover:bg-purple-50"
               >
                 <Upload className="w-3.5 h-3.5" />
                 <span>Upload Photo</span>
@@ -271,14 +271,14 @@ export default function SetupProfilePage() {
               <button
                 type="button"
                 onClick={() => setAvatarPreview('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=250')}
-                className="px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-400 bg-white/70 dark:bg-[#1f193d] border border-slate-200 dark:border-purple-900/40 hover:text-[#803BE8]"
+                className="px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-400 bg-white/70 dark:bg-[#222c20] border border-slate-200 dark:border-purple-900/40 hover:text-[#7B9669]"
               >
                 Preset 1
               </button>
               <button
                 type="button"
                 onClick={() => setAvatarPreview('https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=250')}
-                className="px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-400 bg-white/70 dark:bg-[#1f193d] border border-slate-200 dark:border-purple-900/40 hover:text-[#803BE8]"
+                className="px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-400 bg-white/70 dark:bg-[#222c20] border border-slate-200 dark:border-purple-900/40 hover:text-[#7B9669]"
               >
                 Preset 2
               </button>
@@ -306,7 +306,7 @@ export default function SetupProfilePage() {
               if (errors.bio) setErrors(prev => ({ ...prev, bio: undefined }));
             }}
             placeholder="Share your interests, what you enjoy building, and what kind of projects or teammates you are searching for..."
-            className="w-full rounded-2xl text-xs sm:text-sm p-3.5 bg-slate-50/70 dark:bg-[#1c1735]/80 border border-purple-100 dark:border-purple-900/60 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-[#803BE8] focus:ring-2 focus:ring-[#803BE8]/25"
+            className="w-full rounded-2xl text-xs sm:text-sm p-3.5 bg-slate-50/70 dark:bg-[#222c20]/80 border border-purple-100 dark:border-purple-900/60 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-[#7B9669] focus:ring-2 focus:ring-[#7B9669]/25"
           />
 
           {errors.bio && (
@@ -339,7 +339,7 @@ export default function SetupProfilePage() {
                   key={skill}
                   type="button"
                   onClick={() => handleAddSkill(skill, 'Intermediate')}
-                  className="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-100 dark:bg-[#1b1536] text-slate-700 dark:text-slate-300 hover:bg-purple-100 hover:text-[#803BE8] dark:hover:bg-[#251e4a] border border-slate-200/60 dark:border-purple-900/40 transition-colors"
+                  className="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-100 dark:bg-[#1e261d] text-slate-700 dark:text-slate-300 hover:bg-purple-100 hover:text-[#7B9669] dark:hover:bg-[#283426] border border-slate-200/60 dark:border-purple-900/40 transition-colors"
                 >
                   + {skill}
                 </button>
@@ -374,13 +374,13 @@ export default function SetupProfilePage() {
                   handleAddSkill(newSkillName, newSkillLevel);
                 }
               }}
-              className="flex-1 rounded-xl text-xs sm:text-sm px-3.5 py-2.5 bg-slate-50/70 dark:bg-[#1c1735]/80 border border-purple-100 dark:border-purple-900/60 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-[#803BE8]"
+              className="flex-1 rounded-xl text-xs sm:text-sm px-3.5 py-2.5 bg-slate-50/70 dark:bg-[#222c20]/80 border border-purple-100 dark:border-purple-900/60 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-[#7B9669]"
             />
 
             <select
               value={newSkillLevel}
               onChange={(e) => setNewSkillLevel(e.target.value)}
-              className="rounded-xl text-xs sm:text-sm px-3 py-2.5 bg-slate-50/70 dark:bg-[#1c1735]/80 border border-purple-100 dark:border-purple-900/60 text-slate-900 dark:text-white focus:outline-none focus:border-[#803BE8]"
+              className="rounded-xl text-xs sm:text-sm px-3 py-2.5 bg-slate-50/70 dark:bg-[#222c20]/80 border border-purple-100 dark:border-purple-900/60 text-slate-900 dark:text-white focus:outline-none focus:border-[#7B9669]"
             >
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
@@ -391,7 +391,7 @@ export default function SetupProfilePage() {
             <button
               type="button"
               onClick={() => handleAddSkill(newSkillName, newSkillLevel)}
-              className="px-4 py-2.5 rounded-xl bg-[#803BE8] hover:bg-[#6e27d5] text-white text-xs font-bold transition-all flex items-center justify-center gap-1 shadow-sm"
+              className="px-4 py-2.5 rounded-xl bg-[#7B9669] hover:bg-[#404E3B] text-white text-xs font-bold transition-all flex items-center justify-center gap-1 shadow-sm"
             >
               <Plus className="w-4 h-4" />
               <span>Add Skill</span>
@@ -403,7 +403,7 @@ export default function SetupProfilePage() {
             {skillsWithLevel.map((skill) => (
               <div
                 key={skill.name}
-                className="flex items-center justify-between p-2.5 rounded-xl bg-purple-50/60 dark:bg-[#1c1638] border border-purple-100 dark:border-purple-900/40"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-purple-50/60 dark:bg-[#222c20] border border-purple-100 dark:border-purple-900/40"
               >
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-bold text-slate-800 dark:text-slate-100">
@@ -415,7 +415,7 @@ export default function SetupProfilePage() {
                   <select
                     value={skill.level}
                     onChange={(e) => handleUpdateSkillLevel(skill.name, e.target.value)}
-                    className="text-[11px] font-semibold py-1 px-2 rounded-lg bg-white dark:bg-[#251e4a] border border-purple-200 dark:border-purple-800/50 text-[#803BE8] dark:text-purple-300 focus:outline-none"
+                    className="text-[11px] font-semibold py-1 px-2 rounded-lg bg-white dark:bg-[#1e261d] border border-purple-200 dark:border-purple-800/50 text-[#7B9669] dark:text-purple-300 focus:outline-none"
                   >
                     <option value="Beginner">Beginner</option>
                     <option value="Intermediate">Intermediate</option>
@@ -452,12 +452,12 @@ export default function SetupProfilePage() {
                   onClick={() => toggleInterest(interest)}
                   className={`p-2.5 rounded-xl text-xs font-semibold border transition-all text-left flex items-center justify-between ${
                     selected
-                      ? 'bg-purple-100/90 dark:bg-purple-900/60 text-[#803BE8] dark:text-purple-200 border-[#803BE8]/60 shadow-xs'
-                      : 'bg-slate-50 dark:bg-[#1a1435] text-slate-600 dark:text-slate-400 border-purple-100 dark:border-purple-900/40 hover:border-purple-300'
+                      ? 'bg-purple-100/90 dark:bg-purple-900/60 text-[#7B9669] dark:text-purple-200 border-[#7B9669]/60 shadow-xs'
+                      : 'bg-slate-50 dark:bg-[#1e261d] text-slate-600 dark:text-slate-400 border-purple-100 dark:border-purple-900/40 hover:border-purple-300'
                   }`}
                 >
                   <span className="truncate">{interest}</span>
-                  {selected && <Check className="w-3 h-3 text-[#803BE8] dark:text-pink-400 shrink-0 ml-1" />}
+                  {selected && <Check className="w-3 h-3 text-[#7B9669] dark:text-pink-400 shrink-0 ml-1" />}
                 </button>
               );
             })}
@@ -478,15 +478,15 @@ export default function SetupProfilePage() {
                   onClick={() => toggleCategory(cat.id)}
                   className={`p-3.5 rounded-2xl border cursor-pointer transition-all flex items-start gap-3 select-none ${
                     checked
-                      ? 'bg-purple-50 dark:bg-[#1e173e] border-[#803BE8] dark:border-purple-700 shadow-xs'
-                      : 'bg-slate-50/70 dark:bg-[#171230] border-purple-100 dark:border-purple-900/40 hover:border-purple-200'
+                      ? 'bg-purple-50 dark:bg-[#1e261d] border-[#7B9669] dark:border-purple-700 shadow-xs'
+                      : 'bg-slate-50/70 dark:bg-[#182017] border-purple-100 dark:border-purple-900/40 hover:border-purple-200'
                   }`}
                 >
                   <input
                     type="checkbox"
                     checked={checked}
                     onChange={() => {}}
-                    className="mt-0.5 h-4 w-4 rounded border-purple-300 text-[#803BE8] focus:ring-[#803BE8]/30 accent-[#803BE8]"
+                    className="mt-0.5 h-4 w-4 rounded border-purple-300 text-[#7B9669] focus:ring-[#7B9669]/30 accent-[#7B9669]"
                   />
                   <div>
                     <h5 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">

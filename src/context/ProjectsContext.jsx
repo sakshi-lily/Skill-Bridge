@@ -7,16 +7,17 @@ import React, {
 } from 'react';
 
 import { projectsAPI } from '../services/api';
+import { INITIAL_PROJECTS } from '../data/projectsData';
 
 const ProjectsContext = createContext(null);
 
 export function ProjectsProvider({ children }) {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState(INITIAL_PROJECTS);
   const [applications, setApplications] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Load real projects from MongoDB
+  // Load real projects from MongoDB or fallback to INITIAL_PROJECTS in standby mode
   const fetchProjects = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -26,14 +27,18 @@ export function ProjectsProvider({ children }) {
 
       const projectList = Array.isArray(response)
         ? response
-        : response.projects || [];
+        : response?.projects || [];
 
-      setProjects(projectList);
-      return projectList;
+      if (projectList.length > 0) {
+        setProjects(projectList);
+        return projectList;
+      }
+      setProjects(INITIAL_PROJECTS);
+      return INITIAL_PROJECTS;
     } catch (err) {
-      console.error('Failed to load projects:', err);
-      setError(err.message || 'Failed to load projects');
-      throw err;
+      console.warn('Backend DB unavailable, continuing with demo projects:', err.message);
+      setProjects(INITIAL_PROJECTS);
+      return INITIAL_PROJECTS;
     } finally {
       setLoading(false);
     }

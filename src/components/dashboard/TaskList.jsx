@@ -36,11 +36,11 @@ export default function TaskList({ initialTasks = [], tasks: propTasks, onToggle
   const statusStyles = {
     'Completed': 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200/80',
     'In Progress': 'text-purple-600 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/50 border-purple-200/80',
-    'To Do': 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-[#1f193d] border-slate-200',
+    'To Do': 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-[#222c20] border-slate-200',
   };
 
   return (
-    <div className="rounded-2xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm">
+    <div className="rounded-2xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm">
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="text-base font-bold text-slate-900 dark:text-white">
@@ -53,7 +53,7 @@ export default function TaskList({ initialTasks = [], tasks: propTasks, onToggle
 
         <Link
           to="/tasks"
-          className="text-xs font-bold text-[#803BE8] dark:text-purple-300 hover:text-pink-600 dark:hover:text-pink-300 flex items-center gap-1 transition-colors"
+          className="text-xs font-bold text-[#7B9669] dark:text-purple-300 hover:text-pink-600 dark:hover:text-pink-300 flex items-center gap-1 transition-colors"
         >
           <span>View All Tasks</span>
           <ArrowRight className="w-3.5 h-3.5" />
@@ -68,17 +68,17 @@ export default function TaskList({ initialTasks = [], tasks: propTasks, onToggle
               key={task.id}
               className={`p-3.5 rounded-xl border transition-all duration-200 flex items-start justify-between gap-3 ${
                 isCompleted
-                  ? 'bg-slate-50/50 dark:bg-[#141026]/40 border-slate-200/50 dark:border-purple-950/30 opacity-75'
+                  ? 'bg-slate-50/50 dark:bg-[#141a13]/40 border-slate-200/50 dark:border-purple-950/30 opacity-75'
                   : task.isOverdue
                   ? 'bg-rose-50/30 dark:bg-rose-950/15 border-rose-200/70 dark:border-rose-900/30'
-                  : 'bg-white dark:bg-[#181330] border-slate-200/70 dark:border-purple-900/40 hover:border-purple-300'
+                  : 'bg-white dark:bg-[#182017] border-slate-200/70 dark:border-purple-900/40 hover:border-purple-300'
               }`}
             >
               <div className="flex items-start gap-3 flex-1 min-w-0">
                 <button
                   type="button"
                   onClick={() => toggleTaskStatus(task.id)}
-                  className="mt-0.5 text-slate-400 hover:text-[#803BE8] transition-colors focus:outline-none"
+                  className="mt-0.5 text-slate-400 hover:text-[#7B9669] transition-colors focus:outline-none"
                   title="Click to toggle status"
                 >
                   {isCompleted ? (

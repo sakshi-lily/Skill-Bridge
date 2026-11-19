@@ -14,13 +14,13 @@ export default function CandidateCard({
   const strengthStyles = {
     High: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border-emerald-200/80 dark:border-emerald-800/50',
     Moderate: 'bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border-amber-200/80 dark:border-amber-800/50',
-    Low: 'bg-slate-100 text-slate-600 dark:bg-[#1f193d] dark:text-slate-400 border-slate-200 dark:border-purple-900/40',
+    Low: 'bg-slate-100 text-slate-600 dark:bg-[#222c20] dark:text-slate-400 border-slate-200 dark:border-purple-900/40',
   };
 
   const strength = match?.matchStrength || (score >= 75 ? 'High' : score >= 40 ? 'Moderate' : 'Low');
 
   return (
-    <div className="rounded-2xl bg-white dark:bg-[#151226] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
+    <div className="rounded-2xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
       <div>
         {/* Top: Avatar, Name, College, and Calculated Match Score */}
         <div className="flex items-start justify-between gap-3 mb-4">
@@ -31,14 +31,14 @@ export default function CandidateCard({
                 alt={student.name}
                 className="w-12 h-12 rounded-full object-cover ring-2 ring-purple-100 dark:ring-purple-900 shadow-xs"
               />
-              <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-[#151226]" title="Available for Matchmaking"></span>
+              <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-[#182017]" title="Available for Matchmaking"></span>
             </div>
             <div>
-              <h4 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-[#803BE8] dark:group-hover:text-purple-300 transition-colors">
+              <h4 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-[#7B9669] dark:group-hover:text-purple-300 transition-colors">
                 {student.name}
               </h4>
               <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-0.5">
-                <GraduationCap className="w-3.5 h-3.5 text-[#803BE8]" />
+                <GraduationCap className="w-3.5 h-3.5 text-[#7B9669]" />
                 <span dangerouslySetInnerHTML={{ __html: `${student.university} &bull; ${student.courseAndYear}` }} />
               </p>
             </div>
@@ -57,9 +57,9 @@ export default function CandidateCard({
         </div>
 
         {/* Short Recommendation Explanation */}
-        <div className="p-3 rounded-xl bg-purple-50/60 dark:bg-[#1c1638] border border-purple-100/80 dark:border-purple-900/40 text-xs text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
+        <div className="p-3 rounded-xl bg-purple-50/60 dark:bg-[#222c20] border border-purple-100/80 dark:border-purple-900/40 text-xs text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
           <p>
-            <strong className="text-[#803BE8] dark:text-purple-300 font-bold">Why recommended: </strong>
+            <strong className="text-[#7B9669] dark:text-purple-300 font-bold">Why recommended: </strong>
             {match?.explanation || 'Evaluated against selected project requirements.'}
           </p>
         </div>
@@ -98,7 +98,7 @@ export default function CandidateCard({
                   match.missingSkills.map((s, idx) => (
                     <span
                       key={idx}
-                      className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-[#20183e] text-slate-500 dark:text-slate-400 border border-slate-200/60 dark:border-purple-900/30"
+                      className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-[#283426] text-slate-500 dark:text-slate-400 border border-slate-200/60 dark:border-purple-900/30"
                     >
                       {s}
                     </span>
@@ -120,7 +120,7 @@ export default function CandidateCard({
             {student.skills?.map((skill, idx) => (
               <span
                 key={idx}
-                className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-50 dark:bg-[#1a1435] text-slate-700 dark:text-slate-300 border border-slate-200/70 dark:border-purple-900/40"
+                className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-50 dark:bg-[#1e261d] text-slate-700 dark:text-slate-300 border border-slate-200/70 dark:border-purple-900/40"
               >
                 {skill}
               </span>
@@ -146,7 +146,7 @@ export default function CandidateCard({
         <button
           type="button"
           onClick={() => onViewProfile(student)}
-          className="flex-1 text-xs font-semibold py-2 px-3.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#1e173a] transition-colors border border-slate-200 dark:border-purple-900/40 text-center"
+          className="flex-1 text-xs font-semibold py-2 px-3.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#222c20] transition-colors border border-slate-200 dark:border-purple-900/40 text-center"
         >
           View Profile
         </button>
@@ -154,7 +154,7 @@ export default function CandidateCard({
         <button
           type="button"
           onClick={() => onOpenInvite(student)}
-          className="flex-1 text-xs font-bold py-2 px-3.5 rounded-xl bg-[#803BE8] hover:bg-[#6c27cf] text-white shadow-xs transition-all flex items-center justify-center gap-1.5"
+          className="flex-1 text-xs font-bold py-2 px-3.5 rounded-xl bg-[#7B9669] hover:bg-[#404E3B] text-white shadow-xs transition-all flex items-center justify-center gap-1.5"
         >
           <Send className="w-3.5 h-3.5" />
           <span>Invite to Team</span>

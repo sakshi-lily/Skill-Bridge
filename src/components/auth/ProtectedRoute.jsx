@@ -9,8 +9,8 @@ export default function ProtectedRoute({ children, allowedRoles }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#FDF8FF] dark:bg-[#0B0814] flex flex-col items-center justify-center">
-        <Loader2 className="w-10 h-10 text-[#803BE8] animate-spin mb-4" />
+      <div className="min-h-screen bg-[#f7f9f6] dark:bg-[#121711] flex flex-col items-center justify-center">
+        <Loader2 className="w-10 h-10 text-[#7B9669] animate-spin mb-4" />
         <p className="text-sm font-semibold text-slate-500 dark:text-slate-400">
           Verifying SkillBridge session...
         </p>
@@ -27,8 +27,8 @@ export default function ProtectedRoute({ children, allowedRoles }) {
     const userRole = user?.role || 'student';
     if (!allowedRoles.includes(userRole)) {
       return (
-        <div className="min-h-screen bg-[#FDF8FF] dark:bg-[#0B0814] flex items-center justify-center p-6">
-          <div className="max-w-md w-full bg-white dark:bg-[#120E24] border border-rose-200 dark:border-rose-900/50 rounded-2xl p-8 text-center shadow-xl">
+        <div className="min-h-screen bg-[#f7f9f6] dark:bg-[#121711] flex items-center justify-center p-6">
+          <div className="max-w-md w-full bg-white dark:bg-[#182017] border border-rose-200 dark:border-rose-900/50 rounded-2xl p-8 text-center shadow-xl">
             <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-rose-100 dark:bg-rose-950/40 text-rose-600 flex items-center justify-center">
               <ShieldAlert className="w-8 h-8" />
             </div>
@@ -40,7 +40,7 @@ export default function ProtectedRoute({ children, allowedRoles }) {
             </p>
             <a
               href="/dashboard"
-              className="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-[#803BE8] text-white text-sm font-bold shadow-md hover:bg-[#6c2bd9] transition-all"
+              className="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-[#7B9669] text-white text-sm font-bold shadow-md hover:bg-[#404E3B] transition-all"
             >
               Return to Student Dashboard
             </a>

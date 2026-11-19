@@ -19,7 +19,7 @@ export default function Features() {
       id: 'skill-matching',
       title: 'Smart Skill Matching',
       badge: 'Core Feature',
-      badgeColor: 'bg-purple-100 text-[#803BE8] dark:bg-purple-950/60 dark:text-purple-300',
+      badgeColor: 'bg-purple-100 text-[#7B9669] dark:bg-purple-950/60 dark:text-purple-300',
       description:
         'Our algorithm evaluates technical proficiencies, role preferences, and course requirements to automatically match you with teammates whose skills complement your own.',
       icon: Cpu,
@@ -87,7 +87,7 @@ export default function Features() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 dark:bg-[#1a1435] border border-purple-200 dark:border-purple-800/60 text-xs font-semibold text-[#803BE8] dark:text-purple-300 mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 dark:bg-[#1e261d] border border-purple-200 dark:border-purple-800/60 text-xs font-semibold text-[#7B9669] dark:text-purple-300 mb-4">
             <Zap className="w-3.5 h-3.5 text-pink-500" />
             <span>Built Specifically For Students</span>
           </div>
@@ -108,12 +108,12 @@ export default function Features() {
             return (
               <div
                 key={feature.id}
-                className="group relative rounded-3xl bg-white dark:bg-[#151226] border border-purple-100/90 dark:border-[#262045] p-7 sm:p-8 shadow-card hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
+                className="group relative rounded-3xl bg-white dark:bg-[#182017] border border-purple-100/90 dark:border-[#2e3b2b] p-7 sm:p-8 shadow-card hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
               >
                 <div>
                   {/* Top Bar: Icon & Category Badge */}
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-13 h-13 p-3.5 rounded-2xl bg-purple-50 dark:bg-[#201a40] text-[#803BE8] dark:text-purple-300 border border-purple-100 dark:border-purple-800/40 group-hover:scale-110 transition-transform duration-200">
+                    <div className="w-13 h-13 p-3.5 rounded-2xl bg-purple-50 dark:bg-[#283426] text-[#7B9669] dark:text-purple-300 border border-purple-100 dark:border-purple-800/40 group-hover:scale-110 transition-transform duration-200">
                       <Icon className="w-7 h-7" />
                     </div>
                     <span className={`text-xs font-bold px-3 py-1 rounded-full ${feature.badgeColor}`}>
@@ -122,7 +122,7 @@ export default function Features() {
                   </div>
 
                   {/* Feature Title */}
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-[#803BE8] dark:group-hover:text-[#a872fd] transition-colors">
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-[#7B9669] dark:group-hover:text-[#BAC8B1] transition-colors">
                     {feature.title}
                   </h3>
 
@@ -135,7 +135,7 @@ export default function Features() {
                   <div className="mt-6 space-y-2.5">
                     {feature.highlights.map((item, idx) => (
                       <div key={idx} className="flex items-start gap-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-[#803BE8] dark:text-pink-400 mt-0.5 shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-[#7B9669] dark:text-pink-400 mt-0.5 shrink-0" />
                         <span className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300">
                           {item}
                         </span>
@@ -146,7 +146,7 @@ export default function Features() {
 
                 {/* Card Interactive/Visual Preview Widget */}
                 <div className="mt-8 pt-6 border-t border-purple-100/80 dark:border-purple-950/70">
-                  <div className="rounded-xl p-3.5 bg-slate-50/80 dark:bg-[#1a1532]/80 border border-purple-100/60 dark:border-purple-900/30">
+                  <div className="rounded-xl p-3.5 bg-slate-50/80 dark:bg-[#182017]/80 border border-purple-100/60 dark:border-purple-900/30">
                     <div className="flex items-center justify-between text-[11px] font-semibold text-slate-400 dark:text-slate-400 mb-2">
                       <span className="uppercase tracking-wider">{feature.previewSnippet.tag}</span>
                       <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-bold">
@@ -160,7 +160,7 @@ export default function Features() {
                       {feature.previewSnippet.skills.map((s, i) => (
                         <span
                           key={i}
-                          className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-white dark:bg-[#251e47] text-slate-700 dark:text-slate-300 border border-purple-100 dark:border-purple-900/40"
+                          className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-white dark:bg-[#283426] text-slate-700 dark:text-slate-300 border border-purple-100 dark:border-purple-900/40"
                         >
                           {s}
                         </span>

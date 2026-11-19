@@ -195,7 +195,7 @@ export default function SignUpPage() {
 
       {/* Success Notice Banner */}
       {demoNotice && (
-        <div className="mb-6 p-4 rounded-2xl bg-purple-50 dark:bg-[#20183e] border border-purple-200 dark:border-purple-800 text-xs sm:text-sm text-[#803BE8] dark:text-purple-300 flex items-start gap-3">
+        <div className="mb-6 p-4 rounded-2xl bg-purple-50 dark:bg-[#283426] border border-purple-200 dark:border-purple-800 text-xs sm:text-sm text-[#7B9669] dark:text-purple-300 flex items-start gap-3">
           <CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5 text-emerald-500" />
           <div>
             <p className="font-semibold">{demoNotice}</p>
@@ -219,8 +219,8 @@ export default function SignUpPage() {
                 onClick={() => setFormData(prev => ({ ...prev, role }))}
                 className={`py-2.5 px-4 rounded-xl text-sm font-bold border transition-all flex items-center justify-center gap-2 ${
                   formData.role === role
-                    ? 'bg-[#803BE8] text-white border-[#803BE8] shadow-sm shadow-purple-500/25'
-                    : 'bg-slate-50 dark:bg-[#1c1735] text-slate-700 dark:text-slate-300 border-purple-100 dark:border-purple-900/40 hover:border-purple-300'
+                    ? 'bg-[#7B9669] text-white border-[#7B9669] shadow-sm shadow-[#7B9669]/25'
+                    : 'bg-slate-50 dark:bg-[#222c20] text-slate-700 dark:text-slate-300 border-purple-100 dark:border-purple-900/40 hover:border-purple-300'
                 }`}
               >
                 <span>{role}</span>
@@ -341,8 +341,8 @@ export default function SignUpPage() {
                   onClick={() => toggleSkill(skill)}
                   className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-all duration-150 select-none ${
                     selected
-                      ? 'bg-purple-100 dark:bg-purple-900/60 text-[#803BE8] dark:text-purple-200 border-[#803BE8]/60 shadow-xs'
-                      : 'bg-slate-50 dark:bg-[#1a1435] text-slate-600 dark:text-slate-400 border-purple-100 dark:border-purple-900/40 hover:border-purple-300'
+                      ? 'bg-purple-100 dark:bg-purple-900/60 text-[#7B9669] dark:text-purple-200 border-[#7B9669]/60 shadow-xs'
+                      : 'bg-slate-50 dark:bg-[#1e261d] text-slate-600 dark:text-slate-400 border-purple-100 dark:border-purple-900/40 hover:border-purple-300'
                   }`}
                 >
                   {selected && '✓ '}
@@ -365,12 +365,12 @@ export default function SignUpPage() {
                   handleAddCustomSkill(e);
                 }
               }}
-              className="flex-1 rounded-xl text-xs sm:text-sm px-3.5 py-2 bg-slate-50/70 dark:bg-[#1c1735]/80 border border-purple-100 dark:border-purple-900/60 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-[#803BE8]"
+              className="flex-1 rounded-xl text-xs sm:text-sm px-3.5 py-2 bg-slate-50/70 dark:bg-[#222c20]/80 border border-purple-100 dark:border-purple-900/60 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-[#7B9669]"
             />
             <button
               type="button"
               onClick={handleAddCustomSkill}
-              className="px-3.5 py-2 rounded-xl bg-purple-100 dark:bg-purple-900/50 hover:bg-[#803BE8] hover:text-white dark:hover:bg-[#803BE8] text-[#803BE8] dark:text-purple-200 text-xs font-bold transition-all flex items-center gap-1"
+              className="px-3.5 py-2 rounded-xl bg-purple-100 dark:bg-purple-900/50 hover:bg-[#7B9669] hover:text-white dark:hover:bg-[#7B9669] text-[#7B9669] dark:text-purple-200 text-xs font-bold transition-all flex items-center gap-1"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add</span>
@@ -383,7 +383,7 @@ export default function SignUpPage() {
               {formData.skills.map(s => (
                 <span
                   key={s}
-                  className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-md bg-purple-50 dark:bg-[#20183f] text-[#803BE8] dark:text-pink-300 border border-purple-200/60 dark:border-purple-800/40"
+                  className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-md bg-purple-50 dark:bg-[#1e261d] text-[#7B9669] dark:text-pink-300 border border-purple-200/60 dark:border-purple-800/40"
                 >
                   {s}
                   <button
@@ -408,15 +408,15 @@ export default function SignUpPage() {
               name="agreeTerms"
               checked={formData.agreeTerms}
               onChange={handleChange}
-              className="mt-1 h-4 w-4 rounded border-purple-300 text-[#803BE8] focus:ring-[#803BE8]/30 accent-[#803BE8]"
+              className="mt-1 h-4 w-4 rounded border-purple-300 text-[#7B9669] focus:ring-[#7B9669]/30 accent-[#7B9669]"
             />
             <span className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-snug">
               I agree to the{' '}
-              <a href="#" className="font-semibold text-[#803BE8] dark:text-purple-300 hover:underline">
+              <a href="#" className="font-semibold text-[#7B9669] dark:text-purple-300 hover:underline">
                 Terms of Service
               </a>{' '}
               and{' '}
-              <a href="#" className="font-semibold text-[#803BE8] dark:text-purple-300 hover:underline">
+              <a href="#" className="font-semibold text-[#7B9669] dark:text-purple-300 hover:underline">
                 Privacy Policy
               </a>
               , and confirm my affiliation with an accredited educational institution.
@@ -444,7 +444,7 @@ export default function SignUpPage() {
           Already have a SkillBridge account?{' '}
           <Link
             to="/login"
-            className="font-bold text-[#803BE8] dark:text-pink-400 hover:underline transition-colors"
+            className="font-bold text-[#7B9669] dark:text-pink-400 hover:underline transition-colors"
           >
             Sign In here
           </Link>

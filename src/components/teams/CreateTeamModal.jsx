@@ -54,13 +54,13 @@ export default function CreateTeamModal({ isOpen, onClose, defaultProjectId }) {
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="w-full max-w-lg rounded-3xl bg-white dark:bg-[#16122c] border border-purple-200 dark:border-purple-900/60 p-6 sm:p-7 shadow-2xl relative animate-in fade-in zoom-in-95">
+      <div className="w-full max-w-lg rounded-3xl bg-white dark:bg-[#182017] border border-purple-200 dark:border-purple-900/60 p-6 sm:p-7 shadow-2xl relative animate-in fade-in zoom-in-95">
         
         {/* Close Button */}
         <button
           type="button"
           onClick={handleClose}
-          className="absolute top-5 right-5 p-1 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#20183e] transition-colors"
+          className="absolute top-5 right-5 p-1 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#283426] transition-colors"
           aria-label="Close dialog"
         >
           <X className="w-5 h-5" />
@@ -77,7 +77,7 @@ export default function CreateTeamModal({ isOpen, onClose, defaultProjectId }) {
                 Team Created!
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 max-w-sm mx-auto leading-relaxed">
-                Team <strong className="text-[#803BE8] dark:text-purple-300">{name}</strong> has been formed for project <strong>{selectedProject?.title}</strong>. You are the designated Team Owner.
+                Team <strong className="text-[#7B9669] dark:text-purple-300">{name}</strong> has been formed for project <strong>{selectedProject?.title}</strong>. You are the designated Team Owner.
               </p>
             </div>
 
@@ -85,7 +85,7 @@ export default function CreateTeamModal({ isOpen, onClose, defaultProjectId }) {
               <button
                 type="button"
                 onClick={handleClose}
-                className="w-full py-2.5 px-4 rounded-xl bg-[#803BE8] hover:bg-[#6c27cf] text-white text-xs font-bold transition-all shadow-md shadow-purple-600/20"
+                className="w-full py-2.5 px-4 rounded-xl bg-[#7B9669] hover:bg-[#404E3B] text-white text-xs font-bold transition-all shadow-md shadow-[#7B9669]/20"
               >
                 View Teams
               </button>
@@ -94,7 +94,7 @@ export default function CreateTeamModal({ isOpen, onClose, defaultProjectId }) {
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-50 dark:bg-purple-950/60 text-[10px] font-bold text-[#803BE8] dark:text-purple-300 border border-purple-200 dark:border-purple-800/50 mb-2">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-50 dark:bg-purple-950/60 text-[10px] font-bold text-[#7B9669] dark:text-purple-300 border border-purple-200 dark:border-purple-800/50 mb-2">
                 <ShieldCheck className="w-3 h-3" />
                 <span>Form New Squad</span>
               </div>
@@ -124,7 +124,7 @@ export default function CreateTeamModal({ isOpen, onClose, defaultProjectId }) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. ApexInnovators, LambdaSquad"
-                className="w-full text-xs sm:text-sm p-3 rounded-xl bg-slate-50 dark:bg-[#1a1435] text-slate-900 dark:text-white border border-slate-200 dark:border-purple-900/50 focus:outline-none focus:border-[#803BE8]"
+                className="w-full text-xs sm:text-sm p-3 rounded-xl bg-slate-50 dark:bg-[#1e261d] text-slate-900 dark:text-white border border-slate-200 dark:border-purple-900/50 focus:outline-none focus:border-[#7B9669]"
                 required
               />
             </div>
@@ -138,7 +138,7 @@ export default function CreateTeamModal({ isOpen, onClose, defaultProjectId }) {
                 id="assoc-project"
                 value={projectId}
                 onChange={(e) => setProjectId(e.target.value)}
-                className="w-full text-xs sm:text-sm p-3 rounded-xl bg-slate-50 dark:bg-[#1a1435] text-slate-900 dark:text-white border border-slate-200 dark:border-purple-900/50 focus:outline-none focus:border-[#803BE8]"
+                className="w-full text-xs sm:text-sm p-3 rounded-xl bg-slate-50 dark:bg-[#1e261d] text-slate-900 dark:text-white border border-slate-200 dark:border-purple-900/50 focus:outline-none focus:border-[#7B9669]"
               >
                 {projects.map(p => (
                   <option key={p.id} value={p.id}>
@@ -159,7 +159,7 @@ export default function CreateTeamModal({ isOpen, onClose, defaultProjectId }) {
                 value={creatorRole}
                 onChange={(e) => setCreatorRole(e.target.value)}
                 placeholder="e.g. Team Lead, Frontend Architect"
-                className="w-full text-xs sm:text-sm p-3 rounded-xl bg-slate-50 dark:bg-[#1a1435] text-slate-900 dark:text-white border border-slate-200 dark:border-purple-900/50 focus:outline-none focus:border-[#803BE8]"
+                className="w-full text-xs sm:text-sm p-3 rounded-xl bg-slate-50 dark:bg-[#1e261d] text-slate-900 dark:text-white border border-slate-200 dark:border-purple-900/50 focus:outline-none focus:border-[#7B9669]"
               />
             </div>
 
@@ -174,7 +174,7 @@ export default function CreateTeamModal({ isOpen, onClose, defaultProjectId }) {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Brief mission statement or weekly meeting cadence..."
-                className="w-full text-xs sm:text-sm p-3 rounded-xl bg-slate-50 dark:bg-[#1a1435] text-slate-900 dark:text-white border border-slate-200 dark:border-purple-900/50 focus:outline-none focus:border-[#803BE8]"
+                className="w-full text-xs sm:text-sm p-3 rounded-xl bg-slate-50 dark:bg-[#1e261d] text-slate-900 dark:text-white border border-slate-200 dark:border-purple-900/50 focus:outline-none focus:border-[#7B9669]"
               />
             </div>
 
@@ -183,13 +183,13 @@ export default function CreateTeamModal({ isOpen, onClose, defaultProjectId }) {
               <button
                 type="button"
                 onClick={handleClose}
-                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1f193d]"
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#222c20]"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-6 py-2.5 rounded-xl bg-[#803BE8] hover:bg-[#6c27cf] text-white text-xs font-bold shadow-md shadow-purple-600/20 hover:shadow-purple-600/35 transition-all flex items-center gap-1.5"
+                className="px-6 py-2.5 rounded-xl bg-[#7B9669] hover:bg-[#404E3B] text-white text-xs font-bold shadow-md shadow-[#7B9669]/20 hover:shadow-[#7B9669]/35 transition-all flex items-center gap-1.5"
               >
                 <Users className="w-3.5 h-3.5" />
                 <span>Create Team</span>

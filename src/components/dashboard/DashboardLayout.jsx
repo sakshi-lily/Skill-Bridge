@@ -10,7 +10,7 @@ export default function DashboardLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex bg-slate-50 dark:bg-[#0c0a17] text-slate-800 dark:text-slate-100 transition-colors duration-200">
+    <div className="min-h-screen flex bg-slate-50 dark:bg-[#121711] text-slate-800 dark:text-slate-100 transition-colors duration-200">
       
       {/* Sidebar Navigation */}
       <Sidebar 

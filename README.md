@@ -7,7 +7,7 @@ SkillBridge is an enterprise-grade full-stack matchmaking and collaboration ecos
 ## 🌟 Key Features & Capabilities
 
 ### 1. Student Skill & Project Matchmaking (Steps 1–5)
-- **Signature Design Identity:** Curated lavender-to-soft-pink gradient background, primary purple accent (`#803BE8`), clean white cards, subtle depth shadows, and consistent dark mode support.
+- **Signature Design Identity:** Curated sage, celadon, and forest green palette (`#7B9669`, `#BAC8B1`, `#6C8480`, `#404E3B`, `#E6E6E6`), clean cards, subtle depth shadows, and consistent dark mode support.
 - **Project Discovery & Exploration:** Filter initiatives by technical domain, difficulty tier, and remote/hybrid mode; search by technology keywords; view milestone roadmaps and open roles.
 - **Rule-Based Skill-Matching Engine:** Computes an objective, deterministic compatibility percentage:
   $$\text{Match Score} = \left(\frac{\text{Matched Required Skills}}{\text{Total Required Skills}}\right) \times 100$$
@@ -50,7 +50,7 @@ SkillBridge is an enterprise-grade full-stack matchmaking and collaboration ecos
 | :--- | :--- |
 | **Frontend Framework** | React 19, Vite 6 |
 | **Routing & Icons** | React Router DOM 7, Lucide React |
-| **Styling & Design System** | Tailwind CSS 3 (Curated Purple-Pink Palette, `#803BE8`) |
+| **Styling & Design System** | Tailwind CSS 3 (Sage & Forest Palette: `#7B9669`, `#BAC8B1`, `#6C8480`, `#404E3B`, `#E6E6E6`) |
 | **Backend Runtime** | Node.js (ES Modules, `type: "module"`) |
 | **REST Server** | Express.js 4 |
 | **Real-Time Engine** | Socket.IO 4 |

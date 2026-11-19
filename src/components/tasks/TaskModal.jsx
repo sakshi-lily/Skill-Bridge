@@ -122,14 +122,14 @@ export default function TaskModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-150">
       <div 
-        className="w-full max-w-xl bg-white dark:bg-[#18122B] rounded-3xl shadow-2xl border border-slate-100 dark:border-white/10 overflow-hidden animate-in zoom-in-95 duration-200"
+        className="w-full max-w-xl bg-white dark:bg-[#182017] rounded-3xl shadow-2xl border border-slate-100 dark:border-white/10 overflow-hidden animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="px-6 py-5 border-b border-slate-100 dark:border-white/10 flex items-center justify-between bg-gradient-to-r from-purple-50/50 to-pink-50/30 dark:from-purple-950/20 dark:to-pink-950/10">
           <div>
             <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <span className="p-2 bg-[#803BE8]/10 text-[#803BE8] rounded-xl">
+              <span className="p-2 bg-[#7B9669]/10 text-[#7B9669] rounded-xl">
                 <FileText className="w-5 h-5" />
               </span>
               {initialTask ? 'Edit Task' : 'Create New Task'}
@@ -160,7 +160,7 @@ export default function TaskModal({
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               placeholder="e.g. Design responsive student navigation bar"
-              className={`w-full px-4 py-2.5 rounded-xl border bg-slate-50 dark:bg-white/[0.04] text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#803BE8] transition-colors ${
+              className={`w-full px-4 py-2.5 rounded-xl border bg-slate-50 dark:bg-white/[0.04] text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#7B9669] transition-colors ${
                 errors.title 
                   ? 'border-rose-400 focus:ring-rose-400' 
                   : 'border-slate-200 dark:border-white/10'
@@ -184,7 +184,7 @@ export default function TaskModal({
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               placeholder="Specify requirements, acceptance criteria, or links to references..."
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.04] text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#803BE8] transition-colors resize-none"
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.04] text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#7B9669] transition-colors resize-none"
             />
           </div>
 
@@ -206,7 +206,7 @@ export default function TaskModal({
                     assignedMemberId: chosen?.members[0]?.studentId || currentUser.id,
                   });
                 }}
-                className={`w-full px-3 py-2.5 rounded-xl border bg-slate-50 dark:bg-[#1f1737] text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#803BE8] transition-colors ${
+                className={`w-full px-3 py-2.5 rounded-xl border bg-slate-50 dark:bg-[#222c20] text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#7B9669] transition-colors ${
                   errors.teamId 
                     ? 'border-rose-400' 
                     : 'border-slate-200 dark:border-white/10'
@@ -232,7 +232,7 @@ export default function TaskModal({
               <select
                 value={formData.assignedMemberId}
                 onChange={(e) => setFormData({ ...formData, assignedMemberId: e.target.value })}
-                className="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#1f1737] text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#803BE8] transition-colors"
+                className="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#222c20] text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#7B9669] transition-colors"
               >
                 {teamMembers.map(m => (
                   <option key={m.studentId} value={m.studentId}>
@@ -254,7 +254,7 @@ export default function TaskModal({
               <select
                 value={formData.priority}
                 onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
-                className="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#1f1737] text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#803BE8]"
+                className="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#222c20] text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#7B9669]"
               >
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
@@ -270,7 +270,7 @@ export default function TaskModal({
               <select
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                className="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#1f1737] text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#803BE8]"
+                className="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#222c20] text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#7B9669]"
               >
                 <option value="To Do">To Do</option>
                 <option value="In Progress">In Progress</option>
@@ -289,7 +289,7 @@ export default function TaskModal({
                 type="date"
                 value={formData.dueDate}
                 onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
-                className={`w-full px-3 py-2 rounded-xl border bg-slate-50 dark:bg-[#1f1737] text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#803BE8] ${
+                className={`w-full px-3 py-2 rounded-xl border bg-slate-50 dark:bg-[#222c20] text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#7B9669] ${
                   errors.dueDate 
                     ? 'border-rose-400' 
                     : 'border-slate-200 dark:border-white/10'
@@ -312,7 +312,7 @@ export default function TaskModal({
             </button>
             <button
               type="submit"
-              className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#803BE8] to-[#9B51E0] hover:from-[#722ed1] hover:to-[#8a3fd6] text-white text-sm font-semibold shadow-md shadow-purple-500/25 transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center gap-2"
+              className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#7B9669] to-[#6C8480] hover:from-[#404E3B] hover:to-[#526844] text-white text-sm font-semibold shadow-md shadow-[#7B9669]/25 transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center gap-2"
             >
               <CheckCircle2 className="w-4 h-4" />
               {initialTask ? 'Save Changes' : 'Create Task'}

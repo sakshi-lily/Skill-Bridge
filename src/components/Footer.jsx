@@ -49,11 +49,11 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-white dark:bg-[#0c0a17] border-t border-purple-100 dark:border-[#1e1936] transition-colors duration-200">
+    <footer className="bg-white dark:bg-[#121711] border-t border-purple-100 dark:border-[#2e3b2b] transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
         
         {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 pb-12 border-b border-purple-100/80 dark:border-[#1f1938]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 pb-12 border-b border-purple-100/80 dark:border-[#2e3b2b]">
           
           {/* Brand Info (2 columns) */}
           <div className="lg:col-span-2 space-y-4">
@@ -68,7 +68,7 @@ export default function Footer() {
                 href="https://github.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-9 h-9 rounded-xl bg-purple-50 dark:bg-[#1a1435] text-slate-600 dark:text-slate-300 hover:text-[#803BE8] dark:hover:text-[#a872fd] flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-xl bg-purple-50 dark:bg-[#1e261d] text-slate-600 dark:text-slate-300 hover:text-[#7B9669] dark:hover:text-[#BAC8B1] flex items-center justify-center transition-colors"
                 aria-label="GitHub"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -79,7 +79,7 @@ export default function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-9 h-9 rounded-xl bg-purple-50 dark:bg-[#1a1435] text-slate-600 dark:text-slate-300 hover:text-[#803BE8] dark:hover:text-[#a872fd] flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-xl bg-purple-50 dark:bg-[#1e261d] text-slate-600 dark:text-slate-300 hover:text-[#7B9669] dark:hover:text-[#BAC8B1] flex items-center justify-center transition-colors"
                 aria-label="Twitter / X"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -90,7 +90,7 @@ export default function Footer() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-9 h-9 rounded-xl bg-purple-50 dark:bg-[#1a1435] text-slate-600 dark:text-slate-300 hover:text-[#803BE8] dark:hover:text-[#a872fd] flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-xl bg-purple-50 dark:bg-[#1e261d] text-slate-600 dark:text-slate-300 hover:text-[#7B9669] dark:hover:text-[#BAC8B1] flex items-center justify-center transition-colors"
                 aria-label="LinkedIn"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -99,7 +99,7 @@ export default function Footer() {
               </a>
               <a
                 href="mailto:contact@skillbridge.edu"
-                className="w-9 h-9 rounded-xl bg-purple-50 dark:bg-[#1a1435] text-slate-600 dark:text-slate-300 hover:text-[#803BE8] dark:hover:text-[#a872fd] flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-xl bg-purple-50 dark:bg-[#1e261d] text-slate-600 dark:text-slate-300 hover:text-[#7B9669] dark:hover:text-[#BAC8B1] flex items-center justify-center transition-colors"
                 aria-label="Email"
               >
                 <Mail className="w-4 h-4" />
@@ -118,7 +118,7 @@ export default function Footer() {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 hover:text-[#803BE8] dark:hover:text-[#c084fc] transition-colors"
+                      className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 hover:text-[#7B9669] dark:hover:text-[#BAC8B1] transition-colors"
                     >
                       {link.name}
                     </a>
