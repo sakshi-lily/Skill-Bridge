@@ -1,103 +1,125 @@
-import React, { createContext, useContext, useState } from 'react';
-import { INITIAL_PROJECTS } from '../data/projectsData';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
+
 import { projectsAPI } from '../services/api';
 
 const ProjectsContext = createContext(null);
 
 export function ProjectsProvider({ children }) {
-  const [projects, setProjects] = useState(INITIAL_PROJECTS);
-  
-  // Track applied projects: { [projectId]: { status: 'Pending', note: string, appliedAt: string } }
+  const [projects, setProjects] = useState([]);
   const [applications, setApplications] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const addProject = async (newProjectData) => {
-    const slug = newProjectData.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)+/g, '') || `project-${Date.now()}`;
+  // Load real projects from MongoDB
+  const fetchProjects = useCallback(async () => {
+    setLoading(true);
+    setError(null);
 
-    const newProject = {
-      ...newProjectData,
-      id: slug,
-      currentMembersCount: 1,
-      openPositionsCount: Math.max(1, (newProjectData.teamSize || 4) - 1),
-      status: 'Recruiting',
-      createdAt: new Date().toISOString().split('T')[0],
-      owner: {
-        name: 'Alex Morgan',
-        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
-        university: 'Stanford University',
-        role: 'Project Founder',
-      },
-      members: [
-        {
-          name: 'Alex Morgan',
-          role: 'Project Founder',
-          avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
-        },
-      ],
-      milestones: [
-        { id: 1, title: 'Project Kickoff & Architecture Plan', completed: true, targetDate: 'Sprint 1' },
-        { id: 2, title: 'Core MVP Features Development', completed: false, targetDate: 'Sprint 2' },
-        { id: 3, title: 'User Testing & Demo Presentation', completed: false, targetDate: 'Sprint 3' },
-      ],
-    };
-
-    setProjects(prev => [newProject, ...prev]);
-
-    // Backend sync attempt
     try {
-      await projectsAPI.createProject({
-        title: newProjectData.title,
-        description: newProjectData.description,
-        problemStatement: newProjectData.problemStatement,
-        category: newProjectData.category,
-        difficulty: newProjectData.difficulty,
-        projectMode: newProjectData.mode,
-        requiredSkills: newProjectData.requiredSkills,
-        teamSize: newProjectData.teamSize,
-        deadline: newProjectData.deadline,
-        openPositions: newProjectData.openPositions,
-        milestones: newProject.milestones,
-      });
-    } catch (err) {
-      // In-memory fallback is active
-    }
+      const response = await projectsAPI.getProjects();
 
-    return newProject;
+      const projectList = Array.isArray(response)
+        ? response
+        : response.projects || [];
+
+      setProjects(projectList);
+      return projectList;
+    } catch (err) {
+      console.error('Failed to load projects:', err);
+      setError(err.message || 'Failed to load projects');
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchProjects().catch(() => {});
+  }, [fetchProjects]);
+
+  // Create project in MongoDB
+  const addProject = async (newProjectData) => {
+    setError(null);
+
+    try {
+      const availableRoles = Array.isArray(
+        newProjectData.availableRoles
+      )
+        ? newProjectData.availableRoles
+        : (newProjectData.requiredRoles || '')
+            .split(',')
+            .map((role) => role.trim())
+            .filter(Boolean);
+
+      const payload = {
+        ...newProjectData,
+        shortDescription:
+          newProjectData.shortDescription ||
+          newProjectData.description ||
+          '',
+        mode: newProjectData.mode || 'Remote',
+        teamSize: Number(newProjectData.teamSize) || 4,
+        availableRoles,
+      };
+
+      delete payload.requiredRoles;
+
+      const response = await projectsAPI.createProject(payload);
+
+      if (!response.success || !response.project) {
+        throw new Error('Project was not saved.');
+      }
+
+      const savedProject = response.project;
+
+      setProjects((prev) => [savedProject, ...prev]);
+
+      return savedProject;
+    } catch (err) {
+      console.error('Project creation failed:', err);
+      setError(err.message || 'Unable to create project');
+      throw err;
+    }
   };
 
+  // Apply to a project using backend API
   const applyToProject = async (projectId, note = '') => {
     if (applications[projectId]) {
-      return false; // Already applied
+      return false;
     }
 
-    setApplications(prev => ({
-      ...prev,
-      [projectId]: {
-        status: 'Pending',
-        note,
-        appliedAt: new Date().toLocaleDateString('en-US', {
-          month: 'short',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-        }),
-      },
-    }));
-
-    // Backend sync attempt
     try {
-      await projectsAPI.apply(projectId, note);
-    } catch (err) {
-      // Client state fallback is active
-    }
+      const response = await projectsAPI.apply(projectId, note);
 
-    return true;
+      if (!response.success) {
+        throw new Error('Application could not be submitted.');
+      }
+
+      setApplications((prev) => ({
+        ...prev,
+        [projectId]: {
+          status: response.application?.status || 'Pending',
+          note,
+          appliedAt: new Date().toISOString(),
+        },
+      }));
+
+      return true;
+    } catch (err) {
+      console.error('Project application failed:', err);
+      setError(err.message || 'Application failed');
+      throw err;
+    }
   };
 
   const isApplied = (projectId) => {
-    return !!applications[projectId];
+    return Boolean(applications[projectId]);
   };
 
   const getApplication = (projectId) => {
@@ -105,7 +127,11 @@ export function ProjectsProvider({ children }) {
   };
 
   const getProjectById = (id) => {
-    return projects.find(p => p.id === id);
+    return projects.find(
+      (project) =>
+        String(project._id) === String(id) ||
+        String(project.id) === String(id)
+    );
   };
 
   return (
@@ -113,6 +139,9 @@ export function ProjectsProvider({ children }) {
       value={{
         projects,
         applications,
+        loading,
+        error,
+        fetchProjects,
         addProject,
         applyToProject,
         isApplied,
@@ -127,8 +156,12 @@ export function ProjectsProvider({ children }) {
 
 export function useProjects() {
   const context = useContext(ProjectsContext);
+
   if (!context) {
-    throw new Error('useProjects must be used within a ProjectsProvider');
+    throw new Error(
+      'useProjects must be used within a ProjectsProvider'
+    );
   }
+
   return context;
 }
