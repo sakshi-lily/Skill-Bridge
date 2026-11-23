@@ -224,11 +224,21 @@ export const getProjects = async (req, res, next) => {
 
 export const getProjectById = async (req, res, next) => {
   try {
+    const fallback = FALLBACK_PROJECTS.find(
+      (p) => p._id === req.params.id || p.id === req.params.id
+    );
+
     if (!isDatabaseConnected()) {
+      if (fallback) {
+        return res.status(200).json({ success: true, project: fallback });
+      }
       return databaseUnavailable(res);
     }
 
     if (!isValidId(req.params.id)) {
+      if (fallback) {
+        return res.status(200).json({ success: true, project: fallback });
+      }
       return res.status(400).json({
         success: false,
         message: 'Invalid project ID.',
@@ -514,6 +524,36 @@ export const getProjectMatches = async (req, res, next) => {
     }
 
     if (!isValidId(req.params.id)) {
+      const fallback = FALLBACK_PROJECTS.find(
+        (p) => p._id === req.params.id || p.id === req.params.id
+      );
+      if (fallback) {
+        const candidates = await User.find({
+          role: 'student',
+          _id: { $ne: req.user?._id },
+        }).select('-password');
+        const candidateList =
+          candidates.length > 0
+            ? candidates
+            : [
+                { _id: 'u1', id: 'u1', name: 'Alex Morgan', skills: ['React', 'Python', 'FastAPI', 'Tailwind CSS'], university: 'Stanford University' },
+                { _id: 'u2', id: 'u2', name: 'Sarah Patel', skills: ['Figma', 'React', 'UI/UX Design'], university: 'MIT' },
+                { _id: 'u3', id: 'u3', name: 'David Chen', skills: ['Python', 'PyTorch', 'FastAPI'], university: 'UC Berkeley' },
+              ];
+        const rankedMatches = rankStudentsForProject(
+          fallback.requiredSkills,
+          candidateList
+        );
+        return res.status(200).json({
+          success: true,
+          projectId: fallback._id,
+          projectTitle: fallback.title,
+          requiredSkills: fallback.requiredSkills,
+          count: rankedMatches.length,
+          matches: rankedMatches,
+        });
+      }
+
       return res.status(400).json({
         success: false,
         message: 'Invalid project ID.',
@@ -576,6 +616,25 @@ export const applyToProject = async (req, res, next) => {
     }
 
     if (!isValidId(req.params.id)) {
+      const fallback = FALLBACK_PROJECTS.find(
+        (p) => p._id === req.params.id || p.id === req.params.id
+      );
+      if (fallback) {
+        return res.status(201).json({
+          success: true,
+          message: 'Application recorded (demo project).',
+          application: {
+            _id: `app-${Date.now()}`,
+            project: fallback._id,
+            applicant: req.user?._id || 'user-alex',
+            roleApplied: req.body.roleApplied || req.body.role || 'Collaborator',
+            message: req.body.message || req.body.note || '',
+            status: 'pending',
+            createdAt: new Date().toISOString(),
+          },
+        });
+      }
+
       return res.status(400).json({
         success: false,
         message: 'Invalid project ID.',

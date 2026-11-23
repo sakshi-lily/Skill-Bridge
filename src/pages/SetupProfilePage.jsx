@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { 
-  Camera, 
-  Upload, 
-  Sparkles, 
-  Check, 
-  Plus, 
-  X, 
-  Globe, 
-  CheckCircle2, 
-  ArrowRight, 
+import {
+  Camera,
+  Upload,
+  Sparkles,
+  Check,
+  Plus,
+  X,
+  Globe,
+  CheckCircle2,
+  ArrowRight,
   Info,
   Layers,
   HeartHandshake
@@ -20,12 +20,12 @@ import Button from '../components/auth/Button';
 import { useAuth } from '../context/AuthContext';
 
 const TECHNICAL_SKILLS_PRESETS = [
-  'React', 'Node.js', 'Python', 'Tailwind CSS', 'TypeScript', 
+  'React', 'Node.js', 'Python', 'Tailwind CSS', 'TypeScript',
   'FastAPI', 'Docker', 'PostgreSQL', 'Flutter', 'Next.js'
 ];
 
 const SOFT_SKILLS_PRESETS = [
-  'UI/UX Prototyping', 'Product Management', 'Agile/Scrum', 
+  'UI/UX Prototyping', 'Product Management', 'Agile/Scrum',
   'Pitch Deck Design', 'Technical Writing', 'Public Speaking'
 ];
 
@@ -54,7 +54,7 @@ export default function SetupProfilePage() {
   const [avatar, setAvatar] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250');
   const [bio, setBio] = useState('Passionate CS student excited about building accessible web tools and exploring LLM agents. Looking for a UI/UX designer and backend partner for upcoming hackathons.');
-  
+
   const [skillsWithLevel, setSkillsWithLevel] = useState([
     { name: 'React', level: 'Advanced' },
     { name: 'Python', level: 'Intermediate' },
@@ -70,6 +70,8 @@ export default function SetupProfilePage() {
   ]);
 
   const [selectedCategories, setSelectedCategories] = useState(['hackathons', 'capstones']);
+  const [availability, setAvailability] = useState('10-15 hrs/week');
+  const [preferredRoles, setPreferredRoles] = useState(['Full-Stack Developer']);
 
   const [links, setLinks] = useState({
     github: 'https://github.com/alexmorgan-student',
@@ -168,12 +170,12 @@ export default function SetupProfilePage() {
       bio: bio.trim(),
       skills: skillNames,
       proficiency: proficiencyMap,
-      availability: weeklyHours,
-      preferredRoles: roles,
-      interests: interestAreas,
+      availability,
+      preferredRoles,
+      interests: selectedInterests,
       avatar: avatarPreview,
-      github: githubUrl.trim(),
-      linkedin: linkedinUrl.trim(),
+      github: (links.github || '').trim(),
+      linkedin: (links.linkedin || '').trim(),
     };
 
     setDemoNotice('Profile saved to SkillBridge! Synchronizing your builder identity with the matchmaking engine...');
@@ -226,7 +228,7 @@ export default function SetupProfilePage() {
       )}
 
       <form onSubmit={handleSave} className="space-y-8" noValidate>
-        
+
         {/* 1. Profile Photo Upload UI */}
         <div className="p-5 rounded-2xl bg-slate-50/70 dark:bg-[#1e261d]/60 border border-purple-100 dark:border-purple-900/40 flex flex-col sm:flex-row items-center gap-6">
           <div className="relative group">
@@ -450,11 +452,10 @@ export default function SetupProfilePage() {
                   key={interest}
                   type="button"
                   onClick={() => toggleInterest(interest)}
-                  className={`p-2.5 rounded-xl text-xs font-semibold border transition-all text-left flex items-center justify-between ${
-                    selected
-                      ? 'bg-purple-100/90 dark:bg-purple-900/60 text-[#7B9669] dark:text-purple-200 border-[#7B9669]/60 shadow-xs'
-                      : 'bg-slate-50 dark:bg-[#1e261d] text-slate-600 dark:text-slate-400 border-purple-100 dark:border-purple-900/40 hover:border-purple-300'
-                  }`}
+                  className={`p-2.5 rounded-xl text-xs font-semibold border transition-all text-left flex items-center justify-between ${selected
+                    ? 'bg-purple-100/90 dark:bg-purple-900/60 text-[#7B9669] dark:text-purple-200 border-[#7B9669]/60 shadow-xs'
+                    : 'bg-slate-50 dark:bg-[#1e261d] text-slate-600 dark:text-slate-400 border-purple-100 dark:border-purple-900/40 hover:border-purple-300'
+                    }`}
                 >
                   <span className="truncate">{interest}</span>
                   {selected && <Check className="w-3 h-3 text-[#7B9669] dark:text-pink-400 shrink-0 ml-1" />}
@@ -476,16 +477,15 @@ export default function SetupProfilePage() {
                 <div
                   key={cat.id}
                   onClick={() => toggleCategory(cat.id)}
-                  className={`p-3.5 rounded-2xl border cursor-pointer transition-all flex items-start gap-3 select-none ${
-                    checked
-                      ? 'bg-purple-50 dark:bg-[#1e261d] border-[#7B9669] dark:border-purple-700 shadow-xs'
-                      : 'bg-slate-50/70 dark:bg-[#182017] border-purple-100 dark:border-purple-900/40 hover:border-purple-200'
-                  }`}
+                  className={`p-3.5 rounded-2xl border cursor-pointer transition-all flex items-start gap-3 select-none ${checked
+                    ? 'bg-purple-50 dark:bg-[#1e261d] border-[#7B9669] dark:border-purple-700 shadow-xs'
+                    : 'bg-slate-50/70 dark:bg-[#182017] border-purple-100 dark:border-purple-900/40 hover:border-purple-200'
+                    }`}
                 >
                   <input
                     type="checkbox"
                     checked={checked}
-                    onChange={() => {}}
+                    onChange={() => { }}
                     className="mt-0.5 h-4 w-4 rounded border-purple-300 text-[#7B9669] focus:ring-[#7B9669]/30 accent-[#7B9669]"
                   />
                   <div>

@@ -4,14 +4,14 @@ import { useTeamTask } from '../../context/TeamTaskContext';
 import { useAuth } from '../../context/AuthContext';
 import { getSocket } from '../../services/socket';
 import { chatAPI } from '../../services/api';
-import { 
-  MessageSquare, 
-  Send, 
-  Paperclip, 
-  ShieldCheck, 
-  Users, 
-  Clock, 
-  Smile, 
+import {
+  MessageSquare,
+  Send,
+  Paperclip,
+  ShieldCheck,
+  Users,
+  Clock,
+  Smile,
   Folder,
   Circle,
   AlertCircle
@@ -178,12 +178,12 @@ export default function MessagesPage() {
   };
 
   return (
-    <DashboardLayout 
-      title="Team Messages" 
+    <DashboardLayout
+      title="Team Messages"
       breadcrumb="Dashboard / Team Messages & Real-Time Chat"
     >
       <div className="bg-white dark:bg-[#182017] rounded-3xl border border-slate-200/80 dark:border-purple-950/60 shadow-sm overflow-hidden h-[calc(100vh-180px)] min-h-[580px] flex flex-col md:flex-row">
-        
+
         {/* Left Sidebar: Team Channels */}
         <div className="w-full md:w-80 border-r border-slate-200/80 dark:border-white/5 flex flex-col bg-slate-50/50 dark:bg-[#182017]">
           <div className="p-4 border-b border-slate-200/80 dark:border-white/5">
@@ -203,11 +203,10 @@ export default function MessagesPage() {
                 <button
                   key={team.id || team._id}
                   onClick={() => setSelectedTeam(team)}
-                  className={`w-full text-left p-3 rounded-2xl transition-all duration-150 flex items-start gap-3 ${
-                    isSelected
-                      ? 'bg-purple-100 dark:bg-purple-950/60 border border-purple-300 dark:border-purple-800 text-purple-950 dark:text-white shadow-xs'
-                      : 'hover:bg-slate-100 dark:hover:bg-white/5 text-slate-700 dark:text-slate-300 border border-transparent'
-                  }`}
+                  className={`w-full text-left p-3 rounded-2xl transition-all duration-150 flex items-start gap-3 ${isSelected
+                    ? 'bg-purple-100 dark:bg-purple-950/60 border border-purple-300 dark:border-purple-800 text-purple-950 dark:text-white shadow-xs'
+                    : 'hover:bg-slate-100 dark:hover:bg-white/5 text-slate-700 dark:text-slate-300 border border-transparent'
+                    }`}
                 >
                   <div className="w-9 h-9 rounded-xl bg-[#7B9669]/10 text-[#7B9669] dark:text-purple-300 flex items-center justify-center font-bold text-sm shrink-0">
                     {team.name.charAt(0)}
@@ -259,9 +258,8 @@ export default function MessagesPage() {
                   return (
                     <div
                       key={msg.id || msg._id || index}
-                      className={`flex gap-3 max-w-[80%] ${
-                        isSelf ? 'ml-auto flex-row-reverse' : 'mr-auto'
-                      }`}
+                      className={`flex gap-3 max-w-[80%] ${isSelf ? 'ml-auto flex-row-reverse' : 'mr-auto'
+                        }`}
                     >
                       {/* Avatar */}
                       {msg.senderAvatar ? (
@@ -283,11 +281,10 @@ export default function MessagesPage() {
                           <span>{msg.createdAt ? new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Now'}</span>
                         </div>
                         <div
-                          className={`p-3.5 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-xs ${
-                            isSelf
-                              ? 'bg-[#7B9669] text-white rounded-tr-xs'
-                              : 'bg-white dark:bg-[#222c20] text-slate-800 dark:text-slate-100 border border-slate-100 dark:border-white/5 rounded-tl-xs'
-                          }`}
+                          className={`p-3.5 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-xs ${isSelf
+                            ? 'bg-[#7B9669] text-white rounded-tr-xs'
+                            : 'bg-white dark:bg-[#222c20] text-slate-800 dark:text-slate-100 border border-slate-100 dark:border-white/5 rounded-tl-xs'
+                            }`}
                         >
                           {msg.content}
                         </div>

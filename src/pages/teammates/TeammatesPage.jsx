@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Users, 
   Search, 
@@ -10,7 +10,8 @@ import {
   CheckCircle2, 
   HelpCircle,
   Clock,
-  Award
+  Award,
+  Radio
 } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import CandidateCard from '../../components/teammates/CandidateCard';
@@ -20,6 +21,7 @@ import { STUDENTS_DATA, CURRENT_USER } from '../../data/studentsData';
 import { useProjects } from '../../context/ProjectsContext';
 import { calculateSkillMatch, normalizeSkillsList } from '../../utils/skillMatching';
 import { POPULAR_SKILLS } from '../../data/projectsData';
+import { projectsAPI } from '../../services/api';
 
 export default function TeammatesPage() {
   const { projects } = useProjects();
@@ -34,6 +36,10 @@ export default function TeammatesPage() {
   const [selectedAvailability, setSelectedAvailability] = useState('');
   const [matchStrengthFilter, setMatchStrengthFilter] = useState('all'); // 'all' | 'high' | 'moderate' | 'low'
 
+  // Backend match state
+  const [apiCandidates, setApiCandidates] = useState(null);
+  const [isLoadingBackendMatches, setIsLoadingBackendMatches] = useState(false);
+
   // Modals
   const [viewingStudent, setViewingStudent] = useState(null);
   const [invitingStudent, setInvitingStudent] = useState(null);
@@ -42,10 +48,57 @@ export default function TeammatesPage() {
     return projects.find(p => p.id === selectedProjectId) || projects[0];
   }, [projects, selectedProjectId]);
 
+  // Fetch real-time matchmaking from backend API when project changes
+  useEffect(() => {
+    let active = true;
+    async function fetchMatches() {
+      if (!selectedProjectId) return;
+      setIsLoadingBackendMatches(true);
+      try {
+        const res = await projectsAPI.getProjectMatches(selectedProjectId);
+        if (active && res && Array.isArray(res.matches) && res.matches.length > 0) {
+          const list = res.matches.map(item => {
+            const st = item.student || {};
+            return {
+              id: st.id || st._id,
+              name: st.name,
+              avatar: st.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150',
+              university: st.university || 'Stanford University',
+              major: st.major || 'Computer Science',
+              experienceLevel: st.experienceLevel || 'Intermediate',
+              availability: st.availability || '10-15 hrs/week',
+              skills: st.skills || [],
+              bio: st.bio || '',
+              matchDetails: item.match,
+              calculatedScore: item.match?.score ?? 0,
+            };
+          });
+          setApiCandidates(list);
+        } else if (active) {
+          setApiCandidates(null);
+        }
+      } catch {
+        if (active) {
+          setApiCandidates(null);
+        }
+      } finally {
+        if (active) setIsLoadingBackendMatches(false);
+      }
+    }
+
+    fetchMatches();
+    return () => {
+      active = false;
+    };
+  }, [selectedProjectId]);
+
   // Exclude current user from candidate list (Alex Morgan shouldn't invite herself)
   const candidatePool = useMemo(() => {
+    if (apiCandidates && apiCandidates.length > 0) {
+      return apiCandidates.filter(s => s.id !== CURRENT_USER.id);
+    }
     return STUDENTS_DATA.filter(s => s.id !== CURRENT_USER.id);
-  }, []);
+  }, [apiCandidates]);
 
   // Calculate Match Scores and Rank Candidates
   const rankedCandidates = useMemo(() => {
@@ -126,9 +179,24 @@ export default function TeammatesPage() {
         {/* Header Banner */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-[#222c20] border border-purple-200 dark:border-purple-800/60 text-xs font-bold text-[#7B9669] dark:text-purple-300 mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-pink-500" />
-              <span>Step 5: Smart Skill-Matching Engine</span>
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-[#222c20] border border-purple-200 dark:border-purple-800/60 text-xs font-bold text-[#7B9669] dark:text-purple-300">
+                <Sparkles className="w-3.5 h-3.5 text-pink-500" />
+                <span>Step 5: Smart Skill-Matching Engine</span>
+              </div>
+              {isLoadingBackendMatches ? (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 text-[11px] font-medium text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-900/40">
+                  <Radio className="w-3 h-3 animate-pulse" /> Evaluating MongoDB Profiles...
+                </span>
+              ) : apiCandidates ? (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-[11px] font-medium text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900/40">
+                  <CheckCircle2 className="w-3 h-3" /> Live Backend Match API Active
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-[11px] font-medium text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  <Sparkles className="w-3 h-3 text-[#7B9669]" /> Standby High-Speed Match Engine
+                </span>
+              )}
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
               Find Complementary Teammates

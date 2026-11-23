@@ -18,8 +18,8 @@ export default function TaskList({ initialTasks = [], tasks: propTasks, onToggle
             task.status === 'Completed'
               ? 'To Do'
               : task.status === 'In Progress'
-              ? 'Completed'
-              : 'In Progress';
+                ? 'Completed'
+                : 'In Progress';
           return { ...task, status: nextStatus };
         }
         return task;
@@ -66,13 +66,12 @@ export default function TaskList({ initialTasks = [], tasks: propTasks, onToggle
           return (
             <div
               key={task.id}
-              className={`p-3.5 rounded-xl border transition-all duration-200 flex items-start justify-between gap-3 ${
-                isCompleted
-                  ? 'bg-slate-50/50 dark:bg-[#141a13]/40 border-slate-200/50 dark:border-purple-950/30 opacity-75'
-                  : task.isOverdue
+              className={`p-3.5 rounded-xl border transition-all duration-200 flex items-start justify-between gap-3 ${isCompleted
+                ? 'bg-slate-50/50 dark:bg-[#141a13]/40 border-slate-200/50 dark:border-purple-950/30 opacity-75'
+                : task.isOverdue
                   ? 'bg-rose-50/30 dark:bg-rose-950/15 border-rose-200/70 dark:border-rose-900/30'
                   : 'bg-white dark:bg-[#182017] border-slate-200/70 dark:border-purple-900/40 hover:border-purple-300'
-              }`}
+                }`}
             >
               <div className="flex items-start gap-3 flex-1 min-w-0">
                 <button
@@ -91,19 +90,17 @@ export default function TaskList({ initialTasks = [], tasks: propTasks, onToggle
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 flex-wrap">
                     <h4
-                      className={`text-xs sm:text-sm font-semibold truncate ${
-                        isCompleted
-                          ? 'line-through text-slate-400 dark:text-slate-500'
-                          : 'text-slate-900 dark:text-white'
-                      }`}
+                      className={`text-xs sm:text-sm font-semibold truncate ${isCompleted
+                        ? 'line-through text-slate-400 dark:text-slate-500'
+                        : 'text-slate-900 dark:text-white'
+                        }`}
                     >
                       {task.title}
                     </h4>
 
                     <span
-                      className={`text-[10px] font-bold px-2 py-0.2 rounded-md border ${
-                        priorityStyles[task.priority] || priorityStyles.Low
-                      }`}
+                      className={`text-[10px] font-bold px-2 py-0.2 rounded-md border ${priorityStyles[task.priority] || priorityStyles.Low
+                        }`}
                     >
                       {task.priority}
                     </span>
@@ -118,11 +115,10 @@ export default function TaskList({ initialTasks = [], tasks: propTasks, onToggle
               {/* Right: Due Date & Status Badge */}
               <div className="flex flex-col items-end shrink-0 gap-1">
                 <div
-                  className={`flex items-center gap-1 text-[11px] font-medium ${
-                    task.isOverdue && !isCompleted
-                      ? 'text-rose-600 dark:text-rose-400 font-bold'
-                      : 'text-slate-500 dark:text-slate-400'
-                  }`}
+                  className={`flex items-center gap-1 text-[11px] font-medium ${task.isOverdue && !isCompleted
+                    ? 'text-rose-600 dark:text-rose-400 font-bold'
+                    : 'text-slate-500 dark:text-slate-400'
+                    }`}
                 >
                   {task.isOverdue && !isCompleted ? (
                     <AlertCircle className="w-3 h-3 text-rose-500" />
@@ -135,9 +131,8 @@ export default function TaskList({ initialTasks = [], tasks: propTasks, onToggle
                 <button
                   type="button"
                   onClick={() => toggleTaskStatus(task.id)}
-                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full border transition-all ${
-                    statusStyles[task.status] || statusStyles['To Do']
-                  }`}
+                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full border transition-all ${statusStyles[task.status] || statusStyles['To Do']
+                    }`}
                 >
                   {task.status}
                 </button>

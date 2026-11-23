@@ -23,6 +23,7 @@ import chatRoutes from './routes/chatRoutes.js';
 import notificationRoutes from './routes/notificationRoutes.js';
 import facultyRoutes from './routes/facultyRoutes.js';
 import fileRoutes from './routes/fileRoutes.js';
+import skillRoutes from './routes/skillRoutes.js';
 
 // Real-time Service Bridges
 import { setIO } from './services/notificationService.js';
@@ -218,12 +219,13 @@ app.use('/api/chat', chatRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/faculty', facultyRoutes);
 app.use('/api/files', fileRoutes);
+app.use('/api/skills', skillRoutes);
 
 // Centralized error handler
 app.use(errorHandler);
 
 // Start server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // Connect to MongoDB
 connectDB();

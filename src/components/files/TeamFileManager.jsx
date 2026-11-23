@@ -183,16 +183,16 @@ export default function TeamFileManager({ teamId, canUpload = true }) {
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
-                <button
-                  type="button"
-                  onClick={() => {
-                    alert(`Downloading ${file.originalName || file.fileName}...`);
-                  }}
-                  className="p-2 rounded-xl text-slate-500 hover:text-[#7B9669] dark:hover:text-purple-300 hover:bg-white dark:hover:bg-white/5 transition-colors"
-                  title="Download File"
+                <a
+                  href={file.fileUrl?.startsWith('http') ? file.fileUrl : `${(import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001/api').replace(/\/api\/?$/, '')}${file.fileUrl || '#'}`}
+                  download={file.originalName || file.fileName}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-xl text-slate-500 hover:text-[#7B9669] dark:hover:text-purple-300 hover:bg-white dark:hover:bg-white/5 transition-colors inline-flex items-center justify-center"
+                  title={`Download ${file.originalName || file.fileName}`}
                 >
                   <Download className="w-4 h-4" />
-                </button>
+                </a>
               </div>
             </div>
           ))

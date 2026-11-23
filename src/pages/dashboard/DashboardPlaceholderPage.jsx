@@ -14,7 +14,7 @@ export default function DashboardPlaceholderPage({
 }) {
   return (
     <DashboardLayout title={title} breadcrumb={breadcrumb}>
-      
+
       {/* Header Banner */}
       <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-6 sm:p-8 shadow-sm">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">

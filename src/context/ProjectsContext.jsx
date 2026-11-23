@@ -100,7 +100,7 @@ export function ProjectsProvider({ children }) {
     }
 
     try {
-      const response = await projectsAPI.apply(projectId, note);
+      const response = await projectsAPI.applyToProject(projectId, { note });
 
       if (!response.success) {
         throw new Error('Application could not be submitted.');

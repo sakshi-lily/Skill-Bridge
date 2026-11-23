@@ -3,14 +3,14 @@ import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import TaskCard from '../../components/tasks/TaskCard';
 import TaskModal from '../../components/tasks/TaskModal';
 import { useTeamTask } from '../../context/TeamTaskContext';
-import { 
-  Plus, 
-  Search, 
-  Filter, 
-  Calendar, 
-  AlertTriangle, 
-  CheckCircle2, 
-  Clock, 
+import {
+  Plus,
+  Search,
+  Filter,
+  Calendar,
+  AlertTriangle,
+  CheckCircle2,
+  Clock,
   Kanban,
   Layers,
   Sparkles,
@@ -19,20 +19,20 @@ import {
 } from 'lucide-react';
 
 export default function TasksPage() {
-  const { 
-    tasks, 
-    teams, 
-    myTeams, 
-    currentUser, 
-    moveTaskStatus, 
-    deleteTask 
+  const {
+    tasks,
+    teams,
+    myTeams,
+    currentUser,
+    moveTaskStatus,
+    deleteTask
   } = useTeamTask();
 
   // Modal states
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [defaultColumnStatus, setDefaultColumnStatus] = useState('To Do');
-  
+
   // Delete confirmation modal state
   const [taskToDelete, setTaskToDelete] = useState(null);
 
@@ -152,12 +152,12 @@ export default function TasksPage() {
   };
 
   return (
-    <DashboardLayout 
-      title="Task Management" 
+    <DashboardLayout
+      title="Task Management"
       breadcrumb="Dashboard / Task Management"
     >
       <div className="space-y-6">
-        
+
         {/* Top Header Banner */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#404E3B] via-[#7B9669] to-[#6C8480] p-6 sm:p-8 text-white shadow-xl shadow-[#7B9669]/15">
           <div className="absolute right-0 top-0 -mt-8 -mr-8 w-72 h-72 rounded-full bg-[#BAC8B1]/20 blur-3xl pointer-events-none" />
@@ -209,8 +209,8 @@ export default function TasksPage() {
                 <span className="font-bold">{completionRate}%</span>
               </div>
               <div className="w-full h-2 bg-white/20 rounded-full mt-2 overflow-hidden">
-                <div 
-                  className="h-full bg-emerald-400 rounded-full transition-all duration-500" 
+                <div
+                  className="h-full bg-emerald-400 rounded-full transition-all duration-500"
                   style={{ width: `${completionRate}%` }}
                 />
               </div>
@@ -221,7 +221,7 @@ export default function TasksPage() {
         {/* Filter & Search Bar */}
         <div className="bg-white dark:bg-[#182017] rounded-2xl p-4 border border-slate-100 dark:border-white/5 shadow-sm space-y-3">
           <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
-            
+
             {/* Search Input */}
             <div className="relative flex-1 min-w-[240px]">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -286,11 +286,10 @@ export default function TasksPage() {
               {/* Only Overdue Toggle */}
               <button
                 onClick={() => setOnlyOverdue(!onlyOverdue)}
-                className={`px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all border ${
-                  onlyOverdue 
-                    ? 'bg-rose-500 text-white border-rose-500 shadow-sm' 
-                    : 'bg-slate-50 dark:bg-white/[0.04] text-slate-600 dark:text-slate-300 border-slate-200 dark:border-white/10 hover:border-rose-400'
-                }`}
+                className={`px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all border ${onlyOverdue
+                  ? 'bg-rose-500 text-white border-rose-500 shadow-sm'
+                  : 'bg-slate-50 dark:bg-white/[0.04] text-slate-600 dark:text-slate-300 border-slate-200 dark:border-white/10 hover:border-rose-400'
+                  }`}
               >
                 <AlertTriangle className="w-3.5 h-3.5" />
                 Overdue Only
@@ -331,11 +330,10 @@ export default function TasksPage() {
                 onDragOver={(e) => handleDragOver(e, col.id)}
                 onDragLeave={(e) => handleDragLeave(e, col.id)}
                 onDrop={(e) => handleDrop(e, col.id)}
-                className={`flex flex-col bg-slate-100/80 dark:bg-[#141a13] rounded-3xl p-4 border transition-all duration-200 min-h-[560px] ${
-                  isDropTarget 
-                    ? 'border-purple-500 ring-2 ring-purple-400/30 bg-purple-50/20 dark:bg-purple-950/20' 
-                    : 'border-slate-200/80 dark:border-white/5'
-                }`}
+                className={`flex flex-col bg-slate-100/80 dark:bg-[#141a13] rounded-3xl p-4 border transition-all duration-200 min-h-[560px] ${isDropTarget
+                  ? 'border-purple-500 ring-2 ring-purple-400/30 bg-purple-50/20 dark:bg-purple-950/20'
+                  : 'border-slate-200/80 dark:border-white/5'
+                  }`}
               >
                 {/* Column Header */}
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200 dark:border-white/5">

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useMemo } from 'react';
+import React, { createContext, useContext, useState, useMemo, useEffect } from 'react';
 import { INITIAL_TEAMS, INITIAL_USER_INVITATIONS } from '../data/teamsData';
 import { INITIAL_TASKS } from '../data/tasksData';
 import { CURRENT_USER } from '../data/studentsData';
@@ -40,6 +40,78 @@ export function TeamTaskProvider({ children }) {
     return dueDate < CURRENT_DATE_STRING;
   };
 
+  // Synchronize with backend API on mount
+  useEffect(() => {
+    let isMounted = true;
+    const fetchRemoteData = async () => {
+      try {
+        const [teamsRes, tasksRes] = await Promise.allSettled([
+          teamsAPI.getTeams(),
+          tasksAPI.getTasks(),
+        ]);
+
+        if (!isMounted) return;
+
+        if (teamsRes.status === 'fulfilled' && teamsRes.value?.teams && teamsRes.value.teams.length > 0) {
+          const remoteTeams = teamsRes.value.teams.map((t) => ({
+            id: t._id || t.id,
+            _id: t._id,
+            name: t.name,
+            description: t.description || '',
+            projectId: t.project?._id || t.project || t.projectId,
+            projectName: t.project?.title || t.projectName || 'Project',
+            ownerId: t.owner?._id || t.owner?.id || t.owner,
+            ownerName: t.owner?.name || t.ownerName || 'Alex Morgan',
+            maxMembers: t.maxMembers || 4,
+            members: (t.members || []).map((m) => ({
+              studentId: m.user?._id || m.user || m.studentId,
+              name: m.name || m.user?.name || 'Member',
+              role: m.role || 'Contributor',
+              avatar: m.avatar || m.user?.avatar || '',
+              university: m.university || m.user?.university || '',
+              joinedAt: m.joinedAt ? new Date(m.joinedAt).toISOString().split('T')[0] : CURRENT_DATE_STRING,
+              isOwner: m.isOwner || false,
+            })),
+            pendingInvitations: [],
+            createdAt: t.createdAt ? new Date(t.createdAt).toISOString().split('T')[0] : CURRENT_DATE_STRING,
+          }));
+          setTeams(remoteTeams);
+        }
+
+        if (tasksRes.status === 'fulfilled' && tasksRes.value?.tasks && tasksRes.value.tasks.length > 0) {
+          const remoteTasks = tasksRes.value.tasks.map((t) => ({
+            id: t._id || t.id,
+            _id: t._id,
+            title: t.title,
+            description: t.description || '',
+            teamId: t.team?._id || t.team || t.teamId,
+            teamName: t.teamName || 'Team Project',
+            projectId: t.project?._id || t.project || t.projectId,
+            projectName: t.projectName || 'Active Project',
+            assignedTo: {
+              id: t.assignedTo?.user?._id || t.assignedTo?.user || t.assignedTo?.id || currentUser.id,
+              name: t.assignedTo?.name || 'Alex Morgan',
+              avatar: t.assignedTo?.avatar || '',
+            },
+            priority: t.priority || 'Medium',
+            status: t.status || 'To Do',
+            dueDate: t.dueDate,
+            isOverdue: checkIsOverdue(t.dueDate, t.status || 'To Do'),
+            createdAt: t.createdAt ? new Date(t.createdAt).toISOString().split('T')[0] : CURRENT_DATE_STRING,
+          }));
+          setTasks(remoteTasks);
+        }
+      } catch (err) {
+        // Fallback to initial local state when backend is disconnected
+      }
+    };
+
+    fetchRemoteData();
+    return () => {
+      isMounted = false;
+    };
+  }, [currentUser.id]);
+
   /* ==========================================================
      TEAM FORMATION ACTIONS
      ========================================================== */
@@ -78,8 +150,10 @@ export function TeamTaskProvider({ children }) {
         await teamsAPI.createTeam({
           name: teamData.name.trim(),
           description: teamData.description?.trim(),
+          projectId: teamData.projectId,
           project: teamData.projectId,
           maxMembers: Number(teamData.maxMembers) || 4,
+          creatorRole: teamData.creatorRole || 'Team Lead',
         });
       }
     } catch (err) {
@@ -260,11 +334,14 @@ export function TeamTaskProvider({ children }) {
         await tasksAPI.createTask({
           title: taskData.title.trim(),
           description: taskData.description?.trim(),
+          projectId: taskData.projectId,
           project: taskData.projectId,
+          teamId: taskData.teamId,
           team: taskData.teamId,
-          priority: taskData.priority,
-          status: taskData.status,
+          priority: taskData.priority || 'Medium',
+          status: taskData.status || 'To Do',
           dueDate: taskData.dueDate,
+          assignedMemberId: taskData.assignedTo?.id || currentUser.id,
         });
       }
     } catch (err) {

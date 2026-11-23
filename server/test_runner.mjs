@@ -1,8 +1,16 @@
 // SkillBridge Comprehensive End-to-End Automated Test Suite (Step 9 & 10 Verification)
 import http from 'http';
 
+// Automatically spin up the server in-process if not already active
+try {
+  await import('./server.js');
+  await new Promise(resolve => setTimeout(resolve, 1500));
+} catch (err) {
+  // If server is already running, proceed directly
+}
+
 async function runTestSuite() {
-  const baseURL = 'http://localhost:5000/api';
+  const baseURL = process.env.API_BASE_URL || 'http://localhost:5001/api';
   console.log('===============================================================');
   console.log('🚀 SKILLBRIDGE AUTOMATED END-TO-END TEST & SECURITY SUITE');
   console.log(`📡 Target API: ${baseURL}`);
@@ -315,6 +323,15 @@ async function runTestSuite() {
     assert(res.status === 200 && Array.isArray(data.files), '22. Shared Team Deliverables Listing', `Loaded ${data.files.length} team documents`);
   } catch (err) {
     assert(false, '22. Shared Team Deliverables', err.message);
+  }
+
+  // 23. Normalized Skills Catalog (Phase A)
+  try {
+    const res = await fetch(`${baseURL}/skills`);
+    const data = await res.json();
+    assert(res.status === 200 && Array.isArray(data.skills) && data.skills.length > 0, '23. Normalized Skills Catalog API', `Loaded ${data.skills.length} skills`);
+  } catch (err) {
+    assert(false, '23. Normalized Skills Catalog API', err.message);
   }
 
   console.log('\n===============================================================');

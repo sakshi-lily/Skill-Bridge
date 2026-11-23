@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { 
-  ArrowLeft, 
-  Users, 
-  Calendar, 
-  Clock, 
-  MapPin, 
-  CheckCircle2, 
-  Circle, 
-  ShieldCheck, 
-  Sparkles, 
-  Send, 
-  UserCheck, 
+import {
+  ArrowLeft,
+  Users,
+  Calendar,
+  Clock,
+  MapPin,
+  CheckCircle2,
+  Circle,
+  ShieldCheck,
+  Sparkles,
+  Send,
+  UserCheck,
   Flag,
   Share2,
   AlertCircle
@@ -30,7 +30,7 @@ export default function ProjectDetailsPage() {
   const project = getProjectById(id);
   const [showApplyModal, setShowApplyModal] = useState(false);
 
-  const matchResult = project 
+  const matchResult = project
     ? calculateSkillMatch(project.requiredSkills, CURRENT_USER.skills)
     : null;
 
@@ -71,7 +71,7 @@ export default function ProjectDetailsPage() {
       breadcrumb={`SkillBridge / Explore Projects / ${project.title}`}
     >
       <div className="space-y-8">
-        
+
         {/* Top Navigation & Action Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <Link
@@ -99,11 +99,10 @@ export default function ProjectDetailsPage() {
               type="button"
               onClick={() => setShowApplyModal(true)}
               disabled={applied}
-              className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md ${
-                applied
-                  ? 'bg-purple-100 dark:bg-purple-950/70 text-[#7B9669] dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 cursor-default'
-                  : 'bg-[#7B9669] hover:bg-[#404E3B] text-white shadow-[#7B9669]/20 hover:shadow-[#7B9669]/35 transform hover:-translate-y-0.5'
-              }`}
+              className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md ${applied
+                ? 'bg-purple-100 dark:bg-purple-950/70 text-[#7B9669] dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 cursor-default'
+                : 'bg-[#7B9669] hover:bg-[#404E3B] text-white shadow-[#7B9669]/20 hover:shadow-[#7B9669]/35 transform hover:-translate-y-0.5'
+                }`}
             >
               {applied ? (
                 <>
@@ -176,10 +175,10 @@ export default function ProjectDetailsPage() {
 
         {/* 2-Column Split: Detailed Content vs Sidebar */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
+
           {/* Main Info Column (2 Cols) */}
           <div className="lg:col-span-2 space-y-8">
-            
+
             {/* Detailed Description */}
             <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-6 sm:p-8 shadow-sm space-y-3">
               <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
@@ -212,11 +211,10 @@ export default function ProjectDetailsPage() {
                 {project.milestones?.map((m) => (
                   <div
                     key={m.id}
-                    className={`p-3.5 rounded-2xl border flex items-center justify-between gap-3 text-xs sm:text-sm ${
-                      m.completed
-                        ? 'bg-emerald-50/40 dark:bg-emerald-950/20 border-emerald-200/60 dark:border-emerald-800/40 text-slate-800 dark:text-slate-200'
-                        : 'bg-slate-50 dark:bg-[#1e261d] border-slate-200/80 dark:border-purple-900/40 text-slate-700 dark:text-slate-300'
-                    }`}
+                    className={`p-3.5 rounded-2xl border flex items-center justify-between gap-3 text-xs sm:text-sm ${m.completed
+                      ? 'bg-emerald-50/40 dark:bg-emerald-950/20 border-emerald-200/60 dark:border-emerald-800/40 text-slate-800 dark:text-slate-200'
+                      : 'bg-slate-50 dark:bg-[#1e261d] border-slate-200/80 dark:border-purple-900/40 text-slate-700 dark:text-slate-300'
+                      }`}
                   >
                     <div className="flex items-center gap-3">
                       {m.completed ? (
@@ -241,7 +239,7 @@ export default function ProjectDetailsPage() {
 
           {/* Sidebar Column: Skills, Roles, Owner, and Team (1 Col) */}
           <div className="space-y-6">
-            
+
             {/* Rule-Based Match Card for Alex Morgan */}
             {matchResult && (
               <div className="rounded-3xl bg-gradient-to-br from-purple-50/80 via-white to-pink-50/40 dark:from-[#1e261d] dark:via-[#182017] dark:to-[#141a13] border border-purple-200/80 dark:border-purple-900/60 p-6 shadow-sm space-y-3">
@@ -252,13 +250,12 @@ export default function ProjectDetailsPage() {
                       Your Skill Match
                     </h3>
                   </div>
-                  <span className={`text-xs font-black px-2.5 py-1 rounded-full border ${
-                    matchResult.matchStrength === 'Strong'
-                      ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20'
-                      : matchResult.matchStrength === 'Moderate'
+                  <span className={`text-xs font-black px-2.5 py-1 rounded-full border ${matchResult.matchStrength === 'Strong'
+                    ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20'
+                    : matchResult.matchStrength === 'Moderate'
                       ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20'
                       : 'bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-500/20'
-                  }`}>
+                    }`}>
                     {matchResult.score}% Match
                   </span>
                 </div>

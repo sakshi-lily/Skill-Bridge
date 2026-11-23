@@ -7,6 +7,8 @@ import Project from '../models/Project.js';
 import Team from '../models/Team.js';
 import Task from '../models/Task.js';
 import Notification from '../models/Notification.js';
+import Skill from '../models/Skill.js';
+import { PRESET_SKILLS_DATA } from '../controllers/skillController.js';
 
 dotenv.config();
 
@@ -211,7 +213,13 @@ export const seedData = async () => {
       isRead: false,
     });
 
-    console.log('✅ [Database Seeding Complete]: Default demo users, projects, teams, tasks, and notifications created.');
+    // 6. Seed Normalized Skills Taxonomy
+    const skillCount = await Skill.countDocuments();
+    if (skillCount === 0) {
+      await Skill.insertMany(PRESET_SKILLS_DATA);
+    }
+
+    console.log('✅ [Database Seeding Complete]: Default demo users, skills, projects, teams, tasks, and notifications created.');
   } catch (err) {
     console.error('❌ [Database Seeding Error]:', err.message);
   }

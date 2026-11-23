@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { 
-  User, 
-  Mail, 
-  Lock, 
-  GraduationCap, 
-  BookOpen, 
-  CheckCircle2, 
-  Plus, 
-  X, 
+import {
+  User,
+  Mail,
+  Lock,
+  GraduationCap,
+  BookOpen,
+  CheckCircle2,
+  Plus,
+  X,
   ArrowRight,
   Info,
   AlertCircle
@@ -19,7 +19,7 @@ import Button from '../components/auth/Button';
 import { useAuth } from '../context/AuthContext';
 
 const PRESET_SKILLS = [
-  'React', 'Python', 'UI/UX Design', 'Node.js', 'Machine Learning', 
+  'React', 'Python', 'UI/UX Design', 'Node.js', 'Machine Learning',
   'Java', 'Tailwind CSS', 'Figma', 'TypeScript', 'SQL'
 ];
 
@@ -62,7 +62,7 @@ export default function SignUpPage() {
       const exists = prev.skills.includes(skill);
       return {
         ...prev,
-        skills: exists 
+        skills: exists
           ? prev.skills.filter(s => s !== skill)
           : [...prev.skills, skill]
       };
@@ -205,7 +205,7 @@ export default function SignUpPage() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-        
+
         {/* Role Selection: Student vs Faculty */}
         <div>
           <label className="block text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">
@@ -217,11 +217,10 @@ export default function SignUpPage() {
                 key={role}
                 type="button"
                 onClick={() => setFormData(prev => ({ ...prev, role }))}
-                className={`py-2.5 px-4 rounded-xl text-sm font-bold border transition-all flex items-center justify-center gap-2 ${
-                  formData.role === role
-                    ? 'bg-[#7B9669] text-white border-[#7B9669] shadow-sm shadow-[#7B9669]/25'
-                    : 'bg-slate-50 dark:bg-[#222c20] text-slate-700 dark:text-slate-300 border-purple-100 dark:border-purple-900/40 hover:border-purple-300'
-                }`}
+                className={`py-2.5 px-4 rounded-xl text-sm font-bold border transition-all flex items-center justify-center gap-2 ${formData.role === role
+                  ? 'bg-[#7B9669] text-white border-[#7B9669] shadow-sm shadow-[#7B9669]/25'
+                  : 'bg-slate-50 dark:bg-[#222c20] text-slate-700 dark:text-slate-300 border-purple-100 dark:border-purple-900/40 hover:border-purple-300'
+                  }`}
               >
                 <span>{role}</span>
                 {formData.role === role && <CheckCircle2 className="w-4 h-4" />}
@@ -339,11 +338,10 @@ export default function SignUpPage() {
                   key={skill}
                   type="button"
                   onClick={() => toggleSkill(skill)}
-                  className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-all duration-150 select-none ${
-                    selected
-                      ? 'bg-purple-100 dark:bg-purple-900/60 text-[#7B9669] dark:text-purple-200 border-[#7B9669]/60 shadow-xs'
-                      : 'bg-slate-50 dark:bg-[#1e261d] text-slate-600 dark:text-slate-400 border-purple-100 dark:border-purple-900/40 hover:border-purple-300'
-                  }`}
+                  className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-all duration-150 select-none ${selected
+                    ? 'bg-purple-100 dark:bg-purple-900/60 text-[#7B9669] dark:text-purple-200 border-[#7B9669]/60 shadow-xs'
+                    : 'bg-slate-50 dark:bg-[#1e261d] text-slate-600 dark:text-slate-400 border-purple-100 dark:border-purple-900/40 hover:border-purple-300'
+                    }`}
                 >
                   {selected && '✓ '}
                   {skill}

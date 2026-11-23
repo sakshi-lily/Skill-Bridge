@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
 
 /**
  * Core HTTP Request Wrapper
@@ -117,11 +117,21 @@ export const projectsAPI = {
   getProjectMatches: (id) =>
     request(`/projects/${id}/matches`, { method: 'GET' }),
 
-  applyToProject: (id, applicationData) =>
-    request(`/projects/${id}/apply`, {
+  applyToProject: (id, applicationData = {}) => {
+    const payload = typeof applicationData === 'string' ? { note: applicationData } : applicationData;
+    return request(`/projects/${id}/apply`, {
       method: 'POST',
-      body: JSON.stringify(applicationData),
-    }),
+      body: JSON.stringify(payload),
+    });
+  },
+
+  apply: (id, applicationData = {}) => {
+    const payload = typeof applicationData === 'string' ? { note: applicationData } : applicationData;
+    return request(`/projects/${id}/apply`, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  },
 };
 
 /* ==========================================================
@@ -242,6 +252,20 @@ export const filesAPI = {
     request(`/files/teams/${teamId}`, { method: 'GET' }),
 };
 
+/* ==========================================================
+   SKILLS APIS
+   ========================================================== */
+export const skillsAPI = {
+  getSkills: (category = '') =>
+    request(`/skills${category ? `?category=${encodeURIComponent(category)}` : ''}`, { method: 'GET' }),
+
+  createSkill: (skillData) =>
+    request('/skills', {
+      method: 'POST',
+      body: JSON.stringify(skillData),
+    }),
+};
+
 export default {
   auth: authAPI,
   projects: projectsAPI,
@@ -251,4 +275,5 @@ export default {
   notifications: notificationsAPI,
   faculty: facultyAPI,
   files: filesAPI,
+  skills: skillsAPI,
 };
