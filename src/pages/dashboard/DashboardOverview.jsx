@@ -9,7 +9,6 @@ import {
   CheckSquare, 
   ArrowRight, 
   Sparkles, 
-  Info,
   PlusCircle
 } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
@@ -155,19 +154,6 @@ export default function DashboardOverview() {
 
   return (
     <DashboardLayout title="Overview" breadcrumb="SkillBridge / Student Workspace">
-      
-      {/* Demo Notice Banner */}
-      <div className="p-3.5 rounded-2xl bg-purple-50/80 dark:bg-[#1e261d]/80 border border-purple-200/80 dark:border-purple-900/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-700 dark:text-slate-300">
-        <div className="flex items-center gap-2.5">
-          <Info className="w-4 h-4 text-[#7B9669] dark:text-pink-400 shrink-0" />
-          <span>
-            <strong>Student Workspace:</strong> Active session for <strong>{currentUser.name}</strong> ({currentUser.university}). Matchmaking algorithm and task boards are dynamically synchronized.
-          </span>
-        </div>
-        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white dark:bg-[#283426] text-[#7B9669] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40 shrink-0 self-start sm:self-auto">
-          Steps 5 &amp; 6 Active
-        </span>
-      </div>
 
       {/* 1. Welcome Section */}
       <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-100/70 via-pink-50/60 to-purple-50/50 dark:from-[#1e261d] dark:via-[#182017] dark:to-[#141a13] border border-purple-200/70 dark:border-purple-900/50 p-6 sm:p-8 md:p-10 shadow-sm">

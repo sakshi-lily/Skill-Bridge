@@ -5,8 +5,7 @@ import {
   PlusCircle, 
   SlidersHorizontal, 
   RotateCcw, 
-  FolderKanban, 
-  Sparkles
+  FolderKanban
 } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import ExploreProjectCard from '../../components/projects/ExploreProjectCard';
@@ -147,10 +146,6 @@ export default function ExploreProjectsPage() {
       <div className="space-y-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-[#222c20] border border-purple-200 dark:border-purple-800/60 text-xs font-bold text-[#7B9669] dark:text-purple-300 mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-pink-500" />
-              <span>Project Matchmaking Discovery</span>
-            </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
               Explore Projects
             </h1>

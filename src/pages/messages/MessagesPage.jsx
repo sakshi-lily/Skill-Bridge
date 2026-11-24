@@ -168,7 +168,7 @@ export default function MessagesPage() {
   return (
     <DashboardLayout
       title="Team Messages"
-      breadcrumb="Dashboard / Team Messages & Real-Time Chat"
+      breadcrumb="Dashboard / Team Messages"
     >
       <div className="bg-white dark:bg-[#182017] rounded-3xl border border-slate-200/80 dark:border-purple-950/60 shadow-sm overflow-hidden h-[calc(100vh-180px)] min-h-[580px] flex flex-col md:flex-row">
 
@@ -179,9 +179,6 @@ export default function MessagesPage() {
               <MessageSquare className="w-4 h-4 text-[#7B9669]" />
               <span>Project Team Channels</span>
             </h3>
-            <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
-              Select an active squad to collaborate
-            </p>
           </div>
 
           <div className="flex-1 overflow-y-auto p-2.5 space-y-1.5">

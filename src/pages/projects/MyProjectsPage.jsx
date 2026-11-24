@@ -7,7 +7,6 @@ import {
   ExternalLink, 
   Users, 
   Calendar,
-  Sparkles,
   ChevronRight
 } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
@@ -77,10 +76,6 @@ export default function MyProjectsPage() {
       {/* Header Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-3xl bg-gradient-to-r from-purple-100/80 via-pink-50/70 to-purple-50/60 dark:from-[#1e261d] dark:via-[#182017] dark:to-[#141a13] border border-purple-200/80 dark:border-purple-900/50 shadow-sm">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 dark:bg-[#283426]/80 border border-purple-200 dark:border-purple-800 text-xs font-bold text-[#7B9669] dark:text-purple-300 mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-[#7B9669] dark:text-purple-400" />
-            <span>Workspace Portfolio</span>
-          </div>
           <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
             My Project Initiatives &amp; Squads
           </h1>

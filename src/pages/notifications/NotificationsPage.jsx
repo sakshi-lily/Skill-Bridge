@@ -143,9 +143,6 @@ export default function NotificationsPage() {
                 </span>
               )}
             </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Project invitations, task assignments, and real-time team milestone alerts.
-            </p>
           </div>
 
           {unreadCount > 0 && (

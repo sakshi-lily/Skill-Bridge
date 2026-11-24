@@ -7,7 +7,6 @@ import {
   Plus, 
   X, 
   ExternalLink, 
-  ShieldCheck, 
   Briefcase,
   Clock
 } from 'lucide-react';
@@ -120,10 +119,6 @@ export default function ProfilePage() {
                 <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
                   {user?.name || "Alex Morgan"}
                 </h1>
-                <span className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950 text-[#7B9669] dark:text-purple-300">
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>Verified Builder</span>
-                </span>
               </div>
 
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">
@@ -301,9 +296,6 @@ export default function ProfilePage() {
                   <Sparkles className="w-4 h-4 text-[#7B9669]" />
                   <span>Technical Skills &amp; Stack</span>
                 </h3>
-                <p className="text-xs text-slate-400">
-                  Used by SkillBridge matchmaking algorithms to pair you with high-affinity projects.
-                </p>
               </div>
             </div>
 

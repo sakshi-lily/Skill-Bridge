@@ -7,7 +7,6 @@ import {
   Plus,
   Search,
   AlertTriangle,
-  Kanban,
   Trash2
 } from 'lucide-react';
 
@@ -157,10 +156,6 @@ export default function TasksPage() {
 
           <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="max-w-xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-[#e7ece2] text-xs font-semibold mb-3 border border-white/15">
-                <Kanban className="w-3.5 h-3.5 text-[#BAC8B1]" />
-                Step 6: Team Sprint Kanban
-              </div>
               <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
                 Team Tasks & Deliverables
               </h1>

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Users, 
-  ShieldCheck, 
   PlusCircle, 
   CheckCircle2, 
   ArrowRight, 
@@ -40,10 +39,6 @@ export default function TeamsPage() {
         {/* Header Banner */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-[#222c20] border border-purple-200 dark:border-purple-800/60 text-xs font-bold text-[#7B9669] dark:text-purple-300 mb-2">
-              <ShieldCheck className="w-3.5 h-3.5 text-pink-500" />
-              <span>Step 6: Verified Team Formation</span>
-            </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
               Teams &amp; Squad Workspace
             </h1>
