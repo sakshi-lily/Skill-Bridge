@@ -57,16 +57,15 @@ export default function Sidebar({ isOpen, onClose }) {
       {/* Sidebar Panel */}
       <aside
         className={`
-          fixed top-0 bottom-0 left-0 z-50 w-64 sm:w-72 
+          fixed top-0 bottom-0 left-0 z-40 w-64 sm:w-72 h-screen
           bg-white dark:bg-[#182017] border-r border-slate-200/80 dark:border-purple-950/60
           flex flex-col justify-between transition-transform duration-300 ease-in-out
-          lg:translate-x-0 lg:static lg:z-auto
-          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+          ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}
       >
         {/* Top: Logo & Close Button */}
-        <div>
-          <div className="h-18 px-5 flex items-center justify-between border-b border-slate-100 dark:border-purple-950/40">
+        <div className="flex flex-col flex-1 min-h-0">
+          <div className="h-16 sm:h-[72px] px-5 flex items-center justify-between border-b border-slate-100 dark:border-purple-950/40 shrink-0">
             <Link to="/dashboard" onClick={onClose} className="focus:outline-none">
               <SkillBridgeLogo />
             </Link>
@@ -82,7 +81,7 @@ export default function Sidebar({ isOpen, onClose }) {
           </div>
 
           {/* Nav Items List */}
-          <nav className="p-3.5 space-y-1 overflow-y-auto max-h-[calc(100vh-210px)]">
+          <nav className="p-3.5 space-y-1 overflow-y-auto flex-1">
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -129,7 +128,7 @@ export default function Sidebar({ isOpen, onClose }) {
         </div>
 
         {/* Bottom: User Card & Logout Button */}
-        <div className="p-3.5 border-t border-slate-100 dark:border-purple-950/40 space-y-2 bg-slate-50/50 dark:bg-[#182017]/50">
+        <div className="p-3.5 border-t border-slate-100 dark:border-purple-950/40 space-y-2 bg-slate-50/50 dark:bg-[#182017]/50 shrink-0">
           {/* Student Profile Snapshot */}
           <Link
             to="/profile"
