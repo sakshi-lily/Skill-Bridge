@@ -5,12 +5,8 @@ import {
   PlusCircle, 
   SlidersHorizontal, 
   RotateCcw, 
-  ArrowUpDown, 
   FolderKanban, 
-  Users, 
-  Sparkles,
-  Info,
-  CheckCircle2
+  Sparkles
 } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import ExploreProjectCard from '../../components/projects/ExploreProjectCard';

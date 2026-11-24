@@ -1,8 +1,7 @@
 import React from 'react';
-import { ArrowUpRight, CheckCircle2, Users } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 
 export default function TeamCard({
-  id,
   teamName,
   projectName,
   members = [],

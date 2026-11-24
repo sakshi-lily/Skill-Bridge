@@ -6,40 +6,39 @@ import {
   Image, 
   Archive, 
   Download, 
-  Trash2, 
   CheckCircle2, 
   AlertCircle,
   Paperclip
 } from 'lucide-react';
 import { filesAPI } from '../../services/api';
 
+// Initial mock files for development demonstration
+const INITIAL_DEMO_FILES = [
+  {
+    id: 'file-1',
+    originalName: 'CampusPulse_Architecture_Spec_v2.pdf',
+    fileName: 'spec.pdf',
+    fileSize: 2450000,
+    fileType: 'application/pdf',
+    uploaderName: 'Alex Morgan',
+    createdAt: '2026-10-08T14:30:00Z',
+  },
+  {
+    id: 'file-2',
+    originalName: 'Figma_UI_Components_Export.zip',
+    fileName: 'ui_assets.zip',
+    fileSize: 5800000,
+    fileType: 'application/zip',
+    uploaderName: 'Sarah Patel',
+    createdAt: '2026-10-09T09:15:00Z',
+  },
+];
+
 export default function TeamFileManager({ teamId, canUpload = true }) {
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
   const [uploadSuccess, setUploadSuccess] = useState(null);
-
-  // Initial mock files for development demonstration
-  const initialDemoFiles = [
-    {
-      id: 'file-1',
-      originalName: 'CampusPulse_Architecture_Spec_v2.pdf',
-      fileName: 'spec.pdf',
-      fileSize: 2450000,
-      fileType: 'application/pdf',
-      uploaderName: 'Alex Morgan',
-      createdAt: '2026-10-08T14:30:00Z',
-    },
-    {
-      id: 'file-2',
-      originalName: 'Figma_UI_Components_Export.zip',
-      fileName: 'ui_assets.zip',
-      fileSize: 5800000,
-      fileType: 'application/zip',
-      uploaderName: 'Sarah Patel',
-      createdAt: '2026-10-09T09:15:00Z',
-    },
-  ];
 
   useEffect(() => {
     const fetchFiles = async () => {
@@ -48,10 +47,10 @@ export default function TeamFileManager({ teamId, canUpload = true }) {
         if (res.success && res.files && res.files.length > 0) {
           setFiles(res.files);
         } else {
-          setFiles(initialDemoFiles);
+          setFiles(INITIAL_DEMO_FILES);
         }
-      } catch (err) {
-        setFiles(initialDemoFiles);
+      } catch {
+        setFiles(INITIAL_DEMO_FILES);
       }
     };
 
@@ -84,7 +83,7 @@ export default function TeamFileManager({ teamId, canUpload = true }) {
         setFiles(prev => [res.file, ...prev]);
         setUploadSuccess(`Successfully uploaded ${file.name}`);
       }
-    } catch (err) {
+    } catch {
       // Local demo fallback: add mock file item
       const newFileObj = {
         id: `file-${Date.now()}`,

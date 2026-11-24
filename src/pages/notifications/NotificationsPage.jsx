@@ -4,64 +4,64 @@ import { notificationsAPI } from '../../services/api';
 import { getSocket } from '../../services/socket';
 import { 
   Bell, 
-  Check, 
   CheckCheck, 
   Users, 
   CheckSquare, 
   Sparkles, 
-  Folder, 
-  Mail, 
-  Clock,
-  Circle
+  Clock
 } from 'lucide-react';
+
+const INITIAL_DEMO_NOTIFICATIONS = [
+  {
+    _id: 'notif-1',
+    type: 'invite',
+    title: 'Squad Invitation',
+    message: 'Sarah Patel invited you to join team PulseEngineers as Full-Stack Lead.',
+    createdAt: new Date(Date.now() - 25 * 60000).toISOString(),
+    isRead: false,
+  },
+  {
+    _id: 'notif-2',
+    type: 'task',
+    title: 'Task Assigned',
+    message: 'David Chen assigned you the deliverable: "Setup FastAPI Route Validation & JWT Auth".',
+    createdAt: new Date(Date.now() - 2 * 3600000).toISOString(),
+    isRead: false,
+  },
+  {
+    _id: 'notif-3',
+    type: 'milestone',
+    title: 'Milestone Completed',
+    message: 'CampusPulse AI reached Milestone 1: Core Design System specification approved.',
+    createdAt: new Date(Date.now() - 24 * 3600000).toISOString(),
+    isRead: true,
+  },
+];
+
+function formatTimestamp(isoStr) {
+  try {
+    const d = new Date(isoStr);
+    return `${d.toLocaleDateString()} at ${d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+  } catch {
+    return isoStr;
+  }
+}
 
 export default function NotificationsPage() {
   const [notifications, setNotifications] = useState([]);
   const [filter, setFilter] = useState('ALL');
-  const [loading, setLoading] = useState(false);
-
-  // Initial simulated notifications for demo evaluation
-  const initialDemoNotifications = [
-    {
-      _id: 'notif-1',
-      type: 'invite',
-      title: 'Squad Invitation',
-      message: 'Sarah Patel invited you to join team PulseEngineers as Full-Stack Lead.',
-      createdAt: new Date(Date.now() - 25 * 60000).toISOString(),
-      isRead: false,
-    },
-    {
-      _id: 'notif-2',
-      type: 'task',
-      title: 'Task Assigned',
-      message: 'David Chen assigned you the deliverable: "Setup FastAPI Route Validation & JWT Auth".',
-      createdAt: new Date(Date.now() - 2 * 3600000).toISOString(),
-      isRead: false,
-    },
-    {
-      _id: 'notif-3',
-      type: 'milestone',
-      title: 'Milestone Completed',
-      message: 'CampusPulse AI reached Milestone 1: Core Design System specification approved.',
-      createdAt: new Date(Date.now() - 24 * 3600000).toISOString(),
-      isRead: true,
-    },
-  ];
 
   useEffect(() => {
     const fetchNotifications = async () => {
-      setLoading(true);
       try {
         const res = await notificationsAPI.getNotifications();
         if (res.success && res.notifications && res.notifications.length > 0) {
           setNotifications(res.notifications);
         } else {
-          setNotifications(initialDemoNotifications);
+          setNotifications(INITIAL_DEMO_NOTIFICATIONS);
         }
-      } catch (err) {
-        setNotifications(initialDemoNotifications);
-      } finally {
-        setLoading(false);
+      } catch {
+        setNotifications(INITIAL_DEMO_NOTIFICATIONS);
       }
     };
 
@@ -88,7 +88,7 @@ export default function NotificationsPage() {
     );
     try {
       await notificationsAPI.markAsRead(id);
-    } catch (err) {
+    } catch {
       // Local fallback
     }
   };
@@ -97,7 +97,7 @@ export default function NotificationsPage() {
     setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
     try {
       await notificationsAPI.markAllAsRead();
-    } catch (err) {
+    } catch {
       // Local fallback
     }
   };
@@ -212,7 +212,7 @@ export default function NotificationsPage() {
                   </p>
                   <div className="flex items-center gap-1.5 text-[11px] text-slate-400 dark:text-slate-500 mt-2">
                     <Clock className="w-3 h-3" />
-                    <span>{new Date(n.createdAt).toLocaleDateString()} at {new Date(n.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                    <span>{formatTimestamp(n.createdAt)}</span>
                   </div>
                 </div>
               </div>

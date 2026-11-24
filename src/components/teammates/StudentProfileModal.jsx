@@ -2,13 +2,9 @@ import React from 'react';
 import { 
   X, 
   GraduationCap, 
-  Mail, 
   Globe, 
   Clock, 
-  Award, 
-  Send, 
-  CheckCircle2, 
-  Sparkles 
+  Send 
 } from 'lucide-react';
 
 export default function StudentProfileModal({ student, isOpen, onClose, onOpenInvite }) {

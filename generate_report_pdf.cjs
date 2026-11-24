@@ -21,7 +21,7 @@ async function generatePDF() {
   const imgTasks = getBase64Image('06_kanban_tasks.png');
   const imgFaculty = getBase64Image('07_faculty_dashboard.png');
   const imgMessages = getBase64Image('08_chat_messages.png');
-  const imgProfile = getBase64Image('09_profile_page.png');
+  const _imgProfile = getBase64Image('09_profile_page.png');
 
   console.log('Assembling report HTML content...');
 
@@ -1376,22 +1376,22 @@ export function normalizeSkill(skill) {
     The compatibility percentage between a Project Requirement Set ($S_{req}$) and a Candidate Student's Skill Set ($S_{cand}$) is governed by the deterministic intersection ratio:
   </p>
   <div style="text-align: center; margin: 12px 0; padding: 10px; background: #f7f9f6; border-radius: 6px; font-size: 11pt; font-weight: bold; color: #404E3B;">
-    $$\text{Match Score} = \text{round}\left(\frac{|S_{req} \cap S_{cand}|}{|S_{req}|} \times 100\right)$$
+    $$\\text{Match Score} = \\text{round}\\left(\\frac{|S_{req} \\cap S_{cand}|}{|S_{req}|} \\times 100\\right)$$
   </div>
   <p>
-    Where $|S_{req} \cap S_{cand}|$ represents the count of required skills possessed by the student, and $|S_{req}|$ is the total number of technical prerequisites required by the project.
+    Where $|S_{req} \\cap S_{cand}|$ represents the count of required skills possessed by the student, and $|S_{req}|$ is the total number of technical prerequisites required by the project.
   </p>
 
   <h3>Step 3: Categorization into Match Strength Tiers</h3>
   <ul>
-    <li><strong>High Compatibility ($\ge 75\%$):</strong> Candidate possesses almost all required competencies; capable of immediate sprint contributions.</li>
-    <li><strong>Moderate Compatibility ($40\% \text{ to } 74\%$):</strong> Candidate possesses key foundational skills but may require mentorship or peer pairing on missing items.</li>
-    <li><strong>Low Compatibility ($&lt; 40\%$):</strong> Significant technical gap; recommended for introductory or cross-training roles.</li>
+    <li><strong>High Compatibility ($\\ge 75\\%$):</strong> Candidate possesses almost all required competencies; capable of immediate sprint contributions.</li>
+    <li><strong>Moderate Compatibility ($40\\% \\text{ to } 74\\%$):</strong> Candidate possesses key foundational skills but may require mentorship or peer pairing on missing items.</li>
+    <li><strong>Low Compatibility ($&lt; 40\\%$):</strong> Significant technical gap; recommended for introductory or cross-training roles.</li>
   </ul>
 
   <h3>Step 4: Candidate Ranking &amp; Explanation Construction</h3>
   <p>
-    The function <code>rankStudentsForProject()</code> evaluates all available student profiles, assigns their compatibility score, and executes a descending stable sort ($O(N \log N)$), generating a human-readable explanation badge (e.g., <em>"Matches 2 of 3 required skills (67%). Missing: Docker."</em>).
+    The function <code>rankStudentsForProject()</code> evaluates all available student profiles, assigns their compatibility score, and executes a descending stable sort ($O(N \\log N)$), generating a human-readable explanation badge (e.g., <em>"Matches 2 of 3 required skills (67%). Missing: Docker."</em>).
   </p>
 
   <h2>6.2 Concrete Code-Based Worked Example</h2>
@@ -1403,9 +1403,9 @@ export function normalizeSkill(skill) {
     <ol>
       <li><strong>Normalized Requirements ($S_{req}$):</strong> <code>['react', 'node.js', 'postgresql', 'docker']</code> &rarr; $|S_{req}| = 4$.</li>
       <li><strong>Normalized Student Skills ($S_{cand}$):</strong> <code>['react', 'node.js', 'tailwind css', 'figma']</code>.</li>
-      <li><strong>Matched Intersection ($S_{req} \cap S_{cand}$):</strong> <code>['react', 'node.js']</code> &rarr; Matched Count $= 2$.</li>
-      <li><strong>Missing Skills ($S_{req} \setminus S_{cand}$):</strong> <code>['postgresql', 'docker']</code> &rarr; Missing Count $= 2$.</li>
-      <li><strong>Calculation:</strong> $\text{Score} = \text{round}\left(\frac{2}{4} \times 100\right) = 50\%$.</li>
+      <li><strong>Matched Intersection ($S_{req} \\cap S_{cand}$):</strong> <code>['react', 'node.js']</code> &rarr; Matched Count $= 2$.</li>
+      <li><strong>Missing Skills ($S_{req} \\setminus S_{cand}$):</strong> <code>['postgresql', 'docker']</code> &rarr; Missing Count $= 2$.</li>
+      <li><strong>Calculation:</strong> $\\text{Score} = \\text{round}\\left(\\frac{2}{4} \\times 100\\right) = 50\\%$.</li>
       <li><strong>Result:</strong> Match Strength = <code>'Moderate'</code> (Pill: Amber).</li>
     </ol>
   </div>
@@ -1847,7 +1847,7 @@ export function normalizeSkill(skill) {
 
   <div class="callout no-break">
     <strong>Q3: Explain the mathematical formula used for calculating the match percentage.</strong><br>
-    <em>Answer:</em> It uses the Jaccard intersection ratio between normalized required skills and student skills: $\text{Match Score} = \text{round}((|S_{req} \cap S_{cand}| / |S_{req}|) \times 100)$. It calculates the exact count of prerequisites matched, identifies missing competencies, and categorizes candidates into High (&ge;75%), Moderate (40-74%), or Low (&lt;40%) compatibility tiers.
+    <em>Answer:</em> It uses the Jaccard intersection ratio between normalized required skills and student skills: $\\text{Match Score} = \\text{round}((|S_{req} \\cap S_{cand}| / |S_{req}|) \\times 100)$. It calculates the exact count of prerequisites matched, identifies missing competencies, and categorizes candidates into High (&ge;75%), Moderate (40-74%), or Low (&lt;40%) compatibility tiers.
   </div>
 
   <div class="callout no-break">

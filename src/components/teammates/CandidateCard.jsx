@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Check, Send, Award, GraduationCap, Clock, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Sparkles, Send, GraduationCap, Clock } from 'lucide-react';
 
 export default function CandidateCard({
   student,

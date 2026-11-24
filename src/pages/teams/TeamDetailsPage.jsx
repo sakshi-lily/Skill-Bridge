@@ -2,26 +2,19 @@ import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft, 
-  Users, 
-  ShieldCheck, 
-  UserPlus, 
-  CheckCircle2, 
   Trash2, 
-  LogOut, 
-  PlusCircle, 
   FolderKanban, 
   ExternalLink,
-  Clock,
-  Sparkles,
-  AlertCircle
+  AlertCircle,
+  UserPlus,
+  PlusCircle,
+  LogOut
 } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import TaskCard from '../../components/tasks/TaskCard';
 import TaskModal from '../../components/tasks/TaskModal';
 import TeamFileManager from '../../components/files/TeamFileManager';
 import { useTeamTask } from '../../context/TeamTaskContext';
-import { useProjects } from '../../context/ProjectsContext';
-import { KANBAN_COLUMNS } from '../../data/tasksData';
 
 export default function TeamDetailsPage() {
   const { id } = useParams();
@@ -173,7 +166,7 @@ export default function TeamDetailsPage() {
             </div>
             <div className="flex items-center justify-between text-[11px] text-slate-400">
               <span>{completedTasks.length} of {teamTasks.length} tasks completed</span>
-              <span>{inProgressTasks.length} in progress &bull; {reviewTasks.length} in review</span>
+              <span>{todoTasks.length} to do &bull; {inProgressTasks.length} in progress &bull; {reviewTasks.length} in review</span>
             </div>
           </div>
         </div>

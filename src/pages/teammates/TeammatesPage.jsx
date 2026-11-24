@@ -3,14 +3,9 @@ import {
   Users, 
   Search, 
   Sparkles, 
-  SlidersHorizontal, 
   RotateCcw, 
-  GraduationCap, 
   FolderKanban, 
   CheckCircle2, 
-  HelpCircle,
-  Clock,
-  Award,
   Radio
 } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
@@ -19,7 +14,7 @@ import StudentProfileModal from '../../components/teammates/StudentProfileModal'
 import InviteToTeamModal from '../../components/teammates/InviteToTeamModal';
 import { STUDENTS_DATA, CURRENT_USER } from '../../data/studentsData';
 import { useProjects } from '../../context/ProjectsContext';
-import { calculateSkillMatch, normalizeSkillsList } from '../../utils/skillMatching';
+import { calculateSkillMatch } from '../../utils/skillMatching';
 import { POPULAR_SKILLS } from '../../data/projectsData';
 import { projectsAPI } from '../../services/api';
 

@@ -1,11 +1,10 @@
 // SkillBridge Comprehensive End-to-End Automated Test Suite (Step 9 & 10 Verification)
-import http from 'http';
 
 // Automatically spin up the server in-process if not already active
 try {
   await import('./server.js');
   await new Promise(resolve => setTimeout(resolve, 1500));
-} catch (err) {
+} catch {
   // If server is already running, proceed directly
 }
 
@@ -176,7 +175,7 @@ async function runTestSuite() {
         note: 'Excited to contribute React & Tailwind UI components.',
       }),
     });
-    const data = await res.json();
+    await res.json();
     assert(res.status === 200 || res.status === 201, '11. Project Squad Application', 'Application recorded');
   } catch (err) {
     assert(false, '11. Project Squad Application', err.message);

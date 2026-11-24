@@ -20,7 +20,7 @@ export function AuthProvider({ children }) {
       if (storedUserStr) {
         try {
           fallbackUser = JSON.parse(storedUserStr);
-        } catch (e) {}
+        } catch {}
       }
 
       if (storedToken) {
@@ -33,7 +33,7 @@ export function AuthProvider({ children }) {
             // Token invalid or expired
             setUser(fallbackUser);
           }
-        } catch (err) {
+        } catch {
           // If server offline or token expired, keep session graceful
           setUser(fallbackUser);
         }
@@ -130,7 +130,7 @@ export function AuthProvider({ children }) {
         return { success: true, user: res.user };
       }
       return { success: false, message: res.message };
-    } catch (err) {
+    } catch {
       // In local offline fallback, update state directly
       setUser(prev => ({ ...prev, ...profileData }));
       return { success: true, user: { ...user, ...profileData } };

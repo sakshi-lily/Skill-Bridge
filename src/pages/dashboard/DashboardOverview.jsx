@@ -10,9 +10,7 @@ import {
   ArrowRight, 
   Sparkles, 
   Info,
-  PlusCircle,
-  TrendingUp,
-  Award
+  PlusCircle
 } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import StatCard from '../../components/dashboard/StatCard';
@@ -46,7 +44,6 @@ export default function DashboardOverview() {
   const { projects } = useProjects();
 
   const [showEmptyTeams, setShowEmptyTeams] = useState(false);
-  const [selectedProjectModal, setSelectedProjectModal] = useState(null);
   
   // Teammate modals
   const [candidateProfileModal, setCandidateProfileModal] = useState(null);

@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import { 
   Calendar, 
   AlertTriangle, 
-  CheckCircle2, 
-  Clock, 
   MoreVertical, 
   Edit3, 
   Trash2, 
-  ArrowRight,
-  Folder,
-  UserCheck
+  ArrowRight, 
+  Folder 
 } from 'lucide-react';
 
 export default function TaskCard({ 

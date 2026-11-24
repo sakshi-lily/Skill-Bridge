@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import Skill from '../models/Skill.js';
-import { SKILL_ALIASES } from '../utils/skillMatching.js';
 
 export const PRESET_SKILLS_DATA = [
   { name: 'React', category: 'Frontend', popular: true, aliases: ['react.js', 'reactjs'] },

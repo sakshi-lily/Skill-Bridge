@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Sparkles, Compass, Construction } from 'lucide-react';
+import { ArrowLeft, Construction, Sparkles } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 
 export default function DashboardPlaceholderPage({

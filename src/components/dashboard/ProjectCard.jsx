@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Users, Tag, Check, Sparkles, ArrowRight } from 'lucide-react';
+import { Users, Check } from 'lucide-react';
 
 export default function ProjectCard({
-  id,
+  _id,
   title,
   description,
   requiredSkills = [],
@@ -91,11 +91,10 @@ export default function ProjectCard({
           <button
             type="button"
             onClick={handleApply}
-            className={`flex-1 sm:flex-initial text-xs font-bold px-3.5 py-1.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1 ${
-              applied
+            className={`flex-1 sm:flex-initial text-xs font-bold px-3.5 py-1.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1 ${applied
                 ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/50'
                 : 'bg-[#7B9669] hover:bg-[#404E3B] text-white shadow-xs'
-            }`}
+              }`}
           >
             {applied ? (
               <>

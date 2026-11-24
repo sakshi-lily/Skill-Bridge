@@ -10,7 +10,6 @@ export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [resetTokenInfo, setResetTokenInfo] = useState('');
   const [loading, setLoading] = useState(false);
 
   const validate = () => {
@@ -34,12 +33,9 @@ export default function ForgotPasswordPage() {
     }
     setLoading(true);
     try {
-      const res = await authAPI.forgotPassword(email.trim());
-      if (res.resetToken) {
-        setResetTokenInfo(res.resetToken);
-      }
+      await authAPI.forgotPassword(email.trim());
       setSubmitted(true);
-    } catch (err) {
+    } catch {
       setSubmitted(true);
     } finally {
       setLoading(false);
@@ -129,6 +125,7 @@ export default function ForgotPasswordPage() {
               type="submit"
               variant="primary"
               fullWidth
+              loading={loading}
               icon={Send}
             >
               Send Reset Link

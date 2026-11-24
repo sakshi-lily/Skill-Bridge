@@ -6,23 +6,15 @@ import { useTeamTask } from '../../context/TeamTaskContext';
 import {
   Plus,
   Search,
-  Filter,
-  Calendar,
   AlertTriangle,
-  CheckCircle2,
-  Clock,
   Kanban,
-  Layers,
-  Sparkles,
-  Trash2,
-  AlertCircle
+  Trash2
 } from 'lucide-react';
 
 export default function TasksPage() {
   const {
     tasks,
     teams,
-    myTeams,
     currentUser,
     moveTaskStatus,
     deleteTask

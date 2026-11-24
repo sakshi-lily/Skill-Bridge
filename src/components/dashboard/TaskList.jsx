@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, Clock, AlertCircle, Calendar, ArrowRight, Circle } from 'lucide-react';
+import { CheckCircle2, AlertCircle, Calendar, ArrowRight, Circle } from 'lucide-react';
 
 export default function TaskList({ initialTasks = [], tasks: propTasks, onToggleStatus }) {
   const [localTasks, setLocalTasks] = useState(initialTasks);

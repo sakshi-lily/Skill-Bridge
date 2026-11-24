@@ -5,14 +5,10 @@ import {
   PlusCircle, 
   Search, 
   ExternalLink, 
-  ShieldCheck, 
-  CheckSquare, 
   Users, 
-  Clock, 
   Calendar,
   Sparkles,
-  ChevronRight,
-  Filter
+  ChevronRight
 } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import { useProjects } from '../../context/ProjectsContext';

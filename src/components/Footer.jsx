@@ -1,9 +1,10 @@
 import React from 'react';
 import SkillBridgeLogo from './SkillBridgeLogo';
-import { Heart, Mail, Globe, MessageCircle } from 'lucide-react';
+import { Heart, Mail } from 'lucide-react';
+
+const CURRENT_YEAR = new Date().getFullYear();
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
 
   const footerSections = [
     {
@@ -51,10 +52,10 @@ export default function Footer() {
   return (
     <footer className="bg-white dark:bg-[#121711] border-t border-purple-100 dark:border-[#2e3b2b] transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
-        
+
         {/* Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 pb-12 border-b border-purple-100/80 dark:border-[#2e3b2b]">
-          
+
           {/* Brand Info (2 columns) */}
           <div className="lg:col-span-2 space-y-4">
             <SkillBridgeLogo />
@@ -133,7 +134,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 dark:text-slate-400">
           <p>
-            &copy; {currentYear} SkillBridge Platform. Built for student creators worldwide.
+            &copy; {CURRENT_YEAR} SkillBridge Platform. Built for student creators worldwide.
           </p>
 
           <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400">

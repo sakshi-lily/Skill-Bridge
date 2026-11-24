@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import FileAttachment from '../models/FileAttachment.js';
 import Team from '../models/Team.js';
 import path from 'path';
-import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);

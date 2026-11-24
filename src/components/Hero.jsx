@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Compass, Sparkles, CheckCircle2, Users, Code2, Palette, BrainCircuit } from 'lucide-react';
+import { ArrowRight, Compass, Sparkles, CheckCircle2, Code2, Palette, BrainCircuit } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -16,10 +16,10 @@ export default function Hero() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Center Hero Content */}
         <div className="text-center max-w-3xl mx-auto">
-          
+
           {/* Eyebrow Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 dark:bg-[#1e261d]/90 border border-purple-200 dark:border-purple-800/60 shadow-sm text-xs sm:text-sm font-semibold text-[#7B9669] dark:text-purple-300 mb-8 backdrop-blur-sm">
             <span className="flex h-2 w-2 rounded-full bg-pink-500 animate-pulse"></span>
@@ -65,7 +65,7 @@ export default function Hero() {
         <div className="mt-14 max-w-4xl mx-auto">
           <div className="relative rounded-3xl p-1 bg-gradient-to-r from-purple-200 via-pink-200 to-purple-300 dark:from-purple-900/50 dark:via-pink-900/30 dark:to-purple-900/50 shadow-card">
             <div className="rounded-[22px] bg-white/95 dark:bg-[#182017]/95 backdrop-blur-xl p-5 sm:p-8">
-              
+
               {/* Match Header Bar */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-purple-100 dark:border-purple-950/80 gap-3">
                 <div className="flex items-center gap-3">
@@ -94,7 +94,7 @@ export default function Hero() {
 
               {/* Matched Teammates Grid */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6">
-                
+
                 {/* Teammate 1 */}
                 <div className="rounded-2xl p-4 bg-purple-50/50 dark:bg-[#1e261d]/60 border border-purple-100 dark:border-purple-900/40 flex flex-col justify-between">
                   <div>

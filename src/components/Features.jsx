@@ -1,15 +1,10 @@
 import React from 'react';
-import { 
-  Cpu, 
-  Kanban, 
-  Users2, 
-  CheckCircle2, 
-  ArrowRight, 
-  Sparkles, 
-  GitBranch, 
-  Layers, 
-  MessageSquare,
-  ShieldCheck,
+import {
+  Cpu,
+  Kanban,
+  Users2,
+  CheckCircle2,
+  Sparkles,
   Zap
 } from 'lucide-react';
 
@@ -84,7 +79,7 @@ export default function Features() {
       <div className="absolute bottom-10 right-0 w-80 h-80 bg-pink-200/30 dark:bg-pink-950/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 dark:bg-[#1e261d] border border-purple-200 dark:border-purple-800/60 text-xs font-semibold text-[#7B9669] dark:text-purple-300 mb-4">

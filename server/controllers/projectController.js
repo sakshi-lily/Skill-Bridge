@@ -148,6 +148,16 @@ export const getProjects = async (req, res, next) => {
       if (category && !['All', 'All Categories'].includes(category)) {
         filtered = filtered.filter(p => p.category.toLowerCase() === category.toLowerCase());
       }
+      if (difficulty && !['All', 'All Difficulties'].includes(difficulty)) {
+        filtered = filtered.filter(p => p.difficulty?.toLowerCase() === difficulty.toLowerCase());
+      }
+      if (mode && !['All', 'All Modes'].includes(mode)) {
+        filtered = filtered.filter(p => p.mode?.toLowerCase() === mode.toLowerCase());
+      }
+      if (search && search.trim()) {
+        const q = search.toLowerCase();
+        filtered = filtered.filter(p => p.title?.toLowerCase().includes(q) || p.description?.toLowerCase().includes(q));
+      }
       return res.status(200).json({
         success: true,
         count: filtered.length,

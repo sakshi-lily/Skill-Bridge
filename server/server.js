@@ -30,7 +30,6 @@ import { setIO } from './services/notificationService.js';
 import { setChatIO } from './controllers/chatController.js';
 
 // Models
-import Team from './models/Team.js';
 import Message from './models/Message.js';
 
 // Load environment variables
@@ -116,7 +115,7 @@ io.use((socket, next) => {
     socket.userId = decoded.id;
     socket.userRole = decoded.role;
     next();
-  } catch (err) {
+  } catch {
     // If token is invalid, continue as anon rather than crashing
     socket.userId = `anon_${socket.id}`;
     next();

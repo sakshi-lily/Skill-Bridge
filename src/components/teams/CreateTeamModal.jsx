@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Users, CheckCircle2, AlertCircle, ShieldCheck, FolderKanban } from 'lucide-react';
+import { X, Users, CheckCircle2, AlertCircle, ShieldCheck } from 'lucide-react';
 import { useTeamTask } from '../../context/TeamTaskContext';
 import { useProjects } from '../../context/ProjectsContext';
 

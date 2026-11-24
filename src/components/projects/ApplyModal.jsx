@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, AlertCircle, X, ShieldCheck, Sparkles } from 'lucide-react';
+import { Send, CheckCircle2, X, ShieldCheck, Sparkles } from 'lucide-react';
 
 export default function ApplyModal({ project, isOpen, onClose, onConfirm }) {
   const [note, setNote] = useState('');

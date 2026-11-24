@@ -7,11 +7,8 @@ import {
   ChevronDown, 
   User, 
   Settings, 
-  HelpCircle, 
   LogOut, 
   X,
-  CheckCircle2,
-  Sparkles,
   GraduationCap
 } from 'lucide-react';
 import ThemeToggle from '../ThemeToggle';
@@ -42,7 +39,7 @@ export default function TopNavbar({
         if (res.success && res.notifications) {
           setLiveNotifications(res.notifications);
         }
-      } catch (err) {
+      } catch {
         // Fallback
       }
     };

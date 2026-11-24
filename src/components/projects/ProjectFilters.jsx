@@ -1,5 +1,5 @@
 import React from 'react';
-import { Filter, X, RotateCcw, Check, Sparkles } from 'lucide-react';
+import { Filter, X, RotateCcw, Check } from 'lucide-react';
 import { CATEGORIES, POPULAR_SKILLS, DIFFICULTIES, MODES } from '../../data/projectsData';
 
 export default function ProjectFilters({

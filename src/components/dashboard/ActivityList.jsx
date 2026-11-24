@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, CheckSquare, UserPlus, Flag, Sparkles } from 'lucide-react';
+import { Mail, CheckSquare, UserPlus, Flag } from 'lucide-react';
 
 export default function ActivityList({ activities = [] }) {
   const iconMap = {

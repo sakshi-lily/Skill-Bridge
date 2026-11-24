@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   Camera,
   Upload,
-  Sparkles,
   Check,
   Plus,
   X,
   Globe,
-  CheckCircle2,
   ArrowRight,
-  Info,
-  Layers,
-  HeartHandshake
+  Info
 } from 'lucide-react';
 import AuthLayout from '../components/auth/AuthLayout';
 import InputField from '../components/auth/InputField';
@@ -51,7 +47,7 @@ export default function SetupProfilePage() {
   const navigate = useNavigate();
 
   // Profile Form State
-  const [avatar, setAvatar] = useState(null);
+  const [_avatar, setAvatar] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250');
   const [bio, setBio] = useState('Passionate CS student excited about building accessible web tools and exploring LLM agents. Looking for a UI/UX designer and backend partner for upcoming hackathons.');
 
@@ -70,8 +66,8 @@ export default function SetupProfilePage() {
   ]);
 
   const [selectedCategories, setSelectedCategories] = useState(['hackathons', 'capstones']);
-  const [availability, setAvailability] = useState('10-15 hrs/week');
-  const [preferredRoles, setPreferredRoles] = useState(['Full-Stack Developer']);
+  const [availability] = useState('10-15 hrs/week');
+  const [preferredRoles] = useState(['Full-Stack Developer']);
 
   const [links, setLinks] = useState({
     github: 'https://github.com/alexmorgan-student',
@@ -130,7 +126,7 @@ export default function SetupProfilePage() {
     try {
       const url = new URL(string.trim());
       return url.protocol === 'http:' || url.protocol === 'https:';
-    } catch (_) {
+    } catch {
       return false;
     }
   };
@@ -182,7 +178,7 @@ export default function SetupProfilePage() {
 
     try {
       await updateProfile(profilePayload);
-    } catch (err) {
+    } catch {
       // Continue safely
     }
 

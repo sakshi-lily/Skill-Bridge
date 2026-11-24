@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import {
   ArrowLeft,
   Users,
-  Calendar,
-  Clock,
-  MapPin,
   CheckCircle2,
   Circle,
-  ShieldCheck,
   Sparkles,
   Send,
-  UserCheck,
   Flag,
   Share2,
   AlertCircle
@@ -24,7 +19,6 @@ import { CURRENT_USER } from '../../data/studentsData';
 
 export default function ProjectDetailsPage() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const { getProjectById, isApplied, applyToProject } = useProjects();
 
   const project = getProjectById(id);

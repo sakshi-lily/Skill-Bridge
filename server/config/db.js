@@ -14,7 +14,7 @@ export const connectDB = async () => {
     isConnected = true;
     console.log(`✅ [MongoDB Connected]: ${conn.connection.host} (${conn.connection.name})`);
     return true;
-  } catch (error) {
+  } catch {
     isConnected = false;
     console.log(`ℹ️ [Database Status]: Standby Mode active (could not connect to ${uri.replace(/\/\/[^@]*@/, '//***:***@')}).`);
     console.log(`ℹ️ SkillBridge is running smoothly in Memory/Standby evaluation mode. All APIs and features are fully functional.\n`);

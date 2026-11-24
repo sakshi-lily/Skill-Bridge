@@ -101,7 +101,7 @@ export function TeamTaskProvider({ children }) {
           }));
           setTasks(remoteTasks);
         }
-      } catch (err) {
+      } catch {
         // Fallback to initial local state when backend is disconnected
       }
     };
@@ -156,7 +156,7 @@ export function TeamTaskProvider({ children }) {
           creatorRole: teamData.creatorRole || 'Team Lead',
         });
       }
-    } catch (err) {
+    } catch {
       // In-memory state remains solid
     }
 
@@ -344,7 +344,7 @@ export function TeamTaskProvider({ children }) {
           assignedMemberId: taskData.assignedTo?.id || currentUser.id,
         });
       }
-    } catch (err) {
+    } catch {
       // In-memory fallback
     }
 
@@ -366,7 +366,7 @@ export function TeamTaskProvider({ children }) {
     // Backend sync attempt
     try {
       await tasksAPI.updateTask(taskId, updates);
-    } catch (err) {
+    } catch {
       // In-memory fallback
     }
   };
@@ -377,7 +377,7 @@ export function TeamTaskProvider({ children }) {
     // Backend sync attempt
     try {
       await tasksAPI.deleteTask(taskId);
-    } catch (err) {
+    } catch {
       // In-memory fallback
     }
   };

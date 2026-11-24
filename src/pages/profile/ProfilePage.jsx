@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import { 
-  User, 
   Mail, 
-  GraduationCap, 
-  MapPin, 
   Edit3, 
   CheckCircle2, 
   Sparkles, 
-  Award, 
   Plus, 
   X, 
   ExternalLink, 
   ShieldCheck, 
-  Briefcase, 
-  Clock, 
-  Heart 
+  Briefcase,
+  Clock
 } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import { useAuth } from '../../context/AuthContext';

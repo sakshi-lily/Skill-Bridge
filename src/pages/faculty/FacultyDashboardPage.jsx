@@ -5,100 +5,92 @@ import { facultyAPI } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import { 
   GraduationCap, 
-  ShieldCheck, 
   AlertTriangle, 
-  Users, 
-  FolderKanban, 
-  CheckSquare, 
-  TrendingUp, 
-  Sparkles,
   ArrowRight,
   Send,
-  Lock,
-  Award
+  Lock
 } from 'lucide-react';
+
+// Initial simulated faculty dataset
+const INITIAL_DEMO_FACULTY_DATA = {
+  metrics: {
+    totalStudents: 142,
+    totalProjects: 24,
+    totalTeams: 18,
+    totalTasks: 86,
+    completedTasks: 54,
+    overdueTasks: 7,
+    completionRate: 63,
+  },
+  teams: [
+    {
+      id: 'team-pulse',
+      name: 'PulseEngineers',
+      projectName: 'CampusPulse AI',
+      ownerName: 'Alex Morgan',
+      membersCount: 3,
+      maxMembers: 4,
+      totalTasks: 12,
+      completedTasks: 8,
+      overdueTasks: 1,
+      progress: 67,
+      needsIntervention: true,
+    },
+    {
+      id: 'team-collab',
+      name: 'CampusCollab Core',
+      projectName: 'EduLens OCR Scanner',
+      ownerName: 'David Chen',
+      membersCount: 4,
+      maxMembers: 4,
+      totalTasks: 16,
+      completedTasks: 14,
+      overdueTasks: 0,
+      progress: 88,
+      needsIntervention: false,
+    },
+    {
+      id: 'team-vision',
+      name: 'VisionWizards',
+      projectName: 'EcoRoute Campus Tracker',
+      ownerName: 'Maya Rao',
+      membersCount: 2,
+      maxMembers: 4,
+      totalTasks: 9,
+      completedTasks: 2,
+      overdueTasks: 2,
+      progress: 22,
+      needsIntervention: true,
+    },
+  ],
+  interventionAlerts: [
+    {
+      id: 'team-pulse',
+      name: 'PulseEngineers',
+      reason: '1 overdue sprint deliverable flagged.',
+    },
+    {
+      id: 'team-vision',
+      name: 'VisionWizards',
+      reason: 'High vacancy (2/4 open) and low sprint progress (22%).',
+    },
+  ],
+  topSkills: [
+    { skill: 'React', count: 88 },
+    { skill: 'Python', count: 74 },
+    { skill: 'UI/UX Design', count: 58 },
+    { skill: 'FastAPI', count: 42 },
+    { skill: 'Tailwind CSS', count: 65 },
+    { skill: 'Docker', count: 35 },
+  ],
+};
 
 export default function FacultyDashboardPage() {
   const { user } = useAuth();
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [guidanceModalTeam, setGuidanceModalTeam] = useState(null);
   const [guidanceMessage, setGuidanceMessage] = useState('');
   const [guidanceSent, setGuidanceSent] = useState(false);
-
-  // Initial simulated faculty dataset
-  const initialDemoFacultyData = {
-    metrics: {
-      totalStudents: 142,
-      totalProjects: 24,
-      totalTeams: 18,
-      totalTasks: 86,
-      completedTasks: 54,
-      overdueTasks: 7,
-      completionRate: 63,
-    },
-    teams: [
-      {
-        id: 'team-pulse',
-        name: 'PulseEngineers',
-        projectName: 'CampusPulse AI',
-        ownerName: 'Alex Morgan',
-        membersCount: 3,
-        maxMembers: 4,
-        totalTasks: 12,
-        completedTasks: 8,
-        overdueTasks: 1,
-        progress: 67,
-        needsIntervention: true,
-      },
-      {
-        id: 'team-collab',
-        name: 'CampusCollab Core',
-        projectName: 'EduLens OCR Scanner',
-        ownerName: 'David Chen',
-        membersCount: 4,
-        maxMembers: 4,
-        totalTasks: 16,
-        completedTasks: 14,
-        overdueTasks: 0,
-        progress: 88,
-        needsIntervention: false,
-      },
-      {
-        id: 'team-vision',
-        name: 'VisionWizards',
-        projectName: 'EcoRoute Campus Tracker',
-        ownerName: 'Maya Rao',
-        membersCount: 2,
-        maxMembers: 4,
-        totalTasks: 9,
-        completedTasks: 2,
-        overdueTasks: 2,
-        progress: 22,
-        needsIntervention: true,
-      },
-    ],
-    interventionAlerts: [
-      {
-        id: 'team-pulse',
-        name: 'PulseEngineers',
-        reason: '1 overdue sprint deliverable flagged.',
-      },
-      {
-        id: 'team-vision',
-        name: 'VisionWizards',
-        reason: 'High vacancy (2/4 open) and low sprint progress (22%).',
-      },
-    ],
-    topSkills: [
-      { skill: 'React', count: 88 },
-      { skill: 'Python', count: 74 },
-      { skill: 'UI/UX Design', count: 58 },
-      { skill: 'FastAPI', count: 42 },
-      { skill: 'Tailwind CSS', count: 65 },
-      { skill: 'Docker', count: 35 },
-    ],
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -107,12 +99,10 @@ export default function FacultyDashboardPage() {
         if (res.success && res.metrics) {
           setData(res);
         } else {
-          setData(initialDemoFacultyData);
+          setData(INITIAL_DEMO_FACULTY_DATA);
         }
-      } catch (err) {
-        setData(initialDemoFacultyData);
-      } finally {
-        setLoading(false);
+      } catch {
+        setData(INITIAL_DEMO_FACULTY_DATA);
       }
     };
 
@@ -129,7 +119,7 @@ export default function FacultyDashboardPage() {
     }, 1500);
   };
 
-  const currentData = data || initialDemoFacultyData;
+  const currentData = data || INITIAL_DEMO_FACULTY_DATA;
 
   // Role check banner if logged in as student
   const isFacultyOrAdmin = user?.role === 'faculty' || user?.role === 'admin';

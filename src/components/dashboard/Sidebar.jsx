@@ -1,19 +1,18 @@
 import React from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { 
-  LayoutDashboard, 
-  Compass, 
-  Users, 
-  ShieldCheck, 
-  FolderKanban, 
-  CheckSquare, 
-  MessageSquare, 
-  Bell, 
-  User, 
-  Settings, 
-  LogOut, 
+import {
+  LayoutDashboard,
+  Compass,
+  Users,
+  ShieldCheck,
+  FolderKanban,
+  CheckSquare,
+  MessageSquare,
+  Bell,
+  User,
+  Settings,
+  LogOut,
   X,
-  Sparkles,
   GraduationCap
 } from 'lucide-react';
 import SkillBridgeLogo from '../SkillBridgeLogo';
@@ -50,7 +49,7 @@ export default function Sidebar({ isOpen, onClose }) {
     <>
       {/* Mobile Drawer Backdrop */}
       {isOpen && (
-        <div 
+        <div
           onClick={onClose}
           className="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-xs lg:hidden transition-opacity"
           aria-hidden="true"
@@ -99,10 +98,9 @@ export default function Sidebar({ isOpen, onClose }) {
                   onClick={onClose}
                   className={({ isActive }) => `
                     flex items-center justify-between px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 group
-                    ${
-                      isActive
-                        ? 'bg-[#7B9669] text-white shadow-sm shadow-[#7B9669]/25'
-                        : 'text-slate-600 dark:text-slate-300 hover:bg-purple-50 dark:hover:bg-[#222c20] hover:text-[#7B9669] dark:hover:text-purple-300'
+                    ${isActive
+                      ? 'bg-[#7B9669] text-white shadow-sm shadow-[#7B9669]/25'
+                      : 'text-slate-600 dark:text-slate-300 hover:bg-purple-50 dark:hover:bg-[#222c20] hover:text-[#7B9669] dark:hover:text-purple-300'
                     }
                   `}
                 >
@@ -110,22 +108,20 @@ export default function Sidebar({ isOpen, onClose }) {
                     <>
                       <div className="flex items-center gap-3">
                         <Icon
-                          className={`w-4 h-4 transition-colors ${
-                            isActive
+                          className={`w-4 h-4 transition-colors ${isActive
                               ? 'text-white'
                               : 'text-slate-400 dark:text-slate-500 group-hover:text-[#7B9669] dark:group-hover:text-purple-300'
-                          }`}
+                            }`}
                         />
                         <span>{item.name}</span>
                       </div>
 
                       {item.badge && (
                         <span
-                          className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
-                            isActive
+                          className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${isActive
                               ? 'bg-white/20 text-white'
                               : 'bg-pink-100 dark:bg-pink-950/70 text-pink-600 dark:text-pink-300'
-                          }`}
+                            }`}
                         >
                           {item.badge}
                         </span>

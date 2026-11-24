@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Rocket, Trophy, Award, Sparkles, University } from 'lucide-react';
+import { Users, Rocket, Trophy, Sparkles } from 'lucide-react';
 
 export default function Stats() {
   const stats = [

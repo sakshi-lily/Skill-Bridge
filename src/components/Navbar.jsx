@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ArrowRight, Users, Sparkles } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import SkillBridgeLogo from './SkillBridgeLogo';
 import ThemeToggle from './ThemeToggle';
 
@@ -18,7 +18,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/85 dark:bg-[#121711]/85 border-b border-purple-100/80 dark:border-[#2e3b2b] transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          
+
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 focus:outline-none">
             <SkillBridgeLogo />

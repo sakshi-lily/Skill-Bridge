@@ -10,7 +10,6 @@ import {
   Plus,
   X,
   ArrowRight,
-  Info,
   AlertCircle
 } from 'lucide-react';
 import AuthLayout from '../components/auth/AuthLayout';
@@ -431,6 +430,7 @@ export default function SignUpPage() {
             type="submit"
             variant="primary"
             fullWidth
+            loading={submitting}
             icon={ArrowRight}
           >
             Create Account

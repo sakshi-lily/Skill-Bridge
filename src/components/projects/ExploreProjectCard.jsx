@@ -3,12 +3,8 @@ import { Link } from 'react-router-dom';
 import { 
   Users, 
   Calendar, 
-  MapPin, 
   CheckCircle2, 
-  ArrowRight, 
-  Clock, 
-  Sparkles,
-  BarChart2
+  Sparkles
 } from 'lucide-react';
 import { useProjects } from '../../context/ProjectsContext';
 import { calculateSkillMatch } from '../../utils/skillMatching';

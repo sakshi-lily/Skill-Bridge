@@ -25,7 +25,7 @@ export const connectSocket = (token) => {
     // Socket connected
   });
 
-  socket.on('connect_error', (err) => {
+  socket.on('connect_error', () => {
     // Gracefully handle server offline in local test mode
   });
 

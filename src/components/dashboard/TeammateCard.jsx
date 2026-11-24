@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Sparkles, Check, Send, Award, GraduationCap } from 'lucide-react';
+import { Sparkles, GraduationCap, Check, Send } from 'lucide-react';
 
 export default function TeammateCard({
-  id,
   name,
   avatar,
   university,

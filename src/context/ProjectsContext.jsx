@@ -19,12 +19,8 @@ export function ProjectsProvider({ children }) {
 
   // Load real projects from MongoDB or fallback to INITIAL_PROJECTS in standby mode
   const fetchProjects = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-
     try {
       const response = await projectsAPI.getProjects();
-
       const projectList = Array.isArray(response)
         ? response
         : response?.projects || [];
@@ -45,8 +41,32 @@ export function ProjectsProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    fetchProjects().catch(() => {});
-  }, [fetchProjects]);
+    let isMounted = true;
+    const initialize = async () => {
+      try {
+        const response = await projectsAPI.getProjects();
+        if (!isMounted) return;
+        const projectList = Array.isArray(response)
+          ? response
+          : response?.projects || [];
+
+        if (projectList.length > 0) {
+          setProjects(projectList);
+        } else {
+          setProjects(INITIAL_PROJECTS);
+        }
+      } catch {
+        if (isMounted) setProjects(INITIAL_PROJECTS);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
+    initialize();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Create project in MongoDB
   const addProject = async (newProjectData) => {

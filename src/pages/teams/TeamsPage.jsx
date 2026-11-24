@@ -5,22 +5,15 @@ import {
   ShieldCheck, 
   PlusCircle, 
   CheckCircle2, 
-  XCircle, 
   ArrowRight, 
   FolderKanban, 
-  Sparkles, 
-  Mail, 
-  UserPlus, 
+  Mail,
   LogOut, 
-  Trash2,
-  Lock,
-  Clock,
-  AlertCircle
+  Lock
 } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import CreateTeamModal from '../../components/teams/CreateTeamModal';
 import { useTeamTask } from '../../context/TeamTaskContext';
-import { useProjects } from '../../context/ProjectsContext';
 
 export default function TeamsPage() {
   const { 
@@ -29,10 +22,9 @@ export default function TeamsPage() {
     myTeams, 
     userInvitations, 
     acceptUserInvite, 
-    rejectUserInvite,
-    leaveTeam,
-    removeMember,
-    getTeamProgress
+    rejectUserInvite, 
+    leaveTeam, 
+    getTeamProgress 
   } = useTeamTask();
 
   const [activeTab, setActiveTab] = useState('my-teams'); // 'my-teams' | 'invitations' | 'all-teams'

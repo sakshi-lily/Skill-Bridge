@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   X, 
   CheckCircle2, 
@@ -23,19 +23,37 @@ export default function TaskModal({
   // If user belongs to teams, prioritize myTeams, else fallback to all teams
   const availableTeams = myTeams.length > 0 ? myTeams : teams;
 
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    teamId: '',
-    assignedMemberId: '',
-    priority: 'Medium',
-    status: defaultStatus,
-    dueDate: '',
+  const [formData, setFormData] = useState(() => {
+    if (initialTask) {
+      return {
+        title: initialTask.title || '',
+        description: initialTask.description || '',
+        teamId: initialTask.teamId || '',
+        assignedMemberId: initialTask.assignedTo?.id || '',
+        priority: initialTask.priority || 'Medium',
+        status: initialTask.status || defaultStatus,
+        dueDate: initialTask.dueDate || '',
+      };
+    }
+    const selectedTeam = defaultTeamId 
+      ? availableTeams.find(t => t.id === defaultTeamId) 
+      : availableTeams[0];
+    return {
+      title: '',
+      description: '',
+      teamId: selectedTeam ? selectedTeam.id : '',
+      assignedMemberId: currentUser?.id || '',
+      priority: 'Medium',
+      status: defaultStatus,
+      dueDate: new Date(Date.now() + 5 * 86400000).toISOString().split('T')[0],
+    };
   });
 
   const [errors, setErrors] = useState({});
+  const [prevTask, setPrevTask] = useState(initialTask);
 
-  useEffect(() => {
+  if (initialTask !== prevTask) {
+    setPrevTask(initialTask);
     if (initialTask) {
       setFormData({
         title: initialTask.title || '',
@@ -46,23 +64,8 @@ export default function TaskModal({
         status: initialTask.status || defaultStatus,
         dueDate: initialTask.dueDate || '',
       });
-    } else {
-      const selectedTeam = defaultTeamId 
-        ? availableTeams.find(t => t.id === defaultTeamId) 
-        : availableTeams[0];
-
-      setFormData({
-        title: '',
-        description: '',
-        teamId: selectedTeam ? selectedTeam.id : '',
-        assignedMemberId: currentUser.id,
-        priority: 'Medium',
-        status: defaultStatus,
-        dueDate: new Date(Date.now() + 5 * 86400000).toISOString().split('T')[0],
-      });
     }
-    setErrors({});
-  }, [initialTask, isOpen, defaultTeamId, defaultStatus]);
+  }
 
   if (!isOpen) return null;
 

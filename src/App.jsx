@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { 
-  User, 
-  Settings 
+import {
+  Settings
 } from 'lucide-react';
 
 // Context Providers

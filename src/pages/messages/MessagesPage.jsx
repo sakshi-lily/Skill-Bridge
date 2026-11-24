@@ -7,62 +7,50 @@ import { chatAPI } from '../../services/api';
 import {
   MessageSquare,
   Send,
-  Paperclip,
-  ShieldCheck,
-  Users,
-  Clock,
-  Smile,
-  Folder,
   Circle,
-  AlertCircle
+  Users
 } from 'lucide-react';
+
+// Initial simulated messages for each team if empty
+const DEFAULT_TEAM_MESSAGES = {
+  'team-pulse': [
+    {
+      id: 'msg-1',
+      senderName: 'Sarah Patel',
+      senderAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150',
+      content: 'Hey team! I just finalized the Figma design system components for the student navbar and team cards.',
+      createdAt: '10:30 AM',
+      isSelf: false,
+    },
+    {
+      id: 'msg-2',
+      senderName: 'David Chen',
+      senderAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150',
+      content: 'Awesome work Sarah. The FastAPI route validation for JWT tokens is also merged into develop branch.',
+      createdAt: '10:34 AM',
+      isSelf: false,
+    },
+    {
+      id: 'msg-3',
+      senderName: 'Alex Morgan',
+      senderAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
+      content: 'Great velocity everyone! Let us review the sprint deliverables before the faculty advisor check-in tomorrow.',
+      createdAt: '10:40 AM',
+      isSelf: true,
+    },
+  ],
+};
 
 export default function MessagesPage() {
   const { myTeams, teams } = useTeamTask();
   const { user } = useAuth();
   const availableTeams = myTeams.length > 0 ? myTeams : teams;
 
-  const [selectedTeam, setSelectedTeam] = useState(availableTeams[0] || null);
+  const [selectedTeam, setSelectedTeam] = useState(() => availableTeams[0] || null);
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const [sending, setSending] = useState(false);
   const messagesEndRef = useRef(null);
-
-  // Initial simulated messages for each team if empty
-  const defaultTeamMessages = {
-    'team-pulse': [
-      {
-        id: 'msg-1',
-        senderName: 'Sarah Patel',
-        senderAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150',
-        content: 'Hey team! I just finalized the Figma design system components for the student navbar and team cards.',
-        createdAt: '10:30 AM',
-        isSelf: false,
-      },
-      {
-        id: 'msg-2',
-        senderName: 'David Chen',
-        senderAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150',
-        content: 'Awesome work Sarah. The FastAPI route validation for JWT tokens is also merged into develop branch.',
-        createdAt: '10:34 AM',
-        isSelf: false,
-      },
-      {
-        id: 'msg-3',
-        senderName: 'Alex Morgan',
-        senderAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
-        content: 'Great velocity everyone! Let us review the sprint deliverables before the faculty advisor check-in tomorrow.',
-        createdAt: '10:40 AM',
-        isSelf: true,
-      },
-    ],
-  };
-
-  useEffect(() => {
-    if (availableTeams.length > 0 && !selectedTeam) {
-      setSelectedTeam(availableTeams[0]);
-    }
-  }, [availableTeams]);
 
   // Load messages and listen to Socket.IO events for active team
   useEffect(() => {
@@ -81,7 +69,7 @@ export default function MessagesPage() {
             isSelf: m.sender === user?._id || m.senderName === user?.name,
           })));
         } else if (isSubscribed) {
-          setMessages(defaultTeamMessages[teamId] || [
+          setMessages(DEFAULT_TEAM_MESSAGES[teamId] || [
             {
               id: 'init-1',
               senderName: selectedTeam.ownerName || 'Team Lead',
@@ -92,9 +80,9 @@ export default function MessagesPage() {
             }
           ]);
         }
-      } catch (err) {
+      } catch {
         if (isSubscribed) {
-          setMessages(defaultTeamMessages[teamId] || []);
+          setMessages(DEFAULT_TEAM_MESSAGES[teamId] || []);
         }
       }
     };
@@ -170,7 +158,7 @@ export default function MessagesPage() {
     // Persist to backend API
     try {
       await chatAPI.postMessage(teamId, { content: text });
-    } catch (err) {
+    } catch {
       // Handled gracefully in offline mode
     } finally {
       setSending(false);

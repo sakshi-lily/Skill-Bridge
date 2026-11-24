@@ -1,7 +1,6 @@
 import React from 'react';
-import { Sparkles } from 'lucide-react';
 
-export default function SkillBridgeLogo({ className = "h-8 w-8" }) {
+export default function SkillBridgeLogo({ className = "w-5 h-5" }) {
   return (
     <div className="flex items-center gap-2.5 group cursor-pointer select-none">
       <div className="relative flex items-center justify-center">
@@ -16,7 +15,7 @@ export default function SkillBridgeLogo({ className = "h-8 w-8" }) {
             strokeWidth="2.2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-5 h-5 text-white transform -rotate-6 group-hover:rotate-0 transition-transform duration-300"
+            className={`${className} text-white transform -rotate-6 group-hover:rotate-0 transition-transform duration-300`}
           >
             {/* Bridge arc with node connections */}
             <path d="M3 17c3.5-6 14.5-6 18 0" />

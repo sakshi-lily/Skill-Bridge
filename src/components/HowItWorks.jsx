@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserCheck, Compass, Users, Rocket, Sparkles, ArrowRight } from 'lucide-react';
+import { UserCheck, Compass, Users, Rocket, Sparkles } from 'lucide-react';
 
 export default function HowItWorks() {
   const steps = [
@@ -40,7 +40,7 @@ export default function HowItWorks() {
   return (
     <section id="how-it-works" className="py-20 sm:py-28 relative bg-purple-50/40 dark:bg-[#121711]/50 border-y border-purple-100/60 dark:border-purple-950/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-[#1e261d] border border-purple-200 dark:border-purple-800/60 text-xs font-semibold text-[#7B9669] dark:text-purple-300 mb-4 shadow-sm">
@@ -59,7 +59,7 @@ export default function HowItWorks() {
 
         {/* Steps Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 relative">
-          {steps.map((step, idx) => {
+          {steps.map((step) => {
             const Icon = step.icon;
             return (
               <div

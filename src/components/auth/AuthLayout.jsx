@@ -4,6 +4,8 @@ import { ArrowLeft, Sparkles } from 'lucide-react';
 import SkillBridgeLogo from '../SkillBridgeLogo';
 import ThemeToggle from '../ThemeToggle';
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export default function AuthLayout({ 
   children, 
   title, 
@@ -78,7 +80,7 @@ export default function AuthLayout({
 
           {/* Footer note */}
           <p className="mt-5 text-center text-xs text-slate-400 dark:text-slate-500">
-            &copy; {new Date().getFullYear()} SkillBridge &bull; Student Skill &amp; Project Matchmaking Platform
+            &copy; {CURRENT_YEAR} SkillBridge &bull; Student Skill &amp; Project Matchmaking Platform
           </p>
         </div>
       </main>
