@@ -28,7 +28,7 @@ export default function ExploreProjectCard({ project, onOpenApply }) {
   };
 
   return (
-    <div className="rounded-2xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
+    <div className="rounded-2xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group h-full">
       <div>
         
         {/* Top bar: Category + Match Score + Difficulty + Mode */}
@@ -66,7 +66,7 @@ export default function ExploreProjectCard({ project, onOpenApply }) {
           to={`/projects/${project.id}`}
           className="block group-hover:text-[#7B9669] dark:group-hover:text-purple-300 transition-colors"
         >
-          <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white line-clamp-1 leading-snug">
+          <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white line-clamp-2 leading-snug">
             {project.title}
           </h3>
         </Link>
@@ -119,13 +119,13 @@ export default function ExploreProjectCard({ project, onOpenApply }) {
       </div>
 
       {/* Footer: Owner info & Action Buttons */}
-      <div className="mt-5 pt-4 border-t border-slate-100 dark:border-purple-950/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <div className="mt-5 pt-4 border-t border-slate-100 dark:border-purple-950/50 flex items-center justify-between gap-3">
         {/* Owner */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 min-w-0">
           <img
             src={project.owner?.avatar}
             alt={project.owner?.name}
-            className="w-7 h-7 rounded-full object-cover ring-1 ring-purple-300 dark:ring-purple-800"
+            className="w-7 h-7 rounded-full object-cover ring-1 ring-purple-300 dark:ring-purple-800 shrink-0"
           />
           <div className="min-w-0">
             <span className="text-xs font-bold text-slate-800 dark:text-slate-200 block truncate">
@@ -138,10 +138,10 @@ export default function ExploreProjectCard({ project, onOpenApply }) {
         </div>
 
         {/* Buttons */}
-        <div className="flex items-center gap-2 w-full sm:w-auto">
+        <div className="flex items-center gap-2 shrink-0">
           <Link
             to={`/projects/${project.id}`}
-            className="flex-1 sm:flex-initial text-xs font-semibold py-2 px-3.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#222c20] transition-colors border border-slate-200 dark:border-purple-900/40 text-center"
+            className="text-xs font-semibold py-2 px-3 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#222c20] transition-colors border border-slate-200 dark:border-purple-900/40 text-center"
           >
             Details
           </Link>
@@ -150,7 +150,7 @@ export default function ExploreProjectCard({ project, onOpenApply }) {
             type="button"
             onClick={() => onOpenApply(project)}
             disabled={applied}
-            className={`flex-1 sm:flex-initial text-xs font-bold py-2 px-3.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 ${
+            className={`text-xs font-bold py-2 px-3 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 shrink-0 ${
               applied
                 ? 'bg-purple-100 dark:bg-purple-950/70 text-[#7B9669] dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 cursor-default'
                 : 'bg-[#7B9669] hover:bg-[#404E3B] text-white shadow-xs'

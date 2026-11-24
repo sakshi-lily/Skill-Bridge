@@ -135,55 +135,27 @@ export default function ExploreProjectsPage() {
     });
   }, [projects, searchQuery, selectedCategory, advancedFilters, sortBy]);
 
-  // Metric tallies
-  const totalProjectsCount = projects.length;
-  const openProjectsCount = projects.filter(p => (p.openPositionsCount || 0) > 0).length;
-
   return (
     <DashboardLayout title="Explore Projects" breadcrumb="SkillBridge / Project Matchmaking / Explore">
       
       {/* Header Banner */}
-      <div className="space-y-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-              Explore Projects
-            </h1>
-            <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-2xl leading-relaxed">
-              Discover exciting projects and find opportunities to collaborate with talented students.
-            </p>
-          </div>
-
-          <Link
-            to="/projects/create"
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#7B9669] hover:bg-[#404E3B] text-white text-xs sm:text-sm font-bold shadow-md shadow-[#7B9669]/25 hover:shadow-[#7B9669]/40 transition-all duration-200 transform hover:-translate-y-0.5 shrink-0"
-          >
-            <PlusCircle className="w-4 h-4" />
-            <span>Create Project</span>
-          </Link>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            Explore Projects
+          </h1>
+          <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-2xl leading-relaxed">
+            Discover exciting projects and find opportunities to collaborate with talented students.
+          </p>
         </div>
 
-        {/* Summary Row */}
-        <div className="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 shadow-xs flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
-            <div className="flex items-center gap-2">
-              <span className="text-slate-500 dark:text-slate-400">Total Projects:</span>
-              <strong className="font-extrabold text-slate-900 dark:text-white">{totalProjectsCount}</strong>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-slate-500 dark:text-slate-400">Open for Recruitment:</span>
-              <strong className="font-extrabold text-[#7B9669] dark:text-purple-300">{openProjectsCount}</strong>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-slate-500 dark:text-slate-400">Matching Current Filters:</span>
-              <strong className="font-extrabold text-emerald-600 dark:text-emerald-400">{filteredProjects.length}</strong>
-            </div>
-          </div>
-
-          <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-500 px-2 py-0.5 rounded-md bg-slate-100 dark:bg-[#222c20]">
-            Demo Sample Data
-          </span>
-        </div>
+        <Link
+          to="/projects/create"
+          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#7B9669] hover:bg-[#404E3B] text-white text-xs sm:text-sm font-bold shadow-md shadow-[#7B9669]/25 hover:shadow-[#7B9669]/40 transition-all duration-200 transform hover:-translate-y-0.5 shrink-0"
+        >
+          <PlusCircle className="w-4 h-4" />
+          <span>Create Project</span>
+        </Link>
       </div>
 
       {/* Search & Top Category Bar */}
@@ -292,8 +264,8 @@ export default function ExploreProjectsPage() {
               </div>
             </div>
           ) : (
-            /* Project Grid (2 or 3 columns) */
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
+            /* Project Grid (2 or 3 columns aligned) */
+            <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-5 sm:gap-6">
               {filteredProjects.map((project) => (
                 <ExploreProjectCard
                   key={project.id}

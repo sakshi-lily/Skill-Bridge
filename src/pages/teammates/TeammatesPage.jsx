@@ -272,13 +272,9 @@ export default function TeammatesPage() {
             </div>
           </div>
 
-          {/* Results Bar */}
-          <div className="flex items-center justify-between text-xs pt-2 border-t border-slate-100 dark:border-purple-950/40">
-            <span className="text-slate-500 dark:text-slate-400">
-              Showing <strong className="text-slate-900 dark:text-white">{rankedCandidates.length}</strong> candidates
-            </span>
-
-            {(searchQuery || selectedSkillFilter || selectedExperience || selectedAvailability || matchStrengthFilter !== 'all') && (
+          {/* Active Filter Reset */}
+          {(searchQuery || selectedSkillFilter || selectedExperience || selectedAvailability || matchStrengthFilter !== 'all') && (
+            <div className="flex items-center justify-end text-xs pt-2 border-t border-slate-100 dark:border-purple-950/40">
               <button
                 type="button"
                 onClick={handleResetFilters}
@@ -287,8 +283,8 @@ export default function TeammatesPage() {
                 <RotateCcw className="w-3 h-3" />
                 <span>Reset Filters</span>
               </button>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* 3. Ranked Candidates Grid */}
