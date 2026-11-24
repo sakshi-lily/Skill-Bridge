@@ -25,7 +25,7 @@ export default function HowItWorks() {
       description:
         'Our algorithm identifies students with complementary skills and mutual project goals. Send instant match invites with one click.',
       icon: Users,
-      details: ['Synergy compatibility score', 'Mutual interest confirmation', 'Verified peer feedback'],
+      details: ['Skill compatibility score', 'Mutual interest confirmation', 'Verified peer feedback'],
     },
     {
       number: '04',

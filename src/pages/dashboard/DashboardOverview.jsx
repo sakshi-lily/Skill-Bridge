@@ -151,7 +151,7 @@ export default function DashboardOverview() {
   ];
 
   return (
-    <DashboardLayout title="Overview" breadcrumb="SkillBridge / Student Workspace">
+    <DashboardLayout title="Overview" breadcrumb="Dashboard / Overview">
 
       {/* 1. Welcome Section */}
       <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-100/70 via-pink-50/60 to-purple-50/50 dark:from-[#1e261d] dark:via-[#182017] dark:to-[#141a13] border border-purple-200/70 dark:border-purple-900/50 p-6 sm:p-8 md:p-10 shadow-sm">
@@ -168,7 +168,7 @@ export default function DashboardOverview() {
           </h1>
 
           <p className="mt-2.5 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
-            Find your next opportunity, connect with verified candidates, and manage team deliverables with rule-based skill matching.
+            Find your next opportunity, connect with verified candidates, and manage team deliverables seamlessly.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-3.5">
@@ -193,7 +193,7 @@ export default function DashboardOverview() {
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-50 dark:bg-purple-950/40 hover:bg-purple-100 dark:hover:bg-purple-900/60 text-purple-700 dark:text-purple-300 border border-purple-200/80 dark:border-purple-800/50 text-xs sm:text-sm font-bold transition-all duration-200"
             >
               <CheckSquare className="w-4 h-4" />
-              <span>Sprint Kanban</span>
+              <span>Task Board</span>
             </Link>
           </div>
         </div>

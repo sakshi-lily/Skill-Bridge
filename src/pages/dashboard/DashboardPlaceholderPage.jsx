@@ -54,10 +54,10 @@ export default function DashboardPlaceholderPage({
 
         <div className="max-w-md mx-auto space-y-1.5">
           <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
-            {title} Workspace Ready for Implementation
+            {title} Workspace
           </h3>
           <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-            Per the project requirements, Step 3 focuses on the core student dashboard layout and overview at <code className="text-[#7B9669] dark:text-purple-300 font-mono">/dashboard</code>. Full implementation of this module will be connected in future development phases.
+            This module is part of our upcoming platform release. Explore available features from your dashboard overview.
           </p>
         </div>
 

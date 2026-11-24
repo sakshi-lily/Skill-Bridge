@@ -23,23 +23,21 @@ import SetupProfilePage from './pages/SetupProfilePage';
 import DashboardOverview from './pages/dashboard/DashboardOverview';
 import DashboardPlaceholderPage from './pages/dashboard/DashboardPlaceholderPage';
 
-// Step 4: Explore Projects, Details & Create Project Pages
+// Project & Team Management Pages
 import ExploreProjectsPage from './pages/projects/ExploreProjectsPage';
 import ProjectDetailsPage from './pages/projects/ProjectDetailsPage';
 import CreateProjectPage from './pages/projects/CreateProjectPage';
-
-// Step 5 & 6: Matchmaking & Team/Task Management Pages
 import TeammatesPage from './pages/teammates/TeammatesPage';
 import TeamsPage from './pages/teams/TeamsPage';
 import TeamDetailsPage from './pages/teams/TeamDetailsPage';
 import TasksPage from './pages/tasks/TasksPage';
 
-// Step 8: Real-Time Chat, Notifications & Faculty Dashboard
+// Chat, Notifications & Faculty Dashboard
 import MessagesPage from './pages/messages/MessagesPage';
 import NotificationsPage from './pages/notifications/NotificationsPage';
 import FacultyDashboardPage from './pages/faculty/FacultyDashboardPage';
 
-// Step 9 & 10: My Projects & Builder Profile
+// My Projects & Profile
 import MyProjectsPage from './pages/projects/MyProjectsPage';
 import ProfilePage from './pages/profile/ProfilePage';
 
@@ -69,7 +67,7 @@ export default function App() {
                 }
               />
 
-              {/* Step 4: Project Matchmaking Discovery Routes */}
+              {/* Projects Discovery Routes */}
               <Route
                 path="/projects"
                 element={
@@ -95,7 +93,7 @@ export default function App() {
                 }
               />
 
-              {/* Step 5: Rule-Based Skill-Matching Teammates Route */}
+              {/* Teammates Matching Route */}
               <Route
                 path="/teammates"
                 element={
@@ -105,7 +103,7 @@ export default function App() {
                 }
               />
 
-              {/* Step 6: Team Formation & Details Routes */}
+              {/* Team Formation & Details Routes */}
               <Route
                 path="/teams"
                 element={
@@ -123,7 +121,7 @@ export default function App() {
                 }
               />
 
-              {/* Step 6: Kanban Task Management Route */}
+              {/* Tasks Management Route */}
               <Route
                 path="/tasks"
                 element={
@@ -133,7 +131,7 @@ export default function App() {
                 }
               />
 
-              {/* Step 8: Real-Time Team Chat Route */}
+              {/* Messages & Chat Route */}
               <Route
                 path="/messages"
                 element={
@@ -143,7 +141,7 @@ export default function App() {
                 }
               />
 
-              {/* Step 8: Real-Time Notifications Center Route */}
+              {/* Notifications Center Route */}
               <Route
                 path="/notifications"
                 element={
@@ -153,7 +151,7 @@ export default function App() {
                 }
               />
 
-              {/* Step 8: Faculty & Admin Oversight Dashboard */}
+              {/* Faculty & Admin Oversight Dashboard */}
               <Route
                 path="/faculty"
                 element={

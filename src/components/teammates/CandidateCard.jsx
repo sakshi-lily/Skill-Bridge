@@ -51,7 +51,7 @@ export default function CandidateCard({
               <span>{score}% Match</span>
             </span>
             <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-500 mt-0.5">
-              {strength} Synergy
+              {strength} Match
             </span>
           </div>
         </div>
@@ -60,7 +60,7 @@ export default function CandidateCard({
         <div className="p-3 rounded-xl bg-purple-50/60 dark:bg-[#222c20] border border-purple-100/80 dark:border-purple-900/40 text-xs text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
           <p>
             <strong className="text-[#7B9669] dark:text-purple-300 font-bold">Why recommended: </strong>
-            {match?.explanation || 'Evaluated against selected project requirements.'}
+            {match?.explanation || 'Matches project requirements.'}
           </p>
         </div>
 

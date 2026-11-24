@@ -25,7 +25,7 @@ export default function Features() {
       ],
       previewSnippet: {
         tag: 'Match Algorithm',
-        title: 'Complementary Synergy Score',
+        title: 'Complementary Skill Match Score',
         skills: ['React + Node', 'Figma + System Design', 'DevOps + Docker'],
       },
     },

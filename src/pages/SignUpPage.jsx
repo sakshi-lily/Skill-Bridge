@@ -177,7 +177,7 @@ export default function SignUpPage() {
   return (
     <AuthLayout
       title="Create Your SkillBridge Account"
-      subtitle="Find complementary peers, build team synergy, and launch hackathon-ready projects."
+      subtitle="Find complementary peers, build high-performing teams, and launch hackathon-ready projects."
       badge="Student &amp; Faculty Registration"
       maxWidth="max-w-2xl"
     >
