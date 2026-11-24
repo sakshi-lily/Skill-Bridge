@@ -14,7 +14,7 @@ export default function AuthLayout({
   maxWidth = "max-w-md" 
 }) {
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-[#f7f9f6] dark:bg-[#121711] text-slate-800 dark:text-slate-100 transition-colors duration-200 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col justify-between bg-[#f7f9f6] dark:bg-[#121711] text-slate-800 dark:text-slate-100 transition-colors duration-200 relative">
       
       {/* Background ambient gradient blurs in Sage & Forest palette */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none -z-10 overflow-hidden">

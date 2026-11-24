@@ -95,7 +95,7 @@ export default function TopNavbar({
   const unreadCount = notifications.filter(n => !n.isRead).length;
 
   return (
-    <header className="fixed top-0 right-0 left-0 lg:left-64 sm:lg:left-72 z-30 h-16 sm:h-[72px] bg-white/95 dark:bg-[#182017]/95 backdrop-blur-md border-b border-slate-200/80 dark:border-purple-950/60 px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-colors">
+    <header className="fixed top-0 right-0 left-0 lg:left-72 z-30 h-16 sm:h-[72px] bg-white/95 dark:bg-[#182017]/95 backdrop-blur-md border-b border-slate-200/80 dark:border-purple-950/60 px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-colors">
       
       {/* Left: Mobile Toggle & Page Title / Breadcrumb */}
       <div className="flex items-center gap-3 sm:gap-4">
