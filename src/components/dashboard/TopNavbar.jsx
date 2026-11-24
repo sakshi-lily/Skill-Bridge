@@ -6,7 +6,6 @@ import {
   Bell, 
   ChevronDown, 
   User, 
-  Settings, 
   LogOut, 
   X,
   GraduationCap
@@ -273,15 +272,6 @@ export default function TopNavbar({
                 >
                   <User className="w-4 h-4 text-slate-400" />
                   <span>My Profile</span>
-                </Link>
-
-                <Link
-                  to="/settings"
-                  onClick={() => setShowProfileMenu(false)}
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-purple-50 dark:hover:bg-[#283426] hover:text-[#7B9669]"
-                >
-                  <Settings className="w-4 h-4 text-slate-400" />
-                  <span>Settings</span>
                 </Link>
               </div>
 

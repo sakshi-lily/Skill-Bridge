@@ -10,7 +10,6 @@ import {
   MessageSquare,
   Bell,
   User,
-  Settings,
   LogOut,
   X,
   GraduationCap
@@ -37,7 +36,6 @@ export default function Sidebar({ isOpen, onClose }) {
     { name: 'Messages', path: '/messages', icon: MessageSquare },
     { name: 'Notifications', path: '/notifications', icon: Bell, badge: '3' },
     { name: 'My Profile', path: '/profile', icon: User },
-    { name: 'Settings', path: '/settings', icon: Settings },
   ];
 
   const handleLogout = () => {

@@ -1,8 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import {
-  Settings
-} from 'lucide-react';
 
 // Context Providers
 import { AuthProvider } from './context/AuthContext';
@@ -21,7 +18,6 @@ import SetupProfilePage from './pages/SetupProfilePage';
 
 // Dashboard Overview
 import DashboardOverview from './pages/dashboard/DashboardOverview';
-import DashboardPlaceholderPage from './pages/dashboard/DashboardPlaceholderPage';
 
 // Project & Team Management Pages
 import ExploreProjectsPage from './pages/projects/ExploreProjectsPage';
@@ -170,32 +166,12 @@ export default function App() {
                 }
               />
 
-              {/* User Profile & Settings */}
+              {/* User Profile */}
               <Route
                 path="/profile"
                 element={
                   <ProtectedRoute>
                     <ProfilePage />
-                  </ProtectedRoute>
-                }
-              />
-
-              <Route
-                path="/settings"
-                element={
-                  <ProtectedRoute>
-                    <DashboardPlaceholderPage
-                      title="Account Settings"
-                      breadcrumb="Dashboard / Settings"
-                      description="Manage security preferences, notification channels, linked accounts, and appearance options."
-                      icon={Settings}
-                      sampleItems={[
-                        'Profile visibility privacy controls',
-                        'Email notification digests',
-                        'Dark mode system defaults',
-                        'University credential management',
-                      ]}
-                    />
                   </ProtectedRoute>
                 }
               />
