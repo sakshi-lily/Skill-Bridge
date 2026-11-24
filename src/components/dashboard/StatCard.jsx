@@ -51,13 +51,8 @@ export default function StatCard({
         )}
       </div>
 
-      <div className="mt-2 flex items-center justify-between text-xs">
-        <span className="text-slate-500 dark:text-slate-400">
-          {label}
-        </span>
-        <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-purple-50 dark:bg-purple-950/50 text-[#7B9669] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40">
-          Demo Metric
-        </span>
+      <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">
+        {label}
       </div>
     </div>
   );

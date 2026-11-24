@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { 
-  Users, 
-  Search, 
-  RotateCcw, 
+import {
+  Users,
+  Search,
+  RotateCcw,
   FolderKanban
 } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
@@ -140,12 +140,12 @@ export default function TeammatesPage() {
       return true;
     });
   }, [
-    candidatePool, 
-    selectedProject, 
-    searchQuery, 
-    selectedSkillFilter, 
-    selectedExperience, 
-    selectedAvailability, 
+    candidatePool,
+    selectedProject,
+    searchQuery,
+    selectedSkillFilter,
+    selectedExperience,
+    selectedAvailability,
     matchStrengthFilter
   ]);
 
@@ -163,7 +163,7 @@ export default function TeammatesPage() {
       breadcrumb="SkillBridge / Project Matchmaking / Teammates"
     >
       <div className="space-y-8">
-        
+
         {/* Header Banner */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
@@ -218,7 +218,7 @@ export default function TeammatesPage() {
 
         {/* 2. Search & Multi-Filter Controls */}
         <div className="rounded-3xl bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 p-5 sm:p-6 shadow-sm space-y-4">
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
             {/* Search Input */}
             <div className="relative sm:col-span-2">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Rocket, Trophy, Sparkles } from 'lucide-react';
+import { Users, Rocket, Trophy } from 'lucide-react';
 
 export default function Stats() {
   const stats = [
@@ -8,7 +8,6 @@ export default function Stats() {
       value: '12,500+',
       label: 'Active Student Builders',
       sublabel: 'Across 120+ top engineering & design campuses',
-      demoTag: 'Demo Metric',
       icon: Users,
       badgeColor: 'bg-purple-100 dark:bg-purple-950/60 text-[#7B9669] dark:text-purple-300',
       gradient: 'from-[#7B9669]/10 to-[#6C8480]/5',
@@ -18,7 +17,6 @@ export default function Stats() {
       value: '3,400+',
       label: 'Projects Built & Launched',
       sublabel: 'Hackathons, course capstones & student startups',
-      demoTag: 'Demo Metric',
       icon: Rocket,
       badgeColor: 'bg-pink-100 dark:bg-pink-950/60 text-pink-600 dark:text-pink-300',
       gradient: 'from-[#6C8480]/10 to-[#7B9669]/5',
@@ -28,7 +26,6 @@ export default function Stats() {
       value: '98%',
       label: 'Match Success Rate',
       sublabel: 'Verified teams with complete complementary skill sets',
-      demoTag: 'Demo Metric',
       icon: Trophy,
       badgeColor: 'bg-[#BAC8B1]/40 dark:bg-[#404E3B]/40 text-[#404E3B] dark:text-[#BAC8B1]',
       gradient: 'from-[#BAC8B1]/20 to-[#6C8480]/10',
@@ -39,12 +36,8 @@ export default function Stats() {
     <section className="py-12 sm:py-16 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header with Demo Label */}
+        {/* Section Header */}
         <div className="flex flex-col items-center justify-center mb-10 text-center">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-[#1e261d] border border-purple-200/70 dark:border-purple-800/50 text-xs font-semibold text-[#7B9669] dark:text-purple-300 mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-pink-500" />
-            <span>Platform Impact &bull; Live Demo Analytics</span>
-          </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
             Empowering the Next Generation of Builders
           </h2>
@@ -66,9 +59,6 @@ export default function Stats() {
                   <div className={`p-3 rounded-2xl ${stat.badgeColor} shadow-sm group-hover:scale-110 transition-transform duration-200`}>
                     <Icon className="w-6 h-6" />
                   </div>
-                  <span className="text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full bg-slate-100 dark:bg-[#222c20] text-slate-500 dark:text-slate-400 border border-slate-200/60 dark:border-purple-900/30">
-                    {stat.demoTag}
-                  </span>
                 </div>
 
                 <div className="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white group-hover:text-[#7B9669] dark:group-hover:text-[#BAC8B1] transition-colors">

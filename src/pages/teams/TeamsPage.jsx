@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Users, 
-  PlusCircle, 
-  CheckCircle2, 
-  ArrowRight, 
-  FolderKanban, 
+import {
+  Users,
+  PlusCircle,
+  CheckCircle2,
+  ArrowRight,
+  FolderKanban,
   Mail,
-  LogOut, 
+  LogOut,
   Lock
 } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
@@ -15,15 +15,15 @@ import CreateTeamModal from '../../components/teams/CreateTeamModal';
 import { useTeamTask } from '../../context/TeamTaskContext';
 
 export default function TeamsPage() {
-  const { 
-    currentUser, 
-    teams, 
-    myTeams, 
-    userInvitations, 
-    acceptUserInvite, 
-    rejectUserInvite, 
-    leaveTeam, 
-    getTeamProgress 
+  const {
+    currentUser,
+    teams,
+    myTeams,
+    userInvitations,
+    acceptUserInvite,
+    rejectUserInvite,
+    leaveTeam,
+    getTeamProgress
   } = useTeamTask();
 
   const [activeTab, setActiveTab] = useState('my-teams'); // 'my-teams' | 'invitations' | 'all-teams'
@@ -35,7 +35,7 @@ export default function TeamsPage() {
       breadcrumb="SkillBridge / Collaboration / Teams"
     >
       <div className="space-y-8">
-        
+
         {/* Header Banner */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
@@ -62,11 +62,10 @@ export default function TeamsPage() {
           <button
             type="button"
             onClick={() => setActiveTab('my-teams')}
-            className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${
-              activeTab === 'my-teams'
-                ? 'bg-[#7B9669] text-white shadow-xs'
-                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1e261d]'
-            }`}
+            className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${activeTab === 'my-teams'
+              ? 'bg-[#7B9669] text-white shadow-xs'
+              : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1e261d]'
+              }`}
           >
             <Users className="w-4 h-4" />
             <span>My Active Teams ({myTeams.length})</span>
@@ -75,11 +74,10 @@ export default function TeamsPage() {
           <button
             type="button"
             onClick={() => setActiveTab('invitations')}
-            className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 relative ${
-              activeTab === 'invitations'
-                ? 'bg-[#7B9669] text-white shadow-xs'
-                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1e261d]'
-            }`}
+            className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 relative ${activeTab === 'invitations'
+              ? 'bg-[#7B9669] text-white shadow-xs'
+              : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1e261d]'
+              }`}
           >
             <Mail className="w-4 h-4" />
             <span>Pending Invitations ({userInvitations.length})</span>
@@ -91,11 +89,10 @@ export default function TeamsPage() {
           <button
             type="button"
             onClick={() => setActiveTab('all-teams')}
-            className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${
-              activeTab === 'all-teams'
-                ? 'bg-[#7B9669] text-white shadow-xs'
-                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1e261d]'
-            }`}
+            className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${activeTab === 'all-teams'
+              ? 'bg-[#7B9669] text-white shadow-xs'
+              : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1e261d]'
+              }`}
           >
             <FolderKanban className="w-4 h-4" />
             <span>All Campus Teams ({teams.length})</span>

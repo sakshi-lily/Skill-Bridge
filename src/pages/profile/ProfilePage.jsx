@@ -340,28 +340,6 @@ export default function ProfilePage() {
 
         {/* Right Column: Experience & Socials */}
         <div className="space-y-6">
-          {/* Quick Metrics */}
-          <div className="bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 rounded-3xl p-6 shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">
-              Matchmaking Profile
-            </h3>
-
-            <div className="space-y-3 text-xs">
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#1e261d]">
-                <span className="text-slate-500 dark:text-slate-400">Experience Tier</span>
-                <span className="font-bold text-slate-900 dark:text-white">{formData.experienceLevel}</span>
-              </div>
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#1e261d]">
-                <span className="text-slate-500 dark:text-slate-400">Match Status</span>
-                <span className="font-bold text-emerald-600 dark:text-emerald-400">Open to Invites</span>
-              </div>
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-[#1e261d]">
-                <span className="text-slate-500 dark:text-slate-400">Preferred Roles</span>
-                <span className="font-bold text-slate-900 dark:text-white">Full-Stack &bull; Lead</span>
-              </div>
-            </div>
-          </div>
-
           {/* Connected Profiles */}
           <div className="bg-white dark:bg-[#182017] border border-slate-200/80 dark:border-purple-950/60 rounded-3xl p-6 shadow-xs">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-3">

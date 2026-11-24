@@ -42,8 +42,6 @@ export default function DashboardOverview() {
 
   const { projects } = useProjects();
 
-  const [showEmptyTeams, setShowEmptyTeams] = useState(false);
-  
   // Teammate modals
   const [candidateProfileModal, setCandidateProfileModal] = useState(null);
   const [candidateToInvite, setCandidateToInvite] = useState(null);
@@ -252,9 +250,6 @@ export default function DashboardOverview() {
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                   Recommended Projects For You
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Matches based on your React, Python &amp; UI/UX skill profile
-                </p>
               </div>
 
               <Link
@@ -281,15 +276,9 @@ export default function DashboardOverview() {
           <section className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                  <span>Recommended Teammates</span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/50 text-[#7B9669] dark:text-purple-300">
-                    Rule-Based Match
-                  </span>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                  Recommended Teammates
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Calculated against required sprint skills: React, Python, FastAPI, UI/UX
-                </p>
               </div>
 
               <Link
@@ -319,21 +308,9 @@ export default function DashboardOverview() {
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                   My Active Teams
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Sprint tracking, milestone sync, and team collaboration spaces
-                </p>
               </div>
 
               <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setShowEmptyTeams(!showEmptyTeams)}
-                  className="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-[#1e261d] text-slate-600 dark:text-slate-400 hover:text-[#7B9669] transition-colors"
-                  title="Toggle empty state view for evaluation"
-                >
-                  {showEmptyTeams ? 'Show Active Teams' : 'Preview Empty State'}
-                </button>
-
                 <Link
                   to="/teams"
                   className="text-xs font-bold text-[#7B9669] dark:text-purple-300 hover:text-pink-600 dark:hover:text-pink-300 flex items-center gap-1 transition-colors"
@@ -344,7 +321,7 @@ export default function DashboardOverview() {
               </div>
             </div>
 
-            {showEmptyTeams || myTeams.length === 0 ? (
+            {myTeams.length === 0 ? (
               <div className="rounded-2xl border-2 border-dashed border-purple-200 dark:border-purple-900/60 bg-white/60 dark:bg-[#182017]/60 p-8 text-center space-y-3">
                 <div className="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-950/60 text-[#7B9669] dark:text-purple-300 flex items-center justify-center mx-auto">
                   <ShieldCheck className="w-6 h-6" />

@@ -194,32 +194,16 @@ export default function SetupProfilePage() {
   return (
     <AuthLayout
       title="Complete Your Builder Profile"
-      subtitle="Help students discover your complementary skills and invite you to exciting project teams."
-      badge="Step 2 of 2 &bull; Profile Customization"
       maxWidth="max-w-3xl"
     >
       {/* Demo Notification Banner */}
-      {demoNotice ? (
+      {demoNotice && (
         <div className="mb-6 p-4 rounded-2xl bg-purple-50 dark:bg-[#283426] border border-purple-200 dark:border-purple-800 text-xs sm:text-sm text-[#7B9669] dark:text-purple-300 flex items-start gap-3">
           <Info className="w-5 h-5 shrink-0 mt-0.5 text-pink-500" />
           <div>
             <p className="font-semibold">{demoNotice}</p>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Taking you back to the home page...</p>
           </div>
-        </div>
-      ) : (
-        <div className="mb-6 p-3 rounded-xl bg-purple-50/70 dark:bg-[#1e261d]/70 border border-purple-100 dark:border-purple-900/40 text-xs text-slate-600 dark:text-slate-300 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Info className="w-4 h-4 text-[#7B9669] dark:text-pink-400 shrink-0" />
-            <span><strong>Frontend Demo Mode:</strong> Customize your student profile options below.</span>
-          </div>
-          <button
-            type="button"
-            onClick={handleSkip}
-            className="text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-[#7B9669] dark:hover:text-pink-300 underline"
-          >
-            Skip for Now
-          </button>
         </div>
       )}
 
@@ -253,9 +237,6 @@ export default function SetupProfilePage() {
             <h3 className="text-base font-bold text-slate-900 dark:text-white">
               Profile Photo
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm">
-              Upload a clear photo or avatar so teammates know who they are collaborating with. JPG, PNG or WEBP (Max 5MB).
-            </p>
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-1">
               <label
                 htmlFor="avatar-upload"
@@ -514,7 +495,6 @@ export default function SetupProfilePage() {
               onChange={(e) => setLinks(prev => ({ ...prev, github: e.target.value }))}
               error={errors.github}
               icon={Globe}
-              helperText="Enables skill & repository verification"
             />
 
             <InputField
@@ -527,7 +507,6 @@ export default function SetupProfilePage() {
               onChange={(e) => setLinks(prev => ({ ...prev, linkedin: e.target.value }))}
               error={errors.linkedin}
               icon={Globe}
-              helperText="Verify collegiate and leadership experience"
             />
           </div>
         </div>

@@ -252,9 +252,6 @@ export default function TopNavbar({
                 <p className="text-[11px] text-slate-400 dark:text-slate-400 truncate">
                   {user?.email || 'alex.morgan@stanford.edu'}
                 </p>
-                <span className="inline-block mt-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950/60 text-[#7B9669] dark:text-purple-300 capitalize">
-                  {user?.role === 'faculty' ? 'Faculty Advisor' : user?.role === 'admin' ? 'System Admin' : 'Student Builder'}
-                </span>
               </div>
 
               <div className="py-1 space-y-0.5">
