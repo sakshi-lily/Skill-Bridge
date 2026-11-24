@@ -5,8 +5,7 @@ import {
   MoreVertical, 
   Edit3, 
   Trash2, 
-  ArrowRight, 
-  Folder 
+  ArrowRight
 } from 'lucide-react';
 
 export default function TaskCard({ 
@@ -135,12 +134,6 @@ export default function TaskCard({
           {task.description}
         </p>
       )}
-
-      {/* Project & Team Tag */}
-      <div className="flex items-center gap-1.5 text-[11px] text-slate-500 dark:text-slate-400 mb-3 bg-slate-50 dark:bg-white/[0.03] px-2 py-1 rounded-lg border border-slate-100 dark:border-white/5 w-fit max-w-full truncate">
-        <Folder className="w-3 h-3 text-purple-500 shrink-0" />
-        <span className="font-medium text-slate-700 dark:text-slate-300 truncate">{task.projectName || task.teamName}</span>
-      </div>
 
       {/* Bottom row: Assignee + Due Date */}
       <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-white/5 text-xs">

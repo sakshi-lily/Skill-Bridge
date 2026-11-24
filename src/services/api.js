@@ -64,6 +64,12 @@ export const authAPI = {
       body: JSON.stringify(profileData),
     }),
 
+  uploadAvatar: (formData) =>
+    request('/auth/avatar', {
+      method: 'POST',
+      body: formData,
+    }),
+
   forgotPassword: (email) =>
     request('/auth/forgot-password', {
       method: 'POST',

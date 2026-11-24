@@ -34,7 +34,7 @@ export default function Sidebar({ isOpen, onClose }) {
     { name: 'My Teams', path: '/teams', icon: ShieldCheck },
     { name: 'My Projects', path: '/my-projects', icon: FolderKanban },
     { name: 'Tasks', path: '/tasks', icon: CheckSquare, badge: '4' },
-    { name: 'Messages', path: '/messages', icon: MessageSquare, badge: 'Live' },
+    { name: 'Messages', path: '/messages', icon: MessageSquare },
     { name: 'Notifications', path: '/notifications', icon: Bell, badge: '3' },
     { name: 'My Profile', path: '/profile', icon: User },
     { name: 'Settings', path: '/settings', icon: Settings },
@@ -85,10 +85,6 @@ export default function Sidebar({ isOpen, onClose }) {
 
           {/* Nav Items List */}
           <nav className="p-3.5 space-y-1 overflow-y-auto max-h-[calc(100vh-210px)]">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3 py-1.5 block">
-              Main Menu
-            </span>
-
             {navItems.map((item) => {
               const Icon = item.icon;
               return (

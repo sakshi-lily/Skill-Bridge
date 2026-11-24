@@ -298,6 +298,46 @@ export const updateProfile = async (req, res, next) => {
 };
 
 /**
+ * @desc    Upload user profile avatar
+ * @route   POST /api/auth/avatar
+ * @access  Private
+ */
+export const uploadAvatar = async (req, res, next) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide an image file to upload.',
+      });
+    }
+
+    const avatarUrl = `/uploads/${req.file.filename}`;
+
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(200).json({
+        success: true,
+        avatar: avatarUrl,
+        user: { ...req.user, avatar: avatarUrl },
+      });
+    }
+
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      { avatar: avatarUrl },
+      { new: true, runValidators: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      avatar: avatarUrl,
+      user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
  * @desc    Forgot Password - generate single-use expiring token
  * @route   POST /api/auth/forgot-password
  * @access  Public

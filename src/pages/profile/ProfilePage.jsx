@@ -8,10 +8,20 @@ import {
   X, 
   ExternalLink, 
   Briefcase,
-  Clock
+  Clock,
+  Camera,
+  Upload
 } from 'lucide-react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import { useAuth } from '../../context/AuthContext';
+import { resizeImageToBase64 } from '../../utils/imageUtils';
+
+const AVATAR_PRESETS = [
+  { id: 'preset-1', url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250', label: 'Preset 1' },
+  { id: 'preset-2', url: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=250', label: 'Preset 2' },
+  { id: 'preset-3', url: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=250', label: 'Preset 3' },
+  { id: 'preset-4', url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250', label: 'Preset 4' },
+];
 
 function GithubIcon({ className = "w-4 h-4" }) {
   return (
@@ -35,10 +45,14 @@ export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
   const [saving, setSaving] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
+  const [customAvatar, setCustomAvatar] = useState(null);
+
+  const displayedAvatar = customAvatar || user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250';
 
   // Edit form state
   const [formData, setFormData] = useState({
     name: user?.name || 'Alex Morgan',
+    avatar: user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
     bio: user?.bio || 'Full-stack builder passionate about developer tooling, real-time collaboration, and accessible design systems.',
     university: user?.academic?.university || user?.university || 'Stanford University',
     courseAndYear: user?.academic?.course || user?.courseAndYear || 'CS Junior • Year 3',
@@ -48,9 +62,69 @@ export default function ProfilePage() {
     linkedin: user?.linkedin || 'https://linkedin.com',
   });
 
+  const handleToggleEdit = () => {
+    if (!isEditing) {
+      setFormData({
+        name: user?.name || 'Alex Morgan',
+        avatar: user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
+        bio: user?.bio || 'Full-stack builder passionate about developer tooling, real-time collaboration, and accessible design systems.',
+        university: user?.academic?.university || user?.university || 'Stanford University',
+        courseAndYear: user?.academic?.course || user?.courseAndYear || 'CS Junior • Year 3',
+        availability: user?.availability || '10-15 hrs/week',
+        experienceLevel: user?.experienceLevel || 'Intermediate',
+        github: user?.github || 'https://github.com',
+        linkedin: user?.linkedin || 'https://linkedin.com',
+      });
+      setCustomAvatar(null);
+    }
+    setIsEditing(!isEditing);
+  };
+
   // Skills state
   const [skills, setSkills] = useState(user?.skills || ['React', 'Python', 'FastAPI', 'Tailwind CSS', 'PostgreSQL', 'UI/UX Design']);
   const [newSkillInput, setNewSkillInput] = useState('');
+
+  const handlePhotoSelect = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      setSaving(true);
+      const base64 = await resizeImageToBase64(file, 300, 300, 0.88);
+      setCustomAvatar(base64);
+      setFormData(prev => ({ ...prev, avatar: base64 }));
+      await updateProfile({
+        ...formData,
+        avatar: base64,
+        skills,
+      });
+      setSuccessMsg('Profile photo updated successfully!');
+      setTimeout(() => setSuccessMsg(''), 4000);
+    } catch (err) {
+      console.error('Failed to update photo:', err);
+    } finally {
+      setSaving(false);
+      e.target.value = '';
+    }
+  };
+
+  const handleSelectPreset = async (url) => {
+    try {
+      setSaving(true);
+      setCustomAvatar(url);
+      setFormData(prev => ({ ...prev, avatar: url }));
+      await updateProfile({
+        ...formData,
+        avatar: url,
+        skills,
+      });
+      setSuccessMsg('Profile photo updated successfully!');
+      setTimeout(() => setSuccessMsg(''), 4000);
+    } catch (err) {
+      console.error('Failed to select preset:', err);
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const handleAddSkill = (e) => {
     e.preventDefault();
@@ -76,8 +150,10 @@ export default function ProfilePage() {
     setSuccessMsg('');
 
     try {
+      const avatarToSave = customAvatar || formData.avatar || user?.avatar;
       await updateProfile({
         ...formData,
+        avatar: avatarToSave,
         skills,
       });
       setSuccessMsg('Profile updated successfully!');
@@ -105,13 +181,28 @@ export default function ProfilePage() {
 
         <div className="relative flex flex-col sm:flex-row sm:items-end justify-between gap-6 pt-4">
           <div className="flex flex-col sm:flex-row items-center sm:items-end gap-5 text-center sm:text-left">
-            <div className="relative">
+            <div className="relative group">
               <img
-                src={user?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250"}
+                src={displayedAvatar}
                 alt={user?.name || "Student"}
-                className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover ring-4 ring-white dark:ring-[#182017] shadow-lg"
+                className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover ring-4 ring-white dark:ring-[#182017] shadow-lg group-hover:opacity-90 transition-opacity"
               />
-              <span className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-[#182017]" title="Active Matchmaking Status" />
+              <label
+                htmlFor="profile-overview-avatar-input"
+                className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer text-white text-[10px] font-bold gap-1 backdrop-blur-xs"
+                title="Click to change profile photo"
+              >
+                <Camera className="w-5 h-5 text-white drop-shadow" />
+                <span>Change Photo</span>
+                <input
+                  id="profile-overview-avatar-input"
+                  type="file"
+                  accept="image/*"
+                  onChange={handlePhotoSelect}
+                  className="hidden"
+                />
+              </label>
+              <span className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-[#182017] pointer-events-none" title="Active Matchmaking Status" />
             </div>
 
             <div>
@@ -139,7 +230,7 @@ export default function ProfilePage() {
           </div>
 
           <button
-            onClick={() => setIsEditing(!isEditing)}
+            onClick={handleToggleEdit}
             className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-slate-200 dark:border-purple-900/60 bg-white dark:bg-[#1e261d] text-xs font-bold text-slate-700 dark:text-slate-200 hover:border-[#7B9669] hover:text-[#7B9669] transition-all shadow-xs shrink-0 self-center sm:self-auto"
           >
             <Edit3 className="w-3.5 h-3.5" />
@@ -166,6 +257,52 @@ export default function ProfilePage() {
             >
               <X className="w-4 h-4" />
             </button>
+          </div>
+
+          {/* Profile Photo Uploader & Presets */}
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#1e261d]/70 border border-slate-200/80 dark:border-purple-900/40 flex flex-col sm:flex-row items-center gap-4">
+            <div className="relative shrink-0">
+              <img
+                src={displayedAvatar}
+                alt="Profile Preview"
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover ring-2 ring-[#7B9669]/60 shadow-md"
+              />
+            </div>
+            <div className="flex-1 text-center sm:text-left space-y-2">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <label
+                  htmlFor="drawer-avatar-file-upload"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-[#7B9669] text-white shadow-xs hover:bg-[#404E3B] cursor-pointer transition-all"
+                >
+                  <Upload className="w-3.5 h-3.5" />
+                  <span>Upload New Photo</span>
+                  <input
+                    id="drawer-avatar-file-upload"
+                    type="file"
+                    accept="image/*"
+                    onChange={handlePhotoSelect}
+                    className="hidden"
+                  />
+                </label>
+                <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                  JPG, PNG or WEBP (auto-compressed &amp; saved)
+                </span>
+              </div>
+              <div className="flex items-center justify-center sm:justify-start gap-2 pt-1">
+                <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Presets:</span>
+                {AVATAR_PRESETS.map((preset) => (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    onClick={() => handleSelectPreset(preset.url)}
+                    className="relative rounded-full ring-2 ring-transparent hover:ring-[#7B9669] focus:ring-[#7B9669] transition-all overflow-hidden w-7 h-7 shrink-0"
+                    title={preset.label}
+                  >
+                    <img src={preset.url} alt={preset.label} className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

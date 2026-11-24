@@ -28,6 +28,7 @@ export function AuthProvider({ children }) {
           const res = await authAPI.getMe();
           if (res.success && res.user) {
             setUser(res.user);
+            localStorage.setItem('skillbridge_user', JSON.stringify(res.user));
             connectSocket(storedToken);
           } else {
             // Token invalid or expired
@@ -53,6 +54,7 @@ export function AuthProvider({ children }) {
       const res = await authAPI.login({ email, password });
       if (res.success && res.token) {
         localStorage.setItem('token', res.token);
+        localStorage.setItem('skillbridge_user', JSON.stringify(res.user));
         setToken(res.token);
         setUser(res.user);
         connectSocket(res.token);
@@ -68,6 +70,7 @@ export function AuthProvider({ children }) {
           name: email.split('@')[0],
         };
         setUser(fallbackUser);
+        localStorage.setItem('skillbridge_user', JSON.stringify(fallbackUser));
         return { success: true, user: fallbackUser, offline: true };
       }
       const msg = err.data?.message || err.message || 'Login failed';
@@ -82,6 +85,7 @@ export function AuthProvider({ children }) {
       const res = await authAPI.register(userData);
       if (res.success && res.token) {
         localStorage.setItem('token', res.token);
+        localStorage.setItem('skillbridge_user', JSON.stringify(res.user));
         setToken(res.token);
         setUser(res.user);
         connectSocket(res.token);
@@ -103,6 +107,7 @@ export function AuthProvider({ children }) {
           avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
         };
         setUser(fallbackUser);
+        localStorage.setItem('skillbridge_user', JSON.stringify(fallbackUser));
         return { success: true, user: fallbackUser, offline: true };
       }
       const msg = err.data?.message || err.message || 'Registration failed';
@@ -116,6 +121,7 @@ export function AuthProvider({ children }) {
       await authAPI.logout().catch(() => {});
     } finally {
       localStorage.removeItem('token');
+      localStorage.removeItem('skillbridge_user');
       setToken(null);
       setUser(null);
       disconnectSocket();
@@ -127,13 +133,37 @@ export function AuthProvider({ children }) {
       const res = await authAPI.updateProfile(profileData);
       if (res.success && res.user) {
         setUser(res.user);
+        localStorage.setItem('skillbridge_user', JSON.stringify(res.user));
         return { success: true, user: res.user };
       }
       return { success: false, message: res.message };
     } catch {
-      // In local offline fallback, update state directly
-      setUser(prev => ({ ...prev, ...profileData }));
+      // In local offline fallback, update state directly and sync localStorage
+      setUser(prev => {
+        const updated = { ...(prev || {}), ...profileData };
+        localStorage.setItem('skillbridge_user', JSON.stringify(updated));
+        return updated;
+      });
       return { success: true, user: { ...user, ...profileData } };
+    }
+  };
+
+  const uploadAvatar = async (formDataOrFile) => {
+    try {
+      let body = formDataOrFile;
+      if (formDataOrFile instanceof File) {
+        body = new FormData();
+        body.append('avatar', formDataOrFile);
+      }
+      const res = await authAPI.uploadAvatar(body);
+      if (res.success && res.user) {
+        setUser(res.user);
+        localStorage.setItem('skillbridge_user', JSON.stringify(res.user));
+        return { success: true, user: res.user, avatar: res.avatar };
+      }
+      return { success: false, message: res.message };
+    } catch (err) {
+      return { success: false, message: err.message };
     }
   };
 
@@ -157,6 +187,7 @@ export function AuthProvider({ children }) {
         register,
         logout,
         updateProfile,
+        uploadAvatar,
         forgotPassword,
         resetPassword,
       }}

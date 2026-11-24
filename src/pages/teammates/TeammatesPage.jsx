@@ -170,9 +170,6 @@ export default function TeammatesPage() {
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
               Find Complementary Teammates
             </h1>
-            <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-2xl leading-relaxed">
-              Our rule-based algorithm ranks student candidates by mathematically comparing their skill profiles against your target project's tech requirements.
-            </p>
           </div>
         </div>
 

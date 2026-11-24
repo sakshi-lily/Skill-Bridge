@@ -14,6 +14,7 @@ import AuthLayout from '../components/auth/AuthLayout';
 import InputField from '../components/auth/InputField';
 import Button from '../components/auth/Button';
 import { useAuth } from '../context/AuthContext';
+import { resizeImageToBase64 } from '../utils/imageUtils';
 
 const TECHNICAL_SKILLS_PRESETS = [
   'React', 'Node.js', 'Python', 'Tailwind CSS', 'TypeScript',
@@ -78,12 +79,18 @@ export default function SetupProfilePage() {
   const [demoNotice, setDemoNotice] = useState(null);
 
   // Avatar Upload Handler
-  const handleAvatarChange = (e) => {
+  const handleAvatarChange = async (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      const url = URL.createObjectURL(file);
-      setAvatar(file);
-      setAvatarPreview(url);
+      try {
+        const base64 = await resizeImageToBase64(file, 300, 300, 0.88);
+        setAvatar(file);
+        setAvatarPreview(base64);
+      } catch {
+        const url = URL.createObjectURL(file);
+        setAvatar(file);
+        setAvatarPreview(url);
+      }
     }
   };
 

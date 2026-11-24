@@ -159,9 +159,6 @@ export default function TasksPage() {
               <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
                 Team Tasks & Deliverables
               </h1>
-              <p className="mt-2 text-[#e7ece2]/90 text-sm leading-relaxed">
-                Coordinate milestones, track sprint deliverables, and manage workload across your active project teams with real-time status transitions.
-              </p>
             </div>
 
             <button
