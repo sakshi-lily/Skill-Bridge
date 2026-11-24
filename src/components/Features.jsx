@@ -4,7 +4,6 @@ import {
   Kanban,
   Users2,
   CheckCircle2,
-  Sparkles,
   Zap
 } from 'lucide-react';
 
@@ -144,9 +143,6 @@ export default function Features() {
                   <div className="rounded-xl p-3.5 bg-slate-50/80 dark:bg-[#182017]/80 border border-purple-100/60 dark:border-purple-900/30">
                     <div className="flex items-center justify-between text-[11px] font-semibold text-slate-400 dark:text-slate-400 mb-2">
                       <span className="uppercase tracking-wider">{feature.previewSnippet.tag}</span>
-                      <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-bold">
-                        <Sparkles className="w-3 h-3" /> Live
-                      </span>
                     </div>
                     <div className="text-xs font-bold text-slate-800 dark:text-slate-200 mb-2">
                       {feature.previewSnippet.title}

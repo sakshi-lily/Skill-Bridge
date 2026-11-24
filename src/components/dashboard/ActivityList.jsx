@@ -32,10 +32,6 @@ export default function ActivityList({ activities = [] }) {
             Real-time feed of campus project updates
           </p>
         </div>
-
-        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-purple-50 dark:bg-[#222c20] text-[#7B9669] dark:text-purple-300 border border-purple-100 dark:border-purple-900/40">
-          Live Feed Demo
-        </span>
       </div>
 
       <div className="relative pl-2 space-y-4 before:absolute before:left-5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-100 dark:before:bg-purple-950/50">

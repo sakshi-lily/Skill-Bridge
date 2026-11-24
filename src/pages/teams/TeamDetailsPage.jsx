@@ -290,7 +290,7 @@ export default function TeamDetailsPage() {
                     Team Sprint Tasks ({teamTasks.length})
                   </h3>
                   <p className="text-xs text-slate-500 dark:text-slate-400">
-                    Live tasks assigned within {team.name}
+                    Tasks assigned within {team.name}
                   </p>
                 </div>
 

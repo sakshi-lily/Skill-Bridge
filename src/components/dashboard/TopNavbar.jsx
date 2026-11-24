@@ -169,7 +169,7 @@ export default function TopNavbar({
             <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-2xl bg-white dark:bg-[#182017] border border-slate-200 dark:border-purple-900/60 shadow-xl p-3 z-50">
               <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-100 dark:border-purple-950/60 px-2">
                 <span className="text-xs font-bold text-slate-900 dark:text-white">
-                  Live Notifications ({unreadCount} unread)
+                  Notifications ({unreadCount} unread)
                 </span>
                 <button
                   type="button"

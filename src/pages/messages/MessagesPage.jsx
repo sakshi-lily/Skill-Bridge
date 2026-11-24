@@ -7,7 +7,6 @@ import { chatAPI } from '../../services/api';
 import {
   MessageSquare,
   Send,
-  Circle,
   Users
 } from 'lucide-react';
 
@@ -222,12 +221,8 @@ export default function MessagesPage() {
                     {selectedTeam.name.charAt(0)}
                   </div>
                   <div className="min-w-0">
-                    <h3 className="font-bold text-slate-900 dark:text-white text-base truncate flex items-center gap-2">
-                      <span>{selectedTeam.name}</span>
-                      <span className="flex items-center gap-1 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full border border-emerald-200/60">
-                        <Circle className="w-2 h-2 fill-emerald-500" />
-                        Live Room
-                      </span>
+                    <h3 className="font-bold text-slate-900 dark:text-white text-base truncate">
+                      {selectedTeam.name}
                     </h3>
                     <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
                       Project: <span className="font-medium text-[#7B9669] dark:text-purple-300">{selectedTeam.projectName}</span> &bull; {selectedTeam.members?.length || 3} Collaborators

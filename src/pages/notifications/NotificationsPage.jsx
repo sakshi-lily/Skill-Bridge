@@ -127,7 +127,7 @@ export default function NotificationsPage() {
   return (
     <DashboardLayout 
       title="Notifications" 
-      breadcrumb="Dashboard / Notifications & Live Alerts"
+      breadcrumb="Dashboard / Notifications"
     >
       <div className="max-w-4xl mx-auto space-y-6">
         
