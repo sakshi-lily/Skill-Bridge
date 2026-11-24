@@ -4,8 +4,6 @@ import TopNavbar from './TopNavbar';
 
 export default function DashboardLayout({ 
   children, 
-  title = "Overview", 
-  breadcrumb = "Dashboard / Overview" 
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -24,8 +22,6 @@ export default function DashboardLayout({
         {/* Fixed Top Navbar */}
         <TopNavbar 
           onOpenSidebar={() => setSidebarOpen(true)}
-          title={title}
-          breadcrumb={breadcrumb}
         />
 
         {/* Scrollable Main Area with Proper Vertical Spacing Below Fixed Navbar */}

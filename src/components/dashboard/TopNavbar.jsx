@@ -17,8 +17,6 @@ import { getSocket } from '../../services/socket';
 
 export default function TopNavbar({ 
   onOpenSidebar, 
-  title = "Overview", 
-  breadcrumb = "Dashboard / Overview" 
 }) {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
@@ -97,8 +95,8 @@ export default function TopNavbar({
   return (
     <header className="fixed top-0 right-0 left-0 lg:left-72 z-30 h-16 sm:h-[72px] bg-white/95 dark:bg-[#182017]/95 backdrop-blur-md border-b border-slate-200/80 dark:border-purple-950/60 px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-colors">
       
-      {/* Left: Mobile Toggle & Page Title / Breadcrumb */}
-      <div className="flex items-center gap-3 sm:gap-4">
+      {/* Left: Mobile Navigation Toggle */}
+      <div className="flex items-center">
         <button
           type="button"
           onClick={onOpenSidebar}
@@ -107,15 +105,6 @@ export default function TopNavbar({
         >
           <Menu className="w-5 h-5" />
         </button>
-
-        <div>
-          <div className="text-[11px] font-semibold text-slate-400 dark:text-slate-400 hidden sm:block">
-            {breadcrumb}
-          </div>
-          <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-tight">
-            {title}
-          </h2>
-        </div>
       </div>
 
       {/* Middle: Interactive Search Bar */}
