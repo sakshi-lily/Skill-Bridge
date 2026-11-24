@@ -6,7 +6,7 @@ export default function Stats() {
     {
       id: 1,
       value: '12,500+',
-      label: 'Active Student Builders',
+      label: 'Active Students',
       sublabel: 'Across 120+ top engineering & design campuses',
       icon: Users,
       badgeColor: 'bg-purple-100 dark:bg-purple-950/60 text-[#7B9669] dark:text-purple-300',

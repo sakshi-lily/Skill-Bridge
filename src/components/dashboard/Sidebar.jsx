@@ -148,7 +148,7 @@ export default function Sidebar({ isOpen, onClose }) {
             </div>
             <div className="min-w-0 flex-1">
               <h5 className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate group-hover:text-[#7B9669] transition-colors">
-                {user?.name || "Student Builder"}
+                {user?.name || "Student"}
               </h5>
               <p className="text-[11px] text-slate-400 dark:text-slate-500 truncate capitalize">
                 {user?.academic?.course || user?.role || "Student"} &bull; {user?.university || "SkillBridge"}

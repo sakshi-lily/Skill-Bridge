@@ -59,7 +59,7 @@ export default function StudentProfileModal({ student, isOpen, onClose, onOpenIn
             About / Elevator Pitch
           </h3>
           <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-[#1e261d] p-3.5 rounded-2xl border border-slate-200/80 dark:border-purple-900/40">
-            {student.bio || 'Active student builder looking for complementary teams and hackathon projects.'}
+            {student.bio || 'Active student looking for complementary teams and hackathon projects.'}
           </p>
         </div>
 

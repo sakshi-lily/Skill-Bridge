@@ -140,7 +140,7 @@ export default function Footer() {
           <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
             <span>Crafted with</span>
             <Heart className="w-3.5 h-3.5 text-pink-500 fill-pink-500 inline" />
-            <span>for student builders</span>
+            <span>for students</span>
           </div>
         </div>
 
